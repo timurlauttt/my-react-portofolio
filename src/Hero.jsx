@@ -6,22 +6,22 @@ function Hero() {
                 <div className="bg-white min-h-screen mt-8 flex items-center justify-center">
                     <div className="container rounded shadow-[10px_8px_0_#74247A] mx-auto p-4 grid md:grid-cols-2 gap-4">
                         {/* Left Section */}
-                        <div className="flex flex-col items-center md:ms-16 md:items-start text-center md:text-left">
-                            <h1 className="mt-8 text-3xl md:text-5xl lg:text-6xl mb-4">
+                        <div className="flex flex-col items-start md:ms-16 text-left md:text-left">
+                            <h1 className="mt-8 md:text-start text-3xl md:text-5xl lg:text-6xl mb-4">
                                 Hello, World!
                                 <br />
                                 <span className="text-3xl md:text-5xl lg:text-6xl font-light">
                                     <span className="font-bold">I'm Urip</span>
                                 </span>
                             </h1>
-                            <p className="mt-4 text-gray-700 bg-white p-4 rounded-lg shadow-lg max-w-md">
-                                Hello! I'm Urip Yoga Pangestu, 
+                            <p className="mt-4 text-left md:text-start text-gray-700 bg-white p-4 rounded-lg shadow-lg max-w-md">
+                                Hello! I'm Urip Yoga Pangestu,
                                 a 6th semester Information Systems student who loves challenges,
                                 web development enthusiast,
                                 and always open to learning new things
                             </p>
-                            <a href="#about-me" className="mt-8 mb-10 font-bold bg-yellow-400 text-black border-2 border-yellow-400 px-4 py-2 font-syne text-base uppercase shadow-[4px_6px_0_#74247A] transition-all duration-200 ease-in-out cursor-pointer hover:bg-[#74247A] hover:text-yellow-400 hover:shadow-[4px_4px_0_#ffcc00] w-fit">
-                            About Me
+                            <a href="#about-me" className="text-left md:text-start mt-8 mb-10 font-bold bg-yellow-400 text-black border-2 border-yellow-400 px-4 py-2 font-syne text-base uppercase shadow-[4px_6px_0_#74247A] transition-all duration-200 ease-in-out cursor-pointer hover:bg-[#74247A] hover:text-yellow-400 hover:shadow-[4px_4px_0_#ffcc00] w-fit">
+                                About Me
                             </a>
                         </div>
 

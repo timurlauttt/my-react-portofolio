@@ -10,7 +10,7 @@ function Contact() {
         <Section 
             id="contact" 
             title="Let's Work Together"
-            className="mt-16 mb-16 bg-gradient-to-br from-blue-50 to-purple-50"
+            className="mt-16 bg-gradient-to-br from-blue-50 to-purple-50"
         >
             <Container className="text-center">
                 <div className="mb-12">
