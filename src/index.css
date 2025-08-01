@@ -1,0 +1,63 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.navbar {
+  font-family: "Syne", serif;
+  scroll-behavior: smooth;
+}
+
+.navbar-text {
+  color: black;
+  background-color: #fff;
+}
+
+.navbar-text:hover {
+  color: #74247A;
+}
+
+.navbar-text.active {
+  color: white;
+  background-color: black;
+  padding-inline: 10px;
+  padding-block: 5px;
+  border-radius: 15px;
+}
+
+section {
+  scroll-margin-top: 50px;
+}
+
+.home {
+  font-family: "IBM Plex Mono", serif;
+}
+
+.home h1 {
+  font-weight: 400;
+  font-size: 4rem;
+  color: black;
+}
+
+.about-me {
+  font-family: "IBM Plex Mono", serif;
+}
+
+.about-me h1 {
+  font-weight: 800;
+  color: black;
+}
+
+/* Group 2904 */
+.card-1 {
+  position: absolute;
+  width: 1200px;
+  height: 330px;
+  left: 120px;
+  top: 2209px;
+  background: #FFFFFF;
+}
+
+.footer {
+  font-family: "Syne", serif;
+  scroll-behavior: smooth;
+}
