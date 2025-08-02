@@ -1,14 +1,45 @@
 import React from 'react';
 
-const ActivityCard = ({ title, description, bgColor = "bg-yellow-400" }) => {
-    return (
-        <div className={`w-40 aspect-square ${bgColor} border-2 border-black shadow-[4px_4px_0_#000] hover:scale-105 transition-all cursor-pointer flex flex-col`}>
-            <div className="p-2 text-xs flex flex-col flex-grow justify-between bg-white min-h-[120px]">
-                <h5 className="font-bold text-start">{title}</h5>
-                <p className="text-gray-700 mt-1 text-start">{description}</p>
+const ActivityCard = ({ title, description, bgColor = "bg-yellow-400", link, isExternal = true }) => {
+    const CardContent = () => (
+        <div className={`w-40 aspect-square border-2 border-black shadow-[4px_4px_0_#000] hover:scale-105 transition-all cursor-pointer flex flex-col group overflow-hidden`}>
+            {/* Colored header section with title */}
+            <div className={`${bgColor} h-12 w-full flex-shrink-0 p-2 flex items-center justify-center relative`}>
+                <h5 className="font-bold text-center text-xs leading-tight text-white">{title}</h5>
+                
+                {/* Link indicator icon */}
+                {link && (
+                    <div className="absolute top-1 right-1 opacity-70 group-hover:opacity-100 transition-opacity">
+                        <svg className="w-3 h-3 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </div>
+                )}
+            </div>
+            
+            {/* White content area with description */}
+            <div className="p-2 text-xs flex flex-col flex-grow justify-center bg-white">
+                <p className="text-gray-700 text-start leading-tight">{description}</p>
             </div>
         </div>
     );
+
+    // If link exists, wrap with anchor tag
+    if (link) {
+        return (
+            <a 
+                href={link}
+                target={isExternal ? "_blank" : "_self"}
+                rel={isExternal ? "noopener noreferrer" : ""}
+                className="block hover:no-underline"
+            >
+                <CardContent />
+            </a>
+        );
+    }
+
+    // If no link, return card without anchor
+    return <CardContent />;
 };
 
 export default ActivityCard;

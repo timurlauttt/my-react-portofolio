@@ -7,17 +7,27 @@ import MyActivities from "./MyActivities";
 import Contact from "./Contact"; 
 import Footer from "./Footer";
 
+// New components
+import LoadingScreen from "./components/LoadingScreen";
+import ScrollProgress from "./components/ScrollProgress";
+import SkillsSection from "./components/SkillsSection";
+import FloatingActionButton from "./components/FloatingActionButton";
+
 
 function App() {
   return (
     <div>
+      <LoadingScreen />
+      <ScrollProgress />
       <Navbar/>
       <Hero/>
       <AboutMe/>
+      <SkillsSection />
       <MyPortofolio/>
       <MyActivities/>
       <Contact/>
       <Footer/>
+      <FloatingActionButton />
     </div>
   );
 }

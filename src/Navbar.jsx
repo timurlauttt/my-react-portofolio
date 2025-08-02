@@ -65,6 +65,15 @@ const Navbar = () => {
                     </li>
                     <li>
                         <a
+                            href="#skills"
+                            className={`navbar-text hover ${activeSection === "skills" ? "navbar-text active" : "text-black"
+                                }`}
+                        >
+                            Skills
+                        </a>
+                    </li>
+                    <li>
+                        <a
                             href="#portofolio"
                             className={`navbar-text hover ${activeSection === "portofolio" ? "navbar-text active" : "text-black"
                                 }`}
@@ -105,6 +114,16 @@ const Navbar = () => {
                                 onClick={() => setIsMenuOpen(false)} // Close menu after link is clicked
                             >
                                 About Me
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#skills"
+                                className={`navbar-text hover ${activeSection === "skills" ? "navbar-text active" : "text-black"
+                                    }`}
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Skills
                             </a>
                         </li>
                         <li>
