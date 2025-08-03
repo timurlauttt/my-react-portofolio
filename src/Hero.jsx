@@ -11,7 +11,7 @@ function Hero() {
                                 Hello, World!
                                 <br />
                                 <span className="text-3xl md:text-5xl lg:text-6xl font-light">
-                                    <span className="font-bold">I'm Urip</span>
+                                    <span className="font-bold">Urip here</span>
                                 </span>
                             </h1>
                             <p className="mt-4 text-left md:text-start text-gray-700 bg-white p-4 shadow-lg max-w-md">
