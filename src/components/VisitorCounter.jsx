@@ -26,7 +26,7 @@ const VisitorCounter = ({ className }) => {
 
     return (
         <p className={className}>
-            Total Pengunjung: {count !== null ? count : "memuat..."}
+            Total Kunjungan : {count !== null ? count : "memuat..."}
         </p>
     );
 };
