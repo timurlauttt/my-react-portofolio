@@ -34,7 +34,7 @@ export const portfolioData = [
     },
     {
         id: 6,
-        image: "github.png",
+        image: "github1.png",
         title: "GitHub Profile",
         description: "Repositories and activities I have created on GitHub, some may not be visible because they are private",
         link: "https://github.com/timurlauttt",
