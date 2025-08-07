@@ -1,38 +1,27 @@
-import { useState, useEffect } from 'react';
+// src/hooks/useGlobalVisitorCounter.js
+import { useEffect, useState } from "react";
 
 export const useGlobalVisitorCounter = () => {
     const [globalCount, setGlobalCount] = useState(0);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(false);
+
+    const NAMESPACE = "timurlauttt-site"; // bebas, tapi harus unik
+    const KEY = "visitor_count";
 
     useEffect(() => {
-        const fetchVisitorCount = async () => {
-            try {
-                setLoading(true);
-                // Replace 'your-website-name' with your actual website identifier
-                const response = await fetch('https://api.countapi.xyz/hit/my-react-portfolio/visits');
-                
-                if (!response.ok) {
-                    throw new Error('Failed to fetch visitor count');
-                }
-                
-                const data = await response.json();
-                setGlobalCount(data.value);
-                setError(null);
-            } catch (err) {
-                console.error('Error fetching visitor count:', err);
-                setError(err.message);
-                // Fallback to localStorage if API fails
-                const localCount = localStorage.getItem('fallbackVisitCount') || '0';
-                const newCount = parseInt(localCount) + 1;
-                localStorage.setItem('fallbackVisitCount', newCount.toString());
-                setGlobalCount(newCount);
-            } finally {
-                setLoading(false);
-            }
-        };
+        const countUrl = `https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`;
 
-        fetchVisitorCount();
+        fetch(countUrl)
+            .then((res) => res.json())
+            .then((data) => {
+                setGlobalCount(data.value);
+                setLoading(false);
+            })
+            .catch(() => {
+                setError(true);
+                setLoading(false);
+            });
     }, []);
 
     return { globalCount, loading, error };

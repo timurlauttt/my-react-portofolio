@@ -170,7 +170,7 @@ function Footer() {
                 <p className="text-sm font-semibold mb-2">
                     {new Date().getFullYear()} &copy; @timurlauttt
                 </p>
-                <VisitorCounter type="global" className="text-black text-xs" />
+                <VisitorCounter className="text-black text-xs" />
             </div>
         </>
     );
