@@ -1,13 +1,34 @@
-import React from 'react';
-import { useGlobalVisitorCounter } from '../hooks/useGlobalVisitorCounter';
+import React, { useEffect, useState } from "react";
+import { database } from "../firebase";
+import { ref, get, set, increment } from "firebase/database";
 
-const VisitorCounter = ({ className = "" }) => {
-    const { globalCount, loading, error } = useGlobalVisitorCounter();
+const VisitorCounter = ({ className }) => {
+    const [count, setCount] = useState(null);
 
-    if (loading) return <p className={className}>Memuat pengunjung...</p>;
-    if (error) return <p className={`${className} text-red-600`}>Total Pengunjung: tidak tersedia</p>;
+    useEffect(() => {
+        const counterRef = ref(database, "visitor_count");
 
-    return <p className={className}>Total Pengunjung: {globalCount.toLocaleString()}</p>;
+        get(counterRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                // Sudah ada: increment
+                set(counterRef, increment(1));
+                setCount(snapshot.val() + 1);
+            } else {
+                // Belum ada: buat dari 1
+                set(counterRef, 1);
+                setCount(1);
+            }
+        }).catch((error) => {
+            console.error("Error reading visitor count:", error);
+            setCount("tidak tersedia");
+        });
+    }, []);
+
+    return (
+        <p className={className}>
+            Total Pengunjung: {count !== null ? count : "memuat..."}
+        </p>
+    );
 };
 
 export default VisitorCounter;
