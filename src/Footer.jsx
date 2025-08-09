@@ -19,13 +19,6 @@ function Footer() {
                             <h2 className="text-lg font-semibold mb-3 text-left">Contact</h2>
                             <div className="space-y-3">
                                 <div>
-                                    <a href="https://wa.me/6285861466287" target="_blank" rel="noopener noreferrer"
-                                        className="flex items-center gap-2 text-sm hover:text-yellow-300 transition-colors">
-                                        <i className="fab fa-whatsapp text-lg"></i>
-                                        <span>+62-85861466287</span>
-                                    </a>
-                                </div>
-                                <div>
                                     <a href="mailto:2211103102@ittelkom-pwt.ac.id"
                                         className="flex items-center gap-2 text-sm hover:text-yellow-300 transition-colors">
                                         <i className="fas fa-envelope text-lg"></i>
@@ -135,12 +128,6 @@ function Footer() {
                         <div>
                             <h2 className="text-lg font-semibold mb-3">Contact</h2>
                             <ul className="space-y-2">
-                                <li className="flex items-center gap-2">
-                                    <a href="https://wa.me/6285861466287" target="_blank" rel="noopener noreferrer"
-                                        className="hover:text-yellow-300 transition-colors">
-                                        <i className="fab fa-whatsapp text-xl"></i> +62-85861466287
-                                    </a>
-                                </li>
                                 <li className="flex items-center gap-2">
                                     <a href="mailto:2211103102@ittelkom-pwt.ac.id"
                                         className="hover:text-yellow-300 transition-colors">
