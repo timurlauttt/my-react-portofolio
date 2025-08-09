@@ -17,14 +17,6 @@ export const portfolioData = [
         isExternal: true
     },
     {
-        id: 1,
-        image: "pkl.png",
-        title: "Internship Project",
-        description: "Currently working on a project for Banyumas Education Department using CI4 framework, planned to be completed by March",
-        link: "https://github.com/timurlauttt",
-        isExternal: false
-    },
-    {
         id: 2,
         image: "questify.png",
         title: "MSIB Project - Web App",
