@@ -24,7 +24,7 @@ function Contact() {
                     responsive={{
                         sm: 2,
                         md: 2,
-                        lg: 4
+                        lg: 3
                     }}
                     gap={8}
                     className="p-6 mt-8 mb-12 place-items-center max-w-6xl mx-auto"
