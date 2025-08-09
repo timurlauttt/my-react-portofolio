@@ -270,19 +270,12 @@ export const contactData = [
     {
         id: 1,
         type: "linkedin",
-        href: "https://www.linkedin.com/me?trk=p_mwlite_feed-secondary_nav",
+        href: "https://www.linkedin.com/in/urip-yoga-pangestu-65a541231/",
         bgColor: "bg-[#69D3FA]",
         order: "order-1",
         label: "LinkedIn"
     },
-    {
-        id: 2,
-        type: "whatsapp",
-        href: "https://wa.me/6285861466287",
-        bgColor: "bg-[#5CF1A4]",
-        order: "order-2",
-        label: "WhatsApp"
-    },
+
     {
         id: 3,
         type: "email",
