@@ -72,9 +72,9 @@ function Footer() {
                                     </a>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <a href="https://www.tiktok.com/@pangestuuu292?_t=ZS-8ykiatLFdAK&_r=1" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
+                                    <a href="https://www.tiktok.com/@pangestuurip?_t=ZS-8ykixitNw0r&_r=1" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
                                         <i className="fab fa-tiktok text-lg"></i>
-                                        <span>pangestuuu</span>
+                                        <span>pangestuurip</span>
                                     </a>
                                 </div>
                             </div>
@@ -124,8 +124,8 @@ function Footer() {
                                     </a>
                                 </li>
                                 <li className="flex-items-center gap-2" >
-                                    <a href="https://www.tiktok.com/@pangestuuu292?_t=ZS-8ykiatLFdAK&_r=1" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
-                                        <i className="fab fa-tiktok text-xl"></i> pangestuuu
+                                    <a href="https://www.tiktok.com/@pangestuurip?_t=ZS-8ykixitNw0r&_r=1" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
+                                        <i className="fab fa-tiktok text-xl"></i> pangestuurip
                                     </a>
                                 </li>
                             </ul>
