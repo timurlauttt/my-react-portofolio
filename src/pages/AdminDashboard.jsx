@@ -6,10 +6,17 @@ import {
     BriefcaseIcon, 
     AcademicCapIcon, 
     EnvelopeIcon,
-    PlusIcon
+    PlusIcon,
+    ArrowPathIcon
 } from '@heroicons/react/24/outline';
 import toast from 'react-hot-toast';
-import { testFirebaseConnection } from '../utils/firebaseTest';
+import { 
+    aboutService,
+    skillsService,
+    portfolioService,
+    activitiesService,
+    contactService
+} from '../services/serviceWrapper';
 
 const AdminDashboard = () => {
     const [stats, setStats] = useState({
@@ -19,37 +26,51 @@ const AdminDashboard = () => {
         activities: 0,
         contact: 0
     });
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const initDashboard = async () => {
-            console.log('AdminDashboard initializing...');
+        const loadDashboardStats = async () => {
+            console.log('AdminDashboard loading real data...');
             
             try {
-                // Test Firebase connection first
-                const firebaseTest = await testFirebaseConnection();
-                console.log('Firebase test result:', firebaseTest);
+                setLoading(true);
                 
-                if (firebaseTest.success) {
-                    toast.success('Firebase connected successfully');
-                } else {
-                    toast.error('Firebase connection failed');
-                }
-                
-                // For now, use mock data to prevent Firebase errors
+                // Fetch real data from all services
+                const [
+                    aboutData,
+                    skillsData,
+                    portfolioData,
+                    activitiesData,
+                    contactData
+                ] = await Promise.all([
+                    aboutService.getAll(),
+                    skillsService.getAll(),
+                    portfolioService.getAll(),
+                    activitiesService.getAll(),
+                    contactService.getAll()
+                ]);
+
+                console.log('Dashboard data loaded:', {
+                    about: aboutData.length,
+                    skills: skillsData.length,
+                    portfolio: portfolioData.length,
+                    activities: activitiesData.length,
+                    contact: contactData.length
+                });
+
                 setStats({
-                    about: 3,
-                    skills: 8,
-                    portfolio: 5,
-                    activities: 12,
-                    contact: 4
+                    about: aboutData.length,
+                    skills: skillsData.length,
+                    portfolio: portfolioData.length,
+                    activities: activitiesData.length,
+                    contact: contactData.length
                 });
                 
             } catch (error) {
-                console.error('Dashboard initialization error:', error);
-                toast.error('Dashboard initialization failed');
+                console.error('Dashboard data loading error:', error);
+                toast.error('Failed to load dashboard statistics');
                 
-                // Still set mock data even if Firebase fails
+                // Set zeros on error
                 setStats({
                     about: 0,
                     skills: 0,
@@ -57,11 +78,50 @@ const AdminDashboard = () => {
                     activities: 0,
                     contact: 0
                 });
+            } finally {
+                setLoading(false);
             }
         };
         
-        initDashboard();
+        loadDashboardStats();
     }, []);
+
+    const handleRefreshStats = async () => {
+        try {
+            setLoading(true);
+            
+            // Fetch fresh data from all services
+            const [
+                aboutData,
+                skillsData,
+                portfolioData,
+                activitiesData,
+                contactData
+            ] = await Promise.all([
+                aboutService.getAll(),
+                skillsService.getAll(),
+                portfolioService.getAll(),
+                activitiesService.getAll(),
+                contactService.getAll()
+            ]);
+
+            setStats({
+                about: aboutData.length,
+                skills: skillsData.length,
+                portfolio: portfolioData.length,
+                activities: activitiesData.length,
+                contact: contactData.length
+            });
+
+            toast.success('Dashboard statistics refreshed!');
+            
+        } catch (error) {
+            console.error('Error refreshing dashboard:', error);
+            toast.error('Failed to refresh dashboard statistics');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const sections = [
         {
@@ -111,9 +171,19 @@ const AdminDashboard = () => {
 
     return (
         <div className="space-y-6">
-            <div>
-                <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-                <p className="text-gray-600">Manage your portfolio content</p>
+            <div className="flex justify-between items-center">
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+                    <p className="text-gray-600">Manage your portfolio content</p>
+                </div>
+                <button
+                    onClick={handleRefreshStats}
+                    disabled={loading}
+                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    <ArrowPathIcon className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+                    {loading ? 'Refreshing...' : 'Refresh Stats'}
+                </button>
             </div>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
