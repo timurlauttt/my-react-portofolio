@@ -17,14 +17,6 @@ export const portfolioData = [
         isExternal: true
     },
     {
-        id: 1,
-        image: "pkl.png",
-        title: "Internship Project",
-        description: "Currently working on a project for Banyumas Education Department using CI4 framework, planned to be completed by March",
-        link: "https://github.com/timurlauttt",
-        isExternal: false
-    },
-    {
         id: 2,
         image: "questify.png",
         title: "MSIB Project - Web App",
@@ -270,19 +262,12 @@ export const contactData = [
     {
         id: 1,
         type: "linkedin",
-        href: "https://www.linkedin.com/me?trk=p_mwlite_feed-secondary_nav",
+        href: "https://www.linkedin.com/in/urip-yoga-pangestu-65a541231/",
         bgColor: "bg-[#69D3FA]",
         order: "order-1",
         label: "LinkedIn"
     },
-    {
-        id: 2,
-        type: "whatsapp",
-        href: "https://wa.me/6285861466287",
-        bgColor: "bg-[#5CF1A4]",
-        order: "order-2",
-        label: "WhatsApp"
-    },
+
     {
         id: 3,
         type: "email",
