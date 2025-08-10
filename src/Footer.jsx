@@ -32,6 +32,13 @@ function Footer() {
                                         <span>Urip Yoga Pangestu</span>
                                     </a>
                                 </div>
+                                <div>
+                                    <a href="wa.me/6285861466287" target="_blank" rel="noopener noreferrer"
+                                        className="flex items-center gap-2 text-sm hover:text-yellow-300 transition-colors">
+                                        <i className="fab fa-whatsapp text-lg"></i>
+                                        <span>+6285861466287</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
@@ -53,7 +60,7 @@ function Footer() {
                             <h2 className="text-lg font-semibold mb-3 text-left">Social Media</h2>
                             <div className="flex gap-6 text-sm">
                                 <div className="flex items-center gap-2">
-                                    <a href="https://www.instagram.com/__timurlaut?igsh=MTE5ejg1bG81YmVwcQ=="target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
+                                    <a href="https://www.instagram.com/__timurlaut?igsh=MTE5ejg1bG81YmVwcQ==" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
                                         <i className="fab fa-instagram text-lg"></i>
                                         <span>__timurlaut</span>
                                     </a>
@@ -65,7 +72,7 @@ function Footer() {
                                     </a>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
+                                    <a href="https://www.tiktok.com/@pangestuuu292?_t=ZS-8ykiatLFdAK&_r=1" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
                                         <i className="fab fa-tiktok text-lg"></i>
                                         <span>pangestuuu</span>
                                     </a>
@@ -116,8 +123,8 @@ function Footer() {
                                         <i className="fab fa-facebook text-xl"></i> Urip Yoga
                                     </a>
                                 </li>
-                                <li className="flex-items-center gap-2" > 
-                                    <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
+                                <li className="flex-items-center gap-2" >
+                                    <a href="https://www.tiktok.com/@pangestuuu292?_t=ZS-8ykiatLFdAK&_r=1" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
                                         <i className="fab fa-tiktok text-xl"></i> pangestuuu
                                     </a>
                                 </li>
@@ -138,6 +145,12 @@ function Footer() {
                                     <a href="https://www.linkedin.com/me?trk=p_mwlite_feed-secondary_nav" target="_blank" rel="noopener noreferrer"
                                         className="hover:text-yellow-300 transition-colors">
                                         <i className="fab fa-linkedin text-xl"></i> Urip Yoga Pangestu
+                                    </a>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <a href="wa.me/6285861466287" target="_blank" rel="noopener noreferrer"
+                                        className="hover:text-yellow-300 transition-colors">
+                                        <i className="fab fa-whatsapp text-xl"></i> +6285861466287
                                     </a>
                                 </li>
                             </ul>
@@ -162,5 +175,5 @@ function Footer() {
         </>
     );
 }
-    
+
 export default Footer;
