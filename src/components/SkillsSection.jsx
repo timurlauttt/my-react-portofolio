@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { skillsData } from '../data/constants';
+import { skillsService } from '../services/serviceWrapper';
 
 const SkillIcon = ({ skill, delay = 0 }) => {
     const [isVisible, setIsVisible] = useState(false);
@@ -79,6 +79,72 @@ const SkillIcon = ({ skill, delay = 0 }) => {
 };
 
 const SkillsSection = () => {
+    const [skillsData, setSkillsData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const loadSkillsData = async () => {
+            try {
+                console.log('Loading skills data for main page...');
+                setLoading(true);
+                setError(null);
+                const data = await skillsService.getAll();
+                console.log('Skills data loaded:', data);
+                setSkillsData(data);
+            } catch (error) {
+                console.error('Error loading skills data:', error);
+                setError('Failed to load skills data');
+                setSkillsData([]);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadSkillsData();
+    }, []);
+
+    if (loading) {
+        return (
+            <section className="py-8 sm:py-16 bg-gray-50" id="skills">
+                <div className="container mx-auto px-4">
+                    <div className="text-center mb-8 sm:mb-12">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Technical Skills</h2>
+                        <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
+                            Technologies and tools I use to create amazing digital experiences
+                        </p>
+                    </div>
+                    <div className="flex justify-center items-center py-16">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#74247A]"></div>
+                        <span className="ml-3 text-gray-600">Loading skills...</span>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    if (error) {
+        return (
+            <section className="py-8 sm:py-16 bg-gray-50" id="skills">
+                <div className="container mx-auto px-4">
+                    <div className="text-center mb-8 sm:mb-12">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Technical Skills</h2>
+                        <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
+                            Technologies and tools I use to create amazing digital experiences
+                        </p>
+                    </div>
+                    <div className="text-center py-16">
+                        <p className="text-red-600 mb-4">{error}</p>
+                        <p className="text-gray-500">Please try again later</p>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    // Sort skills descending by skillId (FILO - First In, Last Out)
+    const sortedSkills = [...skillsData].sort((a, b) => (b.skillId || 0) - (a.skillId || 0));
+
     return (
         <section className="py-8 sm:py-16 bg-gray-50" id="skills">
             <div className="container mx-auto px-4">
@@ -89,56 +155,65 @@ const SkillsSection = () => {
                     </p>
                 </div>
                 
-                {/* Single grid untuk semua skills */}
-                <div className="max-w-6xl mx-auto">
-                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4 md:gap-6">
-                        {skillsData.map((skill, index) => (
-                            <SkillIcon
-                                key={skill.name}
-                                skill={skill}
-                                delay={index * 100} // Delay per item
-                            />
-                        ))}
+                {sortedSkills.length === 0 ? (
+                    <div className="text-center py-16">
+                        <p className="text-gray-500 text-lg">No skills available yet.</p>
+                        <p className="text-gray-400 text-sm mt-2">Add some skills through the admin panel!</p>
                     </div>
-                </div>
-
-                {/* Optional: Continuous animation row */}
-                <div className="mt-12 overflow-hidden bg-white/50 rounded-xl py-4">
-                    <div className="flex animate-scroll space-x-8">
-                        {[...skillsData, ...skillsData].map((skill, index) => (
-                            <div key={`scroll-${index}`} className="flex-shrink-0 flex flex-col items-center opacity-60 hover:opacity-100 transition-opacity">
-                                <img 
-                                    src={skill.icon}
-                                    alt={skill.name}
-                                    className="w-8 h-8"
-                                    onError={(e) => {
-                                        // Fallback konsisten dengan main grid
-                                        const fallbackUrls = {
-                                            'Laravel': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg',
-                                            'Django': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-original.svg',
-                                            'Tailwind CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
-                                            'React': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-                                            'JavaScript': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
-                                            'PHP': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
-                                            'HTML5': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
-                                            'CSS3': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
-                                            'MySQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
-                                            'Git': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-                                            'Python': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
-                                            'Bootstrap': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg'
-                                        };
-                                        
-                                        if (fallbackUrls[skill.name] && e.target.src !== fallbackUrls[skill.name]) {
-                                            e.target.src = fallbackUrls[skill.name];
-                                        } else {
-                                            e.target.src = `https://via.placeholder.com/32/74247A/FFFFFF?text=${skill.name.charAt(0)}`;
-                                        }
-                                    }}
-                                />
+                ) : (
+                    <>
+                        {/* Single grid untuk semua skills */}
+                        <div className="max-w-6xl mx-auto">
+                            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4 md:gap-6">
+                                {sortedSkills.map((skill, index) => (
+                                    <SkillIcon
+                                        key={skill.id}
+                                        skill={skill}
+                                        delay={index * 100} // Delay per item
+                                    />
+                                ))}
                             </div>
-                        ))}
-                    </div>
-                </div>
+                        </div>
+
+                        {/* Optional: Continuous animation row */}
+                        <div className="mt-12 overflow-hidden bg-white/50 rounded-xl py-4">
+                            <div className="flex animate-scroll space-x-8">
+                                {[...sortedSkills, ...sortedSkills].map((skill, index) => (
+                                    <div key={`scroll-${skill.id}-${index}`} className="flex-shrink-0 flex flex-col items-center opacity-60 hover:opacity-100 transition-opacity">
+                                        <img 
+                                            src={skill.icon}
+                                            alt={skill.name}
+                                            className="w-8 h-8"
+                                            onError={(e) => {
+                                                // Fallback konsisten dengan main grid
+                                                const fallbackUrls = {
+                                                    'Laravel': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg',
+                                                    'Django': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-original.svg',
+                                                    'Tailwind CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
+                                                    'React': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+                                                    'JavaScript': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+                                                    'PHP': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
+                                                    'HTML5': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+                                                    'CSS3': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
+                                                    'MySQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+                                                    'Git': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+                                                    'Python': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+                                                    'Bootstrap': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg'
+                                                };
+                                                
+                                                if (fallbackUrls[skill.name] && e.target.src !== fallbackUrls[skill.name]) {
+                                                    e.target.src = fallbackUrls[skill.name];
+                                                } else {
+                                                    e.target.src = `https://via.placeholder.com/32/74247A/FFFFFF?text=${skill.name.charAt(0)}`;
+                                                }
+                                            }}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </>
+                )}
             </div>
 
             <style jsx>{`
