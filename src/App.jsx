@@ -21,9 +21,6 @@ import ErrorBoundary from "./components/ErrorBoundary";
 // Admin Components (Lazy loaded)
 import { AuthProvider } from "./contexts/AuthContext";
 
-// Utils
-import { testNavigation } from "./utils/navigationTest";
-
 // Lazy load admin components to reduce initial bundle size
 const ProtectedRoute = React.lazy(() => import("./components/ProtectedRoute"));
 const AdminLayout = React.lazy(() => import("./components/AdminLayout"));
@@ -39,36 +36,37 @@ const AdminActivities = React.lazy(() => import("./pages/AdminActivities"));
 const AdminActivitiesForm = React.lazy(() => import("./pages/AdminActivitiesForm"));
 const AdminContact = React.lazy(() => import("./pages/AdminContact"));
 const AdminContactForm = React.lazy(() => import("./pages/AdminContactForm"));
-const TestAdmin = React.lazy(() => import("./pages/TestAdmin"));
-const BypassLogin = React.lazy(() => import("./pages/BypassLogin"));
-const DebugLayout = React.lazy(() => import("./components/DebugLayout"));
 
 // Main Portfolio Page Component
 const PortfolioPage = () => {
-  useEffect(() => {
-    // Test navigation after component mounts
-    setTimeout(() => {
-      const navTest = testNavigation();
-      if (navTest.allSectionsExist) {
-        console.log('✅ All navbar sections are properly linked!');
-      } else {
-        console.log('⚠️  Some sections might be missing');
-      }
-    }, 2000);
-  }, []);
-
   return (
-    <div>
-      <LoadingScreen />
-      <ScrollProgress />
-      <Navbar/>
-      <Hero/>
-      <AboutMe/>
-      <SkillsSection />
-      <MyPortofolio/>
-      <MyActivities/>
-      <Contact/>
-      <Footer/>
+    <div className="relative">
+      <div id="home">
+        <Navbar />
+        <Hero />
+      </div>
+      
+      <div id="about-me">
+        <AboutMe />
+      </div>
+      
+      <div id="skills">
+        <SkillsSection />
+      </div>
+      
+      <div id="portofolio"> 
+        <MyPortofolio />
+      </div>
+      
+      <div id="activities">
+        <MyActivities />
+      </div>
+      
+      <div id="contact">
+        <Contact />
+      </div>
+      
+      <Footer />
       <FloatingActionButton />
     </div>
   );
@@ -89,80 +87,6 @@ function App() {
         <Routes>
           {/* Main Portfolio Route - Always loads fast */}
           <Route path="/" element={<PortfolioPage />} />
-          
-          {/* Bypass login for development */}
-          <Route path="/dev-login" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <BypassLogin />
-            </Suspense>
-          } />
-          
-          {/* Test Admin Route - For debugging */}
-          <Route path="/test-admin" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <TestAdmin />
-            </Suspense>
-          } />
-          
-          {/* Debug Admin Dashboard - No auth required */}
-          <Route path="/debug-admin" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <AdminLayout>
-                <AdminDashboard />
-              </AdminLayout>
-            </Suspense>
-          } />
-          
-          {/* Debug Admin Dashboard - No auth required */}
-          <Route path="/debug-admin" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <DebugLayout>
-                <AdminDashboard />
-              </DebugLayout>
-            </Suspense>
-          } />
-          
-          {/* Debug Admin Pages - No auth required */}
-          <Route path="/debug-about" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <DebugLayout>
-                <AdminAbout />
-              </DebugLayout>
-            </Suspense>
-          } />
-          
-          <Route path="/debug-skills" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <DebugLayout>
-                <AdminSkills />
-              </DebugLayout>
-            </Suspense>
-          } />
-          
-          <Route path="/debug-activities" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <DebugLayout>
-                <AdminActivities />
-              </DebugLayout>
-            </Suspense>
-          } />
-          
-          <Route path="/debug-contact" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <DebugLayout>
-                <AdminContact />
-              </DebugLayout>
-            </Suspense>
-          } />
-          
-          {/* Debug Admin Portfolio - No auth required */}
-          <Route path="/debug-portfolio" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <DebugLayout>
-                <AdminPortfolio />
-              </DebugLayout>
-            </Suspense>
-          } />
           
           {/* Admin Routes - Lazy loaded with Suspense */}
           <Route path="/admin/login" element={

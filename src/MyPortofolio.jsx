@@ -55,7 +55,7 @@ function MyPortfolio() {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 sm:gap-6 p-4 mt-6 w-full max-w-6xl">
-                        {portfolioData.map((portfolio) => (
+                        {portfolioData.map((portfolio, index) => (
                             <PortfolioCard
                                 key={portfolio.id}
                                 image={portfolio.downloadURL || portfolio.imageUrl || portfolio.image}
@@ -63,6 +63,7 @@ function MyPortfolio() {
                                 description={portfolio.description}
                                 link={portfolio.link}
                                 isExternal={portfolio.isExternal !== false} // default to true
+                                delay={index * 200} // Staggered animation delay
                             />
                         ))}
                     </div>

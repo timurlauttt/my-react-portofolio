@@ -1,8 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-const ActivityCard = ({ title, description, bgColor = "bg-yellow-400", link, isExternal = true }) => {
+const ActivityCard = ({ title, description, bgColor = "bg-yellow-400", link, isExternal = true, delay = 0 }) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const ref = useRef();
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => setIsVisible(true), delay);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (ref.current) {
+            observer.observe(ref.current);
+        }
+
+        return () => observer.disconnect();
+    }, [delay]);
+
     const CardContent = () => (
-        <div className={`w-40 aspect-square border-2 border-black shadow-[4px_4px_0_#000] hover:scale-105 transition-all cursor-pointer flex flex-col group overflow-hidden`}>
+        <div 
+            ref={ref}
+            className={`w-40 aspect-square border-2 border-black shadow-[4px_4px_0_#000] hover:scale-105 transition-all cursor-pointer flex flex-col group overflow-hidden
+            transform duration-600 ${
+                isVisible 
+                    ? 'translate-x-0 opacity-100 scale-100' 
+                    : '-translate-x-8 opacity-0 scale-95'
+            }`}
+        >
             {/* Colored header section with title */}
             <div className={`${bgColor} h-12 w-full flex-shrink-0 p-2 flex items-center justify-center relative`}>
                 <h5 className="font-bold text-center text-xs leading-tight text-white">{title}</h5>

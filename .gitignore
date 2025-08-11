@@ -14,9 +14,13 @@ lerna-debug.log*
 .env.test.local
 .env.production.local
 
+# Dependencies
 node_modules
+
+# Build outputs
 dist
 dist-ssr
+build
 *.local
 
 # Editor directories and files
@@ -29,4 +33,26 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Temporary files
+*.tmp
+*.temp
+.cache
+
+# OS generated files
+Thumbs.db
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Development/Debug files
+debug.log
+test-results.xml
+coverage/
+
+# Firebase
+.firebase/
 

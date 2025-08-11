@@ -108,8 +108,6 @@ const firebaseUploadService = {
 // Main Image Upload Service - Auto switch based on CURRENT_MODE
 export const imageUploadService = {
     uploadImage: async (file, folder = 'portfolio') => {
-        console.log(`Using upload service: ${CURRENT_MODE}`);
-        
         if (CURRENT_MODE === UPLOAD_MODE.LOCAL) {
             const result = await simpleLocalUploadService.uploadImage(file, folder);
             return { ...result, service: 'local' };

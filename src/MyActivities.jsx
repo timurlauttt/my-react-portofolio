@@ -60,7 +60,7 @@ function MyActivities() {
                         </div>
                     ) : (
                         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mt-4 mb-8 place-items-center">
-                            {activitiesData.map((activity) => (
+                            {activitiesData.map((activity, index) => (
                                 <ActivityCard
                                     key={activity.id}
                                     title={activity.title}
@@ -68,6 +68,7 @@ function MyActivities() {
                                     bgColor={activity.bgColor || 'bg-yellow-400'}
                                     link={activity.link}
                                     isExternal={activity.isExternal !== false} // default to true
+                                    delay={index * 100} // Staggered animation delay
                                 />
                             ))}
                         </div>

@@ -1,9 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-const PortfolioCard = ({ image, title, description, link, isExternal = true }) => {
+const PortfolioCard = ({ image, title, description, link, isExternal = true, delay = 0 }) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const ref = useRef();
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => setIsVisible(true), delay);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (ref.current) {
+            observer.observe(ref.current);
+        }
+
+        return () => observer.disconnect();
+    }, [delay]);
+
     return (
-        <div className="flex flex-col sm:flex-row p-3 sm:p-4 bg-white border-4 border-black shadow-[8px_8px_0_#000] 
-            hover:scale-105 hover:transition-all hover:border-yellow-500 hover:shadow-[8px_8px_0_#74247A] cursor-pointer">
+        <div 
+            ref={ref}
+            className={`flex flex-col sm:flex-row p-3 sm:p-4 bg-white border-4 border-black shadow-[8px_8px_0_#000] 
+            hover:scale-105 hover:transition-all hover:border-yellow-500 hover:shadow-[8px_8px_0_#74247A] cursor-pointer
+            transform transition-all duration-700 ${
+                isVisible 
+                    ? 'translate-y-0 opacity-100' 
+                    : 'translate-y-8 opacity-0'
+            }`}
+        >
             
             <img
                 src={image}
