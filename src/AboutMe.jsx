@@ -30,7 +30,7 @@ function AboutMe() {
         {
             id: 'default-1',
             title: 'My Background',
-            description: 'I am a 6th semester Information Systems student who likes challenges, is enthusiastic about web development, and is always open to learning new things.',
+            description: 'I am a 7th semester Information Systems student who likes challenges, is enthusiastic about web development, and is always open to learning new things.',
             imagePath: 'me.jpg',
             order: 1
         },
@@ -55,9 +55,9 @@ function AboutMe() {
 
     if (loading) {
         return (
-            <section id="about-me" className="mt-8 w-full h-full text-black py-5 border-2 border-black" style={{ backgroundImage: 'url(a.png)' }}>
+            <section id="about-me" className="mt-8 w-full h-full text-black py-5 border-2 border-black">
                 <div className="container mx-auto">
-                    <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">About Me</h1>
+                    <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl"></h1>
                     <div className="flex justify-center items-center py-20">
                         <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-black"></div>
                     </div>
@@ -72,7 +72,7 @@ function AboutMe() {
 
     return (
         <>
-            <section id="about-me" className="mt-8 w-full h-full text-black py-5 border-2 border-black" style={{ backgroundImage: 'url(a.png)' }} >
+            <section id="about-me" className="mt-8 w-full h-full text-black py-5 border-2 border-black">
                 <div className="container mx-auto">
                     <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">About Me</h1>
                     <div className="grid grid-cols-1 md:grid-cols-3 p-4 gap-12 mt-4 mb-8 justify-center">
@@ -94,11 +94,11 @@ function AboutMe() {
                         </div>
                     )}
                     
-                    <div className="text-left ms-4 md:text-center mb-8">
+                    {/* <div className="text-left ms-4 md:text-center mb-8">
                         <a href="#portofolio" className="mb-10 font-bold bg-yellow-400 text-black border-2 border-yellow-400 px-4 py-2 font-syne text-base uppercase shadow-[4px_6px_0_#74247A] transition-all duration-200 ease-in-out cursor-pointer hover:bg-[#74247A] hover:text-yellow-400 hover:shadow-[4px_4px_0_#ffcc00] w-fit">
                             View My Portfolio
                         </a>
-                    </div>
+                    </div> */}
                 </div>
             </section>
         </>

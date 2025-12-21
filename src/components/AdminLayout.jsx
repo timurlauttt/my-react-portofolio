@@ -8,6 +8,7 @@ import {
     BriefcaseIcon, 
     AcademicCapIcon, 
     EnvelopeIcon,
+    DocumentTextIcon,
     Bars3Icon,
     XMarkIcon,
     ArrowRightOnRectangleIcon
@@ -39,6 +40,7 @@ const AdminLayout = ({ children }) => {
         { name: 'Portfolio', href: '/admin/portfolio', icon: BriefcaseIcon },
         { name: 'Activities', href: '/admin/activities', icon: AcademicCapIcon },
         { name: 'Contact', href: '/admin/contact', icon: EnvelopeIcon },
+        { name: 'CV', href: '/admin/cv', icon: DocumentTextIcon },
     ];
 
     const handleLogout = async () => {
@@ -105,7 +107,7 @@ const AdminLayout = ({ children }) => {
             <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col">
                 <div className="flex flex-col flex-grow bg-white border-r border-gray-200">
                     <div className="flex h-16 items-center px-4">
-                        <h1 className="text-xl font-semibold text-gray-900">Halo, Admin</h1>
+                        <h1 className="text-xl font-semibold text-gray-900">Halo, Urip</h1>
                     </div>
                     <nav className="flex-1 space-y-1 px-2 py-4">
                         {navigation.map((item) => {

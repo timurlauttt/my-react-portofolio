@@ -36,6 +36,7 @@ const AdminActivities = React.lazy(() => import("./pages/AdminActivities"));
 const AdminActivitiesForm = React.lazy(() => import("./pages/AdminActivitiesForm"));
 const AdminContact = React.lazy(() => import("./pages/AdminContact"));
 const AdminContactForm = React.lazy(() => import("./pages/AdminContactForm"));
+const AdminCV = React.lazy(() => import("./pages/AdminCV"));
 
 // Main Portfolio Page Component
 const PortfolioPage = () => {
@@ -46,24 +47,24 @@ const PortfolioPage = () => {
         <Hero />
       </div>
       
-      <div id="about-me">
-        <AboutMe />
-      </div>
-      
-      <div id="skills">
-        <SkillsSection />
-      </div>
-      
-      <div id="portofolio"> 
+      <div id="portofolio" className="pb-24 md:pb-0"> 
         <MyPortofolio />
       </div>
       
-      <div id="activities">
+      <div id="activities" className="pb-24 md:pb-0">
         <MyActivities />
       </div>
       
-      <div id="contact">
+      <div id="skills" className="pb-24 md:pb-0">
+        <SkillsSection />
+      </div>
+      
+      <div id="contact" className="pb-24 md:pb-0">
         <Contact />
+      </div>
+      
+      <div id="about-me" className="pb-24 md:pb-0">
+        <AboutMe />
       </div>
       
       <Footer />
@@ -254,6 +255,16 @@ function App() {
               <ProtectedRoute>
                 <AdminLayout>
                   <AdminContactForm />
+                </AdminLayout>
+              </ProtectedRoute>
+            </Suspense>
+          } />
+          
+          <Route path="/admin/cv" element={
+            <Suspense fallback={<AdminLoadingFallback />}>
+              <ProtectedRoute>
+                <AdminLayout>
+                  <AdminCV />
                 </AdminLayout>
               </ProtectedRoute>
             </Suspense>

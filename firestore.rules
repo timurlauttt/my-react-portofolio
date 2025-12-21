@@ -1,10 +1,38 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Allow read/write access to all documents for development
-    // WARNING: These rules are for development only!
-    match /{document=**} {
-      allow read, write: if true;
+    
+    // Public read untuk semua collection (visitor bisa lihat konten)
+    // Write hanya untuk authenticated users (admin)
+    
+    match /about/{document=**} {
+      allow read: if true;
+      allow write, delete: if request.auth != null;
+    }
+    
+    match /skills/{document=**} {
+      allow read: if true;
+      allow write, delete: if request.auth != null;
+    }
+    
+    match /portfolio/{document=**} {
+      allow read: if true;
+      allow write, delete: if request.auth != null;
+    }
+    
+    match /activities/{document=**} {
+      allow read: if true;
+      allow write, delete: if request.auth != null;
+    }
+    
+    match /contact/{document=**} {
+      allow read: if true;
+      allow write, delete: if request.auth != null;
+    }
+    
+    match /settings/{document=**} {
+      allow read: if true;
+      allow write, delete: if request.auth != null;
     }
   }
 }

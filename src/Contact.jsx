@@ -66,7 +66,7 @@ function Contact() {
     }
 
     return (
-        <section id="contact" className="min-h-screen py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+        <section id="contact" className="min-h-screen py-8 bg-gradient-to-br from-blue-50 to-purple-50">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <h1 className="font-bold text-2xl md:text-3xl mb-6 text-gray-900">Let's Work Together</h1>

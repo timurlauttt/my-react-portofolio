@@ -7,10 +7,12 @@ import {
     updateDoc, 
     deleteDoc, 
     query, 
-    orderBy 
+    orderBy,
+    setDoc
 } from 'firebase/firestore';
-import { firestore, auth } from '../firebase';
+import { firestore, auth, storage } from '../firebase';
 import { signInAnonymously } from 'firebase/auth';
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import { imageUploadService } from './imageUploadService';
 
 // Ensure user is authenticated before Firestore operations
@@ -30,7 +32,8 @@ const COLLECTIONS = {
     SKILLS: 'skills',
     PORTFOLIO: 'portfolio',
     ACTIVITIES: 'activities',
-    CONTACT: 'contact'
+    CONTACT: 'contact',
+    SETTINGS: 'settings'
 };
 
 // About Service
@@ -281,3 +284,73 @@ export const contactService = {
         return await deleteDoc(docRef);
     }
 };
+
+// CV Service
+export const cvService = {
+    // Get current CV info
+    get: async () => {
+        try {
+            const docRef = doc(firestore, COLLECTIONS.SETTINGS, 'cv');
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                return docSnap.data();
+            }
+            return null;
+        } catch (error) {
+            console.error('Error fetching CV:', error);
+            throw error;
+        }
+    },
+
+    // Save CV URL (admin pastes URL from Google Drive/Dropbox/etc)
+    save: async (url, fileName = 'CV.pdf') => {
+        try {
+            // Validate URL
+            if (!url || typeof url !== 'string') {
+                throw new Error('Valid URL is required');
+            }
+
+            // Basic URL validation
+            try {
+                new URL(url);
+            } catch {
+                throw new Error('Invalid URL format');
+            }
+
+            // Save to Firestore
+            const cvData = {
+                fileName,
+                downloadURL: url,
+                updatedAt: new Date()
+            };
+
+            const docRef = doc(firestore, COLLECTIONS.SETTINGS, 'cv');
+            await setDoc(docRef, cvData);
+
+            return cvData;
+        } catch (error) {
+            console.error('Error saving CV URL:', error);
+            throw error;
+        }
+    },
+
+    // Delete CV
+    delete: async () => {
+        try {
+            const cvData = await cvService.get();
+            if (!cvData) {
+                throw new Error('No CV found');
+            }
+
+            // Delete from Firestore
+            const docRef = doc(firestore, COLLECTIONS.SETTINGS, 'cv');
+            await deleteDoc(docRef);
+
+            return true;
+        } catch (error) {
+            console.error('Error deleting CV:', error);
+            throw error;
+        }
+    }
+};
+
