@@ -47,27 +47,26 @@ const SkillIcon = ({ skill, delay = 0 }) => {
     };
 
     return (
-        <div 
+        <div
             ref={ref}
-            className={`w-full aspect-square border-2 border-black shadow-[4px_4px_0_#000] hover:scale-105 transition-all duration-500 transform ${
-                isVisible 
-                    ? 'translate-x-0 opacity-100' 
-                    : '-translate-x-full opacity-0'
-            } group overflow-hidden bg-white`}
+            className={`w-full aspect-square border-2 border-black shadow-[4px_4px_0_#000] hover:scale-105 transition-all duration-500 transform ${isVisible
+                ? 'translate-x-0 opacity-100'
+                : '-translate-x-full opacity-0'
+                } group overflow-hidden bg-white`}
         >
             {/* Colored header section dengan skill icon */}
-            <div 
+            <div
                 className="h-12 sm:h-16 md:h-20 w-full flex-shrink-0 flex items-center justify-center"
                 style={{ backgroundColor: skill.color || '#374151' }}
             >
-                <img 
+                <img
                     src={imageError ? getFallbackIcon(skill.name) : skill.icon}
                     alt={skill.name}
                     className="w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 object-contain group-hover:scale-110 transition-transform duration-300"
                     onError={handleImageError}
                 />
             </div>
-            
+
             {/* White content area dengan skill name */}
             <div className="p-1 sm:p-2 flex flex-col flex-grow justify-center bg-white">
                 <span className="text-xs md:text-sm font-bold text-gray-800 text-center leading-tight">
@@ -109,7 +108,7 @@ const SkillsSection = () => {
             <section className="py-8 sm:py-16 bg-gray-50" id="skills">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-8 sm:mb-12">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Technical Skills</h2>
+                        <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Technical Skills</h1>
                         <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
                             Technologies and tools I use to create amazing digital experiences
                         </p>
@@ -128,7 +127,7 @@ const SkillsSection = () => {
             <section className="py-8 sm:py-16 bg-gray-50" id="skills">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-8 sm:mb-12">
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Technical Skills</h2>
+                        <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Technical Skills</h1>
                         <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
                             Technologies and tools I use to create amazing digital experiences
                         </p>
@@ -149,12 +148,12 @@ const SkillsSection = () => {
         <section className="py-8 sm:py-16 bg-gray-50" id="skills">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-8 sm:mb-12">
-                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Technical Skills</h2>
+                    <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Technical Skills</h1>
                     <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
                         Technologies and tools I use to create amazing digital experiences
                     </p>
                 </div>
-                
+
                 {sortedSkills.length === 0 ? (
                     <div className="text-center py-16">
                         <p className="text-gray-500 text-lg">No skills available yet.</p>
@@ -180,7 +179,7 @@ const SkillsSection = () => {
                             <div className="flex animate-scroll space-x-8">
                                 {[...sortedSkills, ...sortedSkills].map((skill, index) => (
                                     <div key={`scroll-${skill.id}-${index}`} className="flex-shrink-0 flex flex-col items-center opacity-60 hover:opacity-100 transition-opacity">
-                                        <img 
+                                        <img
                                             src={skill.icon}
                                             alt={skill.name}
                                             className="w-8 h-8"
@@ -200,7 +199,7 @@ const SkillsSection = () => {
                                                     'Python': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
                                                     'Bootstrap': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg'
                                                 };
-                                                
+
                                                 if (fallbackUrls[skill.name] && e.target.src !== fallbackUrls[skill.name]) {
                                                     e.target.src = fallbackUrls[skill.name];
                                                 } else {

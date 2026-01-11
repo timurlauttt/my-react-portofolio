@@ -155,7 +155,7 @@ const MyActivities = () => {
     return (
         <section id="activities" className="py-8 sm:py-12">
             <div className="max-w-6xl mx-auto px-3 sm:px-4 text-center">
-                <h2 className="text-3xl font-bold mb-4">My Activities</h2>
+                <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Activities</h1>
                 <p className="text-gray-600 mb-8">Here are some of the activities I've participated during my study, you can click on the cards to find out more!</p>
 
                 {loading && <p className="text-center">Loading...</p>}

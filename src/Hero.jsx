@@ -2,19 +2,18 @@ function Hero() {
 
     return (
         <>
-            <section id="home" className="home">
-                <div className="bg-white min-h-screen mt-8 flex items-center justify-center">
-                    <div className="container rounded shadow-[10px_8px_0_#74247A] mx-auto p-4 grid md:grid-cols-2 gap-4">
+            <section id="home" className="min-h-screen pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-8 bg-white dark:bg-gray-900">
+                <div className="container mx-auto px-4 md:px-6 rounded shadow-[10px_8px_0_#74247A] p-4 md:p-6 grid md:grid-cols-2 gap-4 items-center">
                         {/* Left Section */}
-                        <div className="flex flex-col items-start md:ms-16 text-left md:text-left">
-                            <h1 className="mt-8 md:text-start text-3xl md:text-5xl lg:text-6xl mb-4">
+                        <div className="flex flex-col items-start md:ms-20 text-left md:text-left">
+                            <h1 className="md:text-start text-2xl sm:text-3xl md:text-5xl lg:text-6xl mb-4 leading-tight">
                                 Hello, World!
                                 <br />
                                 <span className="text-3xl md:text-5xl lg:text-6xl font-light">
                                     <span className="font-bold">Urip here</span>
                                 </span>
                             </h1>
-                            <p className="mt-4 text-left md:text-start text-gray-700 bg-white p-4 shadow-lg max-w-md">
+                            <p className="mt-4 text-left md:text-start text-gray-700 bg-white p-4 shadow-lg max-w-md dark:bg-gray-800 dark:text-gray-200">
                                 Hello! I'm Urip Yoga Pangestu,
                                 a 7th semester Information Systems student at Telkom University Purwokerto who loves challenges,
                                 web development enthusiast,
@@ -26,7 +25,7 @@ function Hero() {
                         </div>
 
                         {/* Right Section */}
-                        <div className="hidden sm:block flex flex-col items-center justify-center ">
+                        <div className="hidden sm:block flex flex-col items-center justify-center">
                             <div className="bg-yellow-400 p-6 md:p-10 shadow-[8px_8px_0_#000] transition-all duration-200 ease-in-out cursor-pointer hover:bg-[#05FF00] hover:shadow-[4px_4px_0_#000] relative w-full max-w-[450px] h-[250px] md:h-[350px]">
                                 {/* Gambar di bagian atas kanan */}
                                 <div className="absolute top-0 right-0 mt-2 md:mt-4 mr-2 md:mr-4">
@@ -48,7 +47,6 @@ function Hero() {
                             </div>
                         </div>
                     </div>
-                </div>
             </section>
         </>
     );

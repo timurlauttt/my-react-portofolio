@@ -34,7 +34,7 @@ function MyPortfolio() {
     if (loading) {
         return (
             <section id="portofolio" className="min-h-screen py-8 flex flex-col items-center bg-white">
-                <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">My Portfolio</h1>
+                <h1 className="font-bold mt-4 mb-4 text-center text-xl md:text-2xl">Portfolio</h1>
                 <div className="flex justify-center items-center py-16">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#74247A]"></div>
                     <span className="ml-3 text-gray-600">Loading portfolio...</span>
@@ -46,7 +46,7 @@ function MyPortfolio() {
     return (
         <>
             <section id="portofolio" className="min-h-screen py-8 flex flex-col items-center bg-white">
-                <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">My Portfolio</h1>
+                <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Portfolio</h1>
                 
                 {portfolioData.length === 0 && !loading ? (
                     <div className="text-center py-16">

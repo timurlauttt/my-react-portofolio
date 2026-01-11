@@ -35,7 +35,7 @@ function AboutMe() {
             order: 1
         },
         {
-            id: 'default-2', 
+            id: 'default-2',
             title: 'My Skills',
             description: 'I can use HTML, CSS, and Javascript to build websites. I can also use frameworks like Laravel and Django to create or build websites. I am also currently learning React.JS for front-end development of a website.',
             imagePath: 'aku.jpg',
@@ -43,7 +43,7 @@ function AboutMe() {
         },
         {
             id: 'default-3',
-            title: 'My Hobbies', 
+            title: 'My Hobbies',
             description: 'In my free time, I like listening to music, watching football matches, reading and exploring new technologies.',
             imagePath: 'me2.jpg',
             order: 3
@@ -87,13 +87,13 @@ function AboutMe() {
                             />
                         ))}
                     </div>
-                    
+
                     {aboutData.length === 0 && error && (
                         <div className="text-center text-gray-600 mb-4">
                             <p className="text-sm">Displaying default content. Add custom content through the admin panel.</p>
                         </div>
                     )}
-                    
+
                     {/* <div className="text-left ms-4 md:text-center mb-8">
                         <a href="#portofolio" className="mb-10 font-bold bg-yellow-400 text-black border-2 border-yellow-400 px-4 py-2 font-syne text-base uppercase shadow-[4px_6px_0_#74247A] transition-all duration-200 ease-in-out cursor-pointer hover:bg-[#74247A] hover:text-yellow-400 hover:shadow-[4px_4px_0_#ffcc00] w-fit">
                             View My Portfolio
