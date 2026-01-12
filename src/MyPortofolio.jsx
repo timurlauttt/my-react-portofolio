@@ -33,7 +33,7 @@ function MyPortfolio() {
 
     if (loading) {
         return (
-            <section id="portofolio" className="min-h-screen py-8 flex flex-col items-center bg-white">
+            <section id="portofolio" className="py-8 flex flex-col items-center bg-white">
                 <h1 className="font-bold mt-4 mb-4 text-center text-xl md:text-2xl">Portfolio</h1>
                 <div className="flex justify-center items-center py-16">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#74247A]"></div>
@@ -45,9 +45,10 @@ function MyPortfolio() {
 
     return (
         <>
-            <section id="portofolio" className="min-h-screen py-8 flex flex-col items-center bg-white">
+            <section id="portofolio" className="py-8 flex flex-col items-center bg-white">
                 <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Portfolio</h1>
-                
+                <p className=" sm:text-xs text-gray-600 mb-8">click on the button to find out more!</p>
+
                 {portfolioData.length === 0 && !loading ? (
                     <div className="text-center py-16">
                         <p className="text-gray-500 text-lg">No portfolio items available yet.</p>
@@ -55,17 +56,27 @@ function MyPortfolio() {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 sm:gap-6 p-4 mt-6 w-full max-w-6xl">
-                        {portfolioData.map((portfolio, index) => (
-                            <PortfolioCard
-                                key={portfolio.id}
-                                image={portfolio.downloadURL || portfolio.imageUrl || portfolio.image}
-                                title={portfolio.title}
-                                description={portfolio.description}
-                                link={portfolio.link}
-                                isExternal={portfolio.isExternal !== false} // default to true
-                                delay={index * 200} // Staggered animation delay
-                            />
-                        ))}
+                        {portfolioData.map((portfolio, index) => {
+                            const tech = portfolio.tech || portfolio.techStack || portfolio.technologies || null;
+                            const startDate = portfolio.startDate || portfolio.from || null;
+                            const endDate = portfolio.endDate || portfolio.to || null;
+
+                            return (
+                                <PortfolioCard
+                                    key={portfolio.id}
+                                    image={portfolio.downloadURL || portfolio.imageUrl || portfolio.image}
+                                    title={portfolio.title}
+                                    description={portfolio.description}
+                                    longDescription={portfolio.longDescription || portfolio.long_description || ''}
+                                    link={portfolio.link}
+                                    isExternal={portfolio.isExternal !== false} // default to true
+                                    delay={index * 200} // Staggered animation delay
+                                    tech={tech}
+                                    startDate={startDate}
+                                    endDate={endDate}
+                                />
+                            );
+                        })}
                     </div>
                 )}
             </section>

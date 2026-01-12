@@ -50,13 +50,13 @@ const PortfolioPage = () => {
       <div id="portofolio" className="pb-24 md:pb-0"> 
         <MyPortofolio />
       </div>
-      
-      <div id="activities" className="pb-24 md:pb-0">
-        <MyActivities />
-      </div>
-      
+
       <div id="skills" className="pb-24 md:pb-0">
         <SkillsSection />
+      </div>
+
+      <div id="activities" className="pb-24 md:pb-0">
+        <MyActivities />
       </div>
       
       <div id="contact" className="pb-24 md:pb-0">

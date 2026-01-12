@@ -26,9 +26,7 @@ const MyActivities = () => {
         loadActivitiesData();
     }, []);
 
-    // Hover-based preview logic: use refs to store timers so they persist across renders
-    const hoverOpenTimerRef = useRef(null);
-    const hoverCloseTimerRef = useRef(null);
+    // Previously used hover timers removed; modal now opens on click/tap
 
     // Modal accessibility refs
     const modalRef = useRef(null);
@@ -48,44 +46,17 @@ const MyActivities = () => {
     const touchStartRef = useRef({ x: 0, y: 0, moved: false });
 
     const openModal = (activity) => {
-        if (hoverCloseTimerRef.current) {
-            clearTimeout(hoverCloseTimerRef.current);
-            hoverCloseTimerRef.current = null;
-        }
-        if (hoverOpenTimerRef.current) clearTimeout(hoverOpenTimerRef.current);
-        hoverOpenTimerRef.current = setTimeout(() => {
-            setSelectedActivity(activity);
-            setIsModalOpen(true);
-            hoverOpenTimerRef.current = null;
-        }, 120);
-    };
-
-    const closeModal = () => {
-        if (hoverOpenTimerRef.current) {
-            clearTimeout(hoverOpenTimerRef.current);
-            hoverOpenTimerRef.current = null;
-        }
-        if (hoverCloseTimerRef.current) clearTimeout(hoverCloseTimerRef.current);
-        hoverCloseTimerRef.current = setTimeout(() => {
-            setIsModalOpen(false);
-            setSelectedActivity(null);
-            hoverCloseTimerRef.current = null;
-        }, 180);
-    };
-
-    // Immediate open for touch (tap) interactions
-    const openModalImmediate = (activity) => {
-        if (hoverOpenTimerRef.current) {
-            clearTimeout(hoverOpenTimerRef.current);
-            hoverOpenTimerRef.current = null;
-        }
-        if (hoverCloseTimerRef.current) {
-            clearTimeout(hoverCloseTimerRef.current);
-            hoverCloseTimerRef.current = null;
-        }
         setSelectedActivity(activity);
         setIsModalOpen(true);
     };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedActivity(null);
+    };
+
+    // Immediate open for touch (tap) interactions (kept for touch handling)
+    const openModalImmediate = (activity) => openModal(activity);
 
     // Accessibility: trap focus inside modal and close on Escape
     useEffect(() => {
@@ -101,16 +72,7 @@ const MyActivities = () => {
         const handleKeyDown = (e) => {
             if (e.key === 'Escape') {
                 // Close immediately
-                if (hoverOpenTimerRef.current) {
-                    clearTimeout(hoverOpenTimerRef.current);
-                    hoverOpenTimerRef.current = null;
-                }
-                if (hoverCloseTimerRef.current) {
-                    clearTimeout(hoverCloseTimerRef.current);
-                    hoverCloseTimerRef.current = null;
-                }
-                setIsModalOpen(false);
-                setSelectedActivity(null);
+                closeModal();
             }
 
             if (e.key === 'Tab' && modalRef.current) {
@@ -166,12 +128,16 @@ const MyActivities = () => {
                         <div
                             key={activity.activityId || index}
                             className="inline-block mx-auto"
-                            // Desktop: hover opens modal. Mobile/touch: use touch handlers below.
-                            {...(!isTouchDevice ? {
-                                onMouseEnter: () => openModal(activity),
-                                onMouseLeave: () => closeModal(),
-                            } : {})}
-                            // Touch handlers to detect tap vs scroll
+                            // Use click to open modal (works for mouse and keyboard). Touch handlers still detect tap vs scroll.
+                            onClick={() => openModalImmediate(activity)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    openModalImmediate(activity);
+                                }
+                            }}
+                            role="button"
+                            tabIndex={0}
                             onTouchStart={isTouchDevice ? (e) => {
                                 const t = e.touches && e.touches[0];
                                 if (t) touchStartRef.current = { x: t.clientX, y: t.clientY, moved: false };
@@ -210,30 +176,13 @@ const MyActivities = () => {
                     aria-modal="true"
                     aria-labelledby="activity-modal-title"
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 sm:p-6"
-                    // Tap/click overlay closes modal immediately
-                    onClick={() => {
-                        // close immediately
-                        if (hoverOpenTimerRef.current) {
-                            clearTimeout(hoverOpenTimerRef.current);
-                            hoverOpenTimerRef.current = null;
-                        }
-                        if (hoverCloseTimerRef.current) {
-                            clearTimeout(hoverCloseTimerRef.current);
-                            hoverCloseTimerRef.current = null;
-                        }
-                        setIsModalOpen(false);
-                        setSelectedActivity(null);
-                    }}
-                    onMouseEnter={() => {
-                        if (hoverCloseTimerRef.current) {
-                            clearTimeout(hoverCloseTimerRef.current);
-                            hoverCloseTimerRef.current = null;
-                        }
-                    }}
-                    onMouseLeave={() => closeModal()}
+                    // Tap/click overlay closes modal
+                        onClick={() => {
+                            closeModal();
+                        }}
                 >
             <div ref={modalRef} className={`bg-white max-w-3xl w-full sm:w-11/12 md:w-3/4 p-4 sm:p-6 rounded shadow-lg transform transition-all duration-300 max-h-[80vh] overflow-hidden ${isAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`} onClick={(e) => e.stopPropagation()} aria-describedby="activity-modal-desc">
-                <div className="flex justify-between items-start">
+                        <div className="flex justify-between items-start">
                             <div>
                                 <h3 className="text-2xl font-semibold">{selectedActivity.title}</h3>
                                 <div className="mt-1 flex flex-wrap gap-2 text-sm text-gray-600">
@@ -243,17 +192,19 @@ const MyActivities = () => {
                                     {selectedActivity.status && <span className="px-2 py-1 bg-gray-100 rounded capitalize">{selectedActivity.status}</span>}
                                 </div>
                             </div>
-                                <button ref={closeButtonRef} className="text-gray-600 hover:text-gray-900 ml-3 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-300" aria-label="Close activity details" onClick={() => { setIsModalOpen(false); setSelectedActivity(null); }}>
+                            <div className="flex items-start gap-2">
+                                <button ref={closeButtonRef} className="text-gray-600 hover:text-gray-900 ml-3 p-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-300" aria-label="Close activity details" onClick={() => { closeModal(); }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
                                     </svg>
                                 </button>
+                            </div>
                         </div>
 
                         {/* Images: support either string or array */}
                         {/* Image fallback: prefer `images`, fallback to `image` */}
                         {/* Make modal content scrollable and constrain image sizes so layout doesn't break */}
-                        <div className="mt-4 overflow-y-auto pr-2" style={{ maxHeight: 'calc(80vh - 160px)' }}>
+                        <div className="mt-4 overflow-y-auto pr-2 pb-2" style={{ maxHeight: 'calc(80vh - 160px)' }}>
                             {(selectedActivity.images || selectedActivity.image) && (
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {Array.isArray(selectedActivity.images)
@@ -303,7 +254,7 @@ const MyActivities = () => {
 
                         {/* External Links */}
                             {selectedActivity.links && selectedActivity.links.length > 0 && (
-                                <div className="mt-4">
+                                <div className="mt-8">
                                     <h4 className="text-sm font-medium text-gray-800 mb-2">Links</h4>
                                     <div className="flex flex-col gap-2">
                                         {selectedActivity.links.map((l, i) => (
@@ -312,6 +263,13 @@ const MyActivities = () => {
                                             </a>
                                         ))}
                                     </div>
+                                </div>
+                            )}
+                            {selectedActivity.link && (
+                                <div className="flex justify-end mt-6 mb-6">
+                                    <a href={selectedActivity.link} target="_blank" rel="noopener noreferrer" className="inline-block font-semibold bg-yellow-400 text-black border-2 border-yellow-400 px-4 py-3 text-xs uppercase shadow-[4px_6px_0_#74247A] hover:bg-[#74247A] hover:text-yellow-400 rounded-sm">
+                                        More Info
+                                    </a>
                                 </div>
                             )}
                         </div>

@@ -75,15 +75,6 @@ const Navbar = () => {
                         </li>
                         <li>
                             <a
-                                href="#activities"
-                                className={`navbar-text hover ${activeSection === "activities" ? "navbar-text active" : "text-black"
-                                    }`}
-                            >
-                                Activities
-                            </a>
-                        </li>
-                        <li>
-                            <a
                                 href="#skills"
                                 className={`navbar-text hover ${activeSection === "skills" ? "navbar-text active" : "text-black"
                                     }`}
@@ -91,6 +82,16 @@ const Navbar = () => {
                                 Skills
                             </a>
                         </li>
+                        <li>
+                            <a
+                                href="#activities"
+                                className={`navbar-text hover ${activeSection === "activities" ? "navbar-text active" : "text-black"
+                                    }`}
+                            >
+                                Activities
+                            </a>
+                        </li>
+
                         <li>
                             <a
                                 href="#contact"
@@ -129,17 +130,6 @@ const Navbar = () => {
                     </li>
                     <li>
                         <a
-                            href="#activities"
-                            className={tabClass("activities")}
-                        >
-                            <svg className="w-6 h-6 mx-auto mb-1" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
-                            </svg>
-                            <span className="text-xs">Activity</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a
                             href="#skills"
                             className={tabClass("skills")}
                         >
@@ -149,6 +139,18 @@ const Navbar = () => {
                             <span className="text-xs">Skills</span>
                         </a>
                     </li>
+                    <li>
+                        <a
+                            href="#activities"
+                            className={tabClass("activities")}
+                        >
+                            <svg className="w-6 h-6 mx-auto mb-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+                            </svg>
+                            <span className="text-xs">Activity</span>
+                        </a>
+                    </li>
+
                     <li>
                         <a
                             href="#contact"

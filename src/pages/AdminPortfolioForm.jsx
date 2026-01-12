@@ -12,11 +12,15 @@ const AdminPortfolioForm = () => {
         portfolioId: '',
         title: '',
         description: '',
+        longDescription: '',
         image: '',
         imagePath: '',
         imageUrl: '',
         link: '',
-        isExternal: true
+        isExternal: true,
+        tech: '',
+        startDate: '',
+        endDate: ''
     });
     const [initialLoading, setInitialLoading] = useState(id ? true : false);
 
@@ -37,11 +41,15 @@ const AdminPortfolioForm = () => {
                     portfolioId: data.portfolioId || '',
                     title: data.title || '',
                     description: data.description || '',
+                    longDescription: data.longDescription || data.long_description || '',
                     image: data.image || '',
                     imagePath: data.imagePath || '',
                     imageUrl: data.imageUrl || '',
                     link: data.link || '',
-                    isExternal: data.isExternal || true
+                    isExternal: data.isExternal || true,
+                    tech: Array.isArray(data.tech) ? data.tech.join(', ') : (data.tech || data.techStack || data.technologies || ''),
+                    startDate: data.startDate || data.from || '',
+                    endDate: data.endDate || data.to || ''
                 });
             }
         } catch (error) {
@@ -98,11 +106,15 @@ const AdminPortfolioForm = () => {
                 portfolioId: formData.portfolioId,
                 title: formData.title,
                 description: formData.description,
+                longDescription: formData.longDescription,
                 image: formData.image,
                 imagePath: formData.imagePath,
                 imageUrl: formData.imageUrl,
                 link: formData.link,
-                isExternal: formData.isExternal
+                    isExternal: formData.isExternal,
+                    tech: formData.tech ? formData.tech.split(',').map(s => s.trim()).filter(Boolean) : [],
+                    startDate: formData.startDate || null,
+                    endDate: formData.endDate || null
             };
             
             if (isEditMode) {
@@ -196,6 +208,21 @@ const AdminPortfolioForm = () => {
                     </div>
 
                     <div>
+                        <label htmlFor="longDescription" className="block text-sm font-medium text-gray-700">
+                            Long Description (optional)
+                        </label>
+                        <textarea
+                            id="longDescription"
+                            name="longDescription"
+                            rows={6}
+                            value={formData.longDescription}
+                            onChange={handleInputChange}
+                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-3 py-2 border"
+                            placeholder="More detailed explanation, can be longer. Markdown supported if markdown renderer is installed."
+                        />
+                    </div>
+
+                    <div>
                         <ImageUploader
                             onImageUploaded={handleImageUploaded}
                             currentImage={formData.image}
@@ -217,6 +244,47 @@ const AdminPortfolioForm = () => {
                             className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-3 py-2 border"
                             placeholder="https://github.com/username/project"
                         />
+                    </div>
+
+                    <div>
+                        <label htmlFor="tech" className="block text-sm font-medium text-gray-700">
+                            Tech Stack (comma-separated)
+                        </label>
+                        <input
+                            type="text"
+                            id="tech"
+                            name="tech"
+                            value={formData.tech}
+                            onChange={handleInputChange}
+                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-3 py-2 border"
+                            placeholder="e.g., React, TailwindCSS, Firebase"
+                        />
+                        <p className="mt-1 text-sm text-gray-500">List major technologies used, separated by commas.</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label htmlFor="startDate" className="block text-sm font-medium text-gray-700">Start Date</label>
+                            <input
+                                type="date"
+                                id="startDate"
+                                name="startDate"
+                                value={formData.startDate}
+                                onChange={handleInputChange}
+                                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-3 py-2 border"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="endDate" className="block text-sm font-medium text-gray-700">End Date</label>
+                            <input
+                                type="date"
+                                id="endDate"
+                                name="endDate"
+                                value={formData.endDate}
+                                onChange={handleInputChange}
+                                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-3 py-2 border"
+                            />
+                        </div>
                     </div>
 
                     <div>

@@ -32,7 +32,7 @@ function Contact() {
 
     if (loading) {
         return (
-            <section id="contact" className="min-h-screen py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+            <section id="contact" className="py-8 bg-gradient-to-br from-blue-50 to-purple-50">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <h1 className="font-bold text-2xl md:text-3xl mb-6 text-gray-900">Let's Work Together</h1>
@@ -51,7 +51,7 @@ function Contact() {
 
     if (error) {
         return (
-            <section id="contact" className="min-h-screen py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+            <section id="contact" className="py-8 bg-gradient-to-br from-blue-50 to-purple-50">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Contact</h1>
@@ -66,7 +66,7 @@ function Contact() {
     }
 
     return (
-        <section id="contact" className="min-h-screen py-8 bg-gradient-to-br from-blue-50 to-purple-50">
+        <section id="contact" className="py-8 bg-gradient-to-br from-blue-50 to-purple-50">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Contact</h1>
@@ -76,7 +76,7 @@ function Contact() {
                     </p>
                 </div>
                 {contactData.length === 0 ? (
-                    <div className="text-center py-16">
+                    <div className="text-center py-8">
                         <p className="text-gray-500 text-lg">No contact information available yet.</p>
                         <p className="text-gray-400 text-sm mt-2">Add contact options through the admin panel!</p>
                     </div>
