@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { aboutService } from './services/serviceWrapper';
-import AboutCard from './components/AboutCard';
 
 function AboutMe() {
     const [aboutData, setAboutData] = useState([]);
@@ -84,17 +83,16 @@ function AboutMe() {
                 <div className="container mx-auto">
                     <h1 className="font-bold mt-4 mb-6 text-center text-lg md:text-2xl">About Me</h1>
 
-                    <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 rounded-lg p-6 md:p-8 shadow-[10px_8px_0_#74247A]">
+                    <div className="max-w-6xl mx-auto bg-white rounded-lg p-6 md:p-8 shadow-[10px_8px_0_#74247A]">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                             <div>
                                 <h2 className="text-sm font-medium mb-3">{backgroundItem?.title || 'My Background'}</h2>
-                                <p className="text-gray-700 dark:text-gray-200 mb-4 leading-relaxed">{backgroundItem?.description}</p>
+                                <p className="text-gray-700 mb-4 leading-relaxed">{backgroundItem?.description}</p>
+                                <h3 className="text-sm font-medium mb-2">Skills</h3>
+                                <p className="text-gray-700 mb-4">{skillsItem?.description}</p>
 
-                                <h3 className="text-sm font-medium text-gray-800 dark:text-gray-200 mb-2">Skills</h3>
-                                <p className="text-gray-700 dark:text-gray-200 mb-4">{skillsItem?.description}</p>
-
-                                <h3 className="text-sm font-medium text-gray-800 dark:text-gray-200 mb-2">Hobbies</h3>
-                                <p className="text-gray-700 dark:text-gray-200">{hobbiesItem?.description}</p>
+                                <h3 className="text-sm font-medium mb-2">Hobbies</h3>
+                                <p className="text-gray-700">{hobbiesItem?.description}</p>
                             </div>
 
                             <div className="flex items-start justify-center">
