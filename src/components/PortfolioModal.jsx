@@ -89,27 +89,33 @@ const PortfolioModal = ({ open, onClose, title, image, description, longDescript
           <div className="px-1 md:px-4">
             <h3 className="text-xl font-bold mb-1">{title}</h3>
             {dateDisplay && (
-              <div className="text-xs text-gray-500 mb-2">{dateDisplay}</div>
-            )}
-
-            {tech && (
-              <div className="flex flex-wrap gap-2 mb-3">
-                {(Array.isArray(tech) ? tech : String(tech).split(',').map(s => s.trim())).map((t, i) => (
-                  <span key={i} className="text-xs px-2 py-1 bg-gray-100 text-gray-800 rounded-full">
-                    {t}
-                  </span>
-                ))}
+              <div className="mb-2">
+                <div className="text-xs text-gray-500 dark:text-gray-400 tracking-wider mb-1">date : </div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">{dateDisplay}</div>
               </div>
             )}
 
-            <div className="max-w-none text-sm text-gray-700 mb-4">
+            {tech && (
+              <div className="mb-3">
+                <div className="text-xs text-gray-500 dark:text-gray-400 tracking-wider mb-2">tech stack : </div>
+                <div className="flex flex-wrap gap-2">
+                  {(Array.isArray(tech) ? tech : String(tech).split(',').map(s => s.trim())).map((t, i) => (
+                    <span key={i} className="text-xs px-2 py-1 bg-gray-100 text-gray-800 rounded-full">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="max-w-none text-sm text-gray-700 dark:text-gray-200 mb-4 text-justify">
               {longDescription && (
                 MarkdownComp && !markdownLoadError ? (
                   <MarkdownComp rehypePlugins={rehypeSanitizePlugin ? [rehypeSanitizePlugin] : []}>
                     {longDescription}
                   </MarkdownComp>
                 ) : (
-                  <p className="text-sm text-gray-700">{longDescription}</p>
+                  <p className="text-sm text-gray-700 dark:text-gray-200">{longDescription}</p>
                 )
               )}
             </div>

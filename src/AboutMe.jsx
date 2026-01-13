@@ -70,35 +70,40 @@ function AboutMe() {
         console.warn('Using default about data due to error:', error);
     }
 
+    // Combine the displayData items into sections for a single card
+    const backgroundItem = displayData[0] || null;
+    const skillsItem = displayData[1] || null;
+    const hobbiesItem = displayData[2] || null;
+
+    // Always use the `public/me.jpg` image for the About card image
+    const cardImage = '/me.jpg';
+
     return (
         <>
-            <section id="about-me" className="mt-4 w-full text-black py-6 border-2 border-black">
+            <section id="about-me" className="mt-4 w-full text-black py-6">
                 <div className="container mx-auto">
-                    <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">About Me</h1>
-                    <div className="grid grid-cols-1 md:grid-cols-3 p-4 gap-12 mt-4 mb-8 justify-center">
-                        {displayData.map((item, index) => (
-                            <AboutCard
-                                key={item.id || `about-${index}`}
-                                image={item.downloadURL ? item.downloadURL : `/${item.imagePath}`}
-                                title={item.title}
-                                description={item.description}
-                                imageAlt={item.title || `Profile ${index + 1}`}
-                                index={index}
-                            />
-                        ))}
-                    </div>
+                    <h1 className="font-bold mt-4 mb-6 text-center text-lg md:text-2xl">About Me</h1>
 
-                    {aboutData.length === 0 && error && (
-                        <div className="text-center text-gray-600 mb-4">
-                            <p className="text-sm">Displaying default content. Add custom content through the admin panel.</p>
+                    <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 rounded-lg p-6 md:p-8 shadow-[10px_8px_0_#74247A]">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                            <div>
+                                <h2 className="text-sm font-medium mb-3">{backgroundItem?.title || 'My Background'}</h2>
+                                <p className="text-gray-700 dark:text-gray-200 mb-4 leading-relaxed">{backgroundItem?.description}</p>
+
+                                <h3 className="text-sm font-medium text-gray-800 dark:text-gray-200 mb-2">Skills</h3>
+                                <p className="text-gray-700 dark:text-gray-200 mb-4">{skillsItem?.description}</p>
+
+                                <h3 className="text-sm font-medium text-gray-800 dark:text-gray-200 mb-2">Hobbies</h3>
+                                <p className="text-gray-700 dark:text-gray-200">{hobbiesItem?.description}</p>
+                            </div>
+
+                            <div className="flex items-start justify-center">
+                                <div className="bg-gray-100 p-4 rounded shadow-inner">
+                                    <img src={cardImage} alt={backgroundItem?.title || 'Profile'} className="w-64 h-64 object-cover" />
+                                </div>
+                            </div>
                         </div>
-                    )}
-
-                    {/* <div className="text-left ms-4 md:text-center mb-8">
-                        <a href="#portofolio" className="mb-10 font-bold bg-yellow-400 text-black border-2 border-yellow-400 px-4 py-2 font-syne text-base uppercase shadow-[4px_6px_0_#74247A] transition-all duration-200 ease-in-out cursor-pointer hover:bg-[#74247A] hover:text-yellow-400 hover:shadow-[4px_4px_0_#ffcc00] w-fit">
-                            View My Portfolio
-                        </a>
-                    </div> */}
+                    </div>
                 </div>
             </section>
         </>
