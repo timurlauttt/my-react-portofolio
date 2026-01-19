@@ -57,7 +57,7 @@ const PortfolioCard = ({ image, title, description, longDescription = '', link, 
 
             <div className="mt-3 sm:mt-0 sm:ml-4 flex flex-col flex-1">
                 <h5 className="text-base sm:text-lg font-bold">{title}</h5>
-                <p className="text-xs sm:text-gray-700 mt-1 sm:mt-2">
+                <p className="text-xs sm:text-gray-700 mt-1 sm:mt-2 text-justify">
                     {description}
                 </p>
 

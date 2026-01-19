@@ -70,7 +70,7 @@ function Contact() {
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Contact</h1>
-                    <p className="text-left md:text-center text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-center text-sm text-gray-700 max-w-3xl mx-auto leading-relaxed">
                         Ready to collaborate? Choose your preferred platform to get in touch.
                         I'm always excited to discuss new projects, opportunities, and innovative ideas.
                     </p>

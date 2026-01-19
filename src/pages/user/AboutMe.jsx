@@ -87,14 +87,13 @@ function AboutMe() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                             <div>
                                 <h2 className="text-sm font-medium mb-3">{backgroundItem?.title || 'My Background'}</h2>
-                                <p className="text-gray-700 mb-4 leading-relaxed">{backgroundItem?.description}</p>
+                                <p className="text-gray-700 mb-4 text-justify">{backgroundItem?.description}</p>
                                 <h3 className="text-sm font-medium mb-2">Skills</h3>
-                                <p className="text-gray-700 mb-4">{skillsItem?.description}</p>
+                                <p className="text-gray-700 mb-4 text-justify">{skillsItem?.description}</p>
 
                                 <h3 className="text-sm font-medium mb-2">Hobbies</h3>
-                                <p className="text-gray-700">{hobbiesItem?.description}</p>
+                                <p className="text-gray-700 text-justify">{hobbiesItem?.description}</p>
                             </div>
-
                             <div className="flex items-start justify-center">
                                 <div className="bg-gray-100 p-4 rounded shadow-inner">
                                     <img src={cardImage} alt={backgroundItem?.title || 'Profile'} className="w-64 h-64 object-cover" />
