@@ -22,7 +22,7 @@ const Navbar = () => {
     return (
         <>
             {/* Navbar - Desktop & Mobile */}
-            <nav className="navbar fixed top-0 w-full bg-white z-50 border-b border-gray-200">
+            <nav className="navbar fixed top-0 w-full bg-white z-50 border-b border-gray-200 md:px-16 shadow-sm">
                 <div className="container mx-auto flex justify-between items-center p-4 md:p-6 text-black">
                     <Link
                         to="/"
@@ -70,7 +70,7 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li>
-                            <a href="#" className="btn btn-md bg-black text-white rounded-md py-2 px-4 hover:bg-gray-400">
+                            <a href="https://astro-blog-my-portofolio-guwa.vercel.app/" className="btn btn-md bg-black text-white rounded-md py-2 px-4 hover:bg-gray-400" target="_blank" >
                                 Blog
                             </a>
                         </li>
@@ -127,9 +127,10 @@ const Navbar = () => {
                         </li>
                         <li>
                             <a 
-                                href="#" 
+                                href="https://astro-blog-my-portofolio-guwa.vercel.app/" 
                                 className="block py-3 px-4 bg-yellow-400 text-black rounded text-center hover:bg-yellow-500"
                                 onClick={() => setIsMenuOpen(false)}
+                                target="_blank"
                             >
                                 Blog
                             </a>
