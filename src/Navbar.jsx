@@ -79,7 +79,7 @@ const Navbar = () => {
 
                 {/* Mobile Menu Dropdown */}
                 <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96' : 'max-h-0'}`}>
-                    <ul className="flex flex-col space-y-2 px-4 pb-4 bg-white border-t border-gray-100">
+                    <ul className="flex flex-col space-y-2 px-8 pb-4 bg-white border-t border-gray-100">
                         <li>
                             <Link 
                                 to="/portfolio" 
