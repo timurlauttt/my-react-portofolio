@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { cvService } from '../services/serviceWrapper';
+import { cvService } from '../../services/serviceWrapper';
 import toast from 'react-hot-toast';
 import { 
     LinkIcon, 

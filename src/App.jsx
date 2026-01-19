@@ -5,10 +5,10 @@ import { Toaster } from "react-hot-toast";
 // Main Portfolio Components
 import Navbar from "./Navbar";
 import Hero from "./Hero";
-import AboutMe from "./AboutMe";
-import MyPortofolio from "./MyPortofolio";
-import MyActivities from "./MyActivities";
-import Contact from "./Contact"; 
+import AboutMe from "./pages/user/AboutMe";
+import MyPortofolio from "./pages/user/MyPortofolio";
+import MyActivities from "./pages/user/MyActivities";
+import Contact from "./pages/user/Contact"; 
 import Footer from "./Footer";
 
 // New components
@@ -24,49 +24,96 @@ import { AuthProvider } from "./contexts/AuthContext";
 // Lazy load admin components to reduce initial bundle size
 const ProtectedRoute = React.lazy(() => import("./components/ProtectedRoute"));
 const AdminLayout = React.lazy(() => import("./components/AdminLayout"));
-const AdminLogin = React.lazy(() => import("./pages/AdminLogin"));
-const AdminDashboard = React.lazy(() => import("./pages/AdminDashboard"));
-const AdminAbout = React.lazy(() => import("./pages/AdminAbout"));
-const AdminAboutForm = React.lazy(() => import("./pages/AdminAboutForm"));
-const AdminSkills = React.lazy(() => import("./pages/AdminSkills"));
-const AdminSkillsForm = React.lazy(() => import("./pages/AdminSkillsForm"));
-const AdminPortfolio = React.lazy(() => import("./pages/AdminPortfolio"));
-const AdminPortfolioForm = React.lazy(() => import("./pages/AdminPortfolioForm"));
-const AdminActivities = React.lazy(() => import("./pages/AdminActivities"));
-const AdminActivitiesForm = React.lazy(() => import("./pages/AdminActivitiesForm"));
-const AdminContact = React.lazy(() => import("./pages/AdminContact"));
-const AdminContactForm = React.lazy(() => import("./pages/AdminContactForm"));
-const AdminCV = React.lazy(() => import("./pages/AdminCV"));
+const AdminLogin = React.lazy(() => import("./pages/admin/AdminLogin"));
+const AdminDashboard = React.lazy(() => import("./pages/admin/AdminDashboard"));
+const AdminAbout = React.lazy(() => import("./pages/admin/AdminAbout"));
+const AdminAboutForm = React.lazy(() => import("./pages/admin/AdminAboutForm"));
+const AdminSkills = React.lazy(() => import("./pages/admin/AdminSkills"));
+const AdminSkillsForm = React.lazy(() => import("./pages/admin/AdminSkillsForm"));
+const AdminPortfolio = React.lazy(() => import("./pages/admin/AdminPortfolio"));
+const AdminPortfolioForm = React.lazy(() => import("./pages/admin/AdminPortfolioForm"));
+const AdminActivities = React.lazy(() => import("./pages/admin/AdminActivities"));
+const AdminActivitiesForm = React.lazy(() => import("./pages/admin/AdminActivitiesForm"));
+const AdminContact = React.lazy(() => import("./pages/admin/AdminContact"));
+const AdminContactForm = React.lazy(() => import("./pages/admin/AdminContactForm"));
+const AdminCV = React.lazy(() => import("./pages/admin/AdminCV"));
 
-// Main Portfolio Page Component
+// Main Portfolio Page Component (Home Page - Only Hero)
+const HomePage = () => {
+  return (
+    <div className="relative">
+      <Navbar />
+      <Hero />
+      <Footer />
+      <FloatingActionButton />
+    </div>
+  );
+};
+
+// Portfolio Page
 const PortfolioPage = () => {
   return (
     <div className="relative">
-      <div id="home">
-        <Navbar />
-        <Hero />
-      </div>
-      
-      <div id="portofolio" className="pb-24 md:pb-0"> 
+      <Navbar />
+      <div className="pb-24 md:pb-0">
         <MyPortofolio />
       </div>
+      <Footer />
+      <FloatingActionButton />
+    </div>
+  );
+};
 
-      <div id="skills" className="pb-24 md:pb-0">
+// Skills Page
+const SkillsPage = () => {
+  return (
+    <div className="relative">
+      <Navbar />
+      <div className="pb-24 md:pb-0">
         <SkillsSection />
       </div>
+      <Footer />
+      <FloatingActionButton />
+    </div>
+  );
+};
 
-      <div id="activities" className="pb-24 md:pb-0">
+// Activities Page
+const ActivitiesPage = () => {
+  return (
+    <div className="relative">
+      <Navbar />
+      <div className="pb-24 md:pb-0">
         <MyActivities />
       </div>
-      
-      <div id="contact" className="pb-24 md:pb-0">
+      <Footer />
+      <FloatingActionButton />
+    </div>
+  );
+};
+
+// Contact Page
+const ContactPage = () => {
+  return (
+    <div className="relative">
+      <Navbar />
+      <div className="pb-24 md:pb-0">
         <Contact />
       </div>
-      
-      <div id="about-me" className="pb-24 md:pb-0">
+      <Footer />
+      <FloatingActionButton />
+    </div>
+  );
+};
+
+// About Page
+const AboutPage = () => {
+  return (
+    <div className="relative">
+      <Navbar />
+      <div className="pb-24 md:pb-0">
         <AboutMe />
       </div>
-      
       <Footer />
       <FloatingActionButton />
     </div>
@@ -86,8 +133,13 @@ function App() {
       <Router>
         <Toaster position="top-right" />
         <Routes>
-          {/* Main Portfolio Route - Always loads fast */}
-          <Route path="/" element={<PortfolioPage />} />
+          {/* Main Routes */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/skills" element={<SkillsPage />} />
+          <Route path="/activities" element={<ActivitiesPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/about" element={<AboutPage />} />
           
           {/* Admin Routes - Lazy loaded with Suspense */}
           <Route path="/admin/login" element={

@@ -105,7 +105,7 @@ const SkillsSection = () => {
 
     if (loading) {
         return (
-            <section className="py-8 sm:py-16 bg-gray-50" id="skills">
+            <section className="pt-20 py-8 sm:py-16 bg-gray-50" id="skills">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-8 sm:mb-12">
                         <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Technical Skills</h1>
@@ -124,7 +124,7 @@ const SkillsSection = () => {
 
     if (error) {
         return (
-            <section className="py-8 sm:py-16 bg-gray-50" id="skills">
+            <section className="pt-20 py-8 sm:py-16 bg-gray-50" id="skills">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-8 sm:mb-12">
                         <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Technical Skills</h1>
@@ -145,7 +145,7 @@ const SkillsSection = () => {
     const sortedSkills = [...skillsData].sort((a, b) => (b.skillId || 0) - (a.skillId || 0));
 
     return (
-        <section className="py-8 sm:py-16 bg-gray-50" id="skills">
+        <section className="pt-20 py-8 sm:py-16 bg-gray-50" id="skills">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-8 sm:mb-12">
                     <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Technical Skills</h1>

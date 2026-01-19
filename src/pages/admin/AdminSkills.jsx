@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PlusIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import toast from 'react-hot-toast';
-import { skillsService } from '../services/serviceWrapper';
+import { skillsService } from '../../services/serviceWrapper';
 
 const AdminSkills = () => {
     const [skillsData, setSkillsData] = useState([]);

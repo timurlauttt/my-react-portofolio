@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { contactService } from '../services/serviceWrapper';
+import { contactService } from '../../services/serviceWrapper';
 import toast from 'react-hot-toast';
 
 const AdminContactForm = () => {

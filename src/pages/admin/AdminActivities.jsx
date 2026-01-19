@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { activitiesService } from '../services/serviceWrapper';
+import { activitiesService } from '../../services/serviceWrapper';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 

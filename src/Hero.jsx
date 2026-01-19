@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function Hero() {
 
     return (
@@ -19,9 +21,9 @@ function Hero() {
                                 web development enthusiast,
                                 and always open to learning new things.
                             </p>
-                            <a href="#portofolio" className="md:text-start mt-8 mb-6 font-bold bg-yellow-400 text-black border-2 border-yellow-400 px-4 py-2 font-syne text-base uppercase shadow-[4px_6px_0_#74247A] transition-all duration-200 ease-in-out cursor-pointer hover:bg-[#74247A] hover:text-yellow-400 hover:shadow-[4px_4px_0_#ffcc00] w-fit ms-auto sm:ms-0">
+                            <Link to="/portfolio" className="md:text-start mt-8 mb-6 font-bold bg-yellow-400 text-black border-2 border-yellow-400 px-4 py-2 font-syne text-base uppercase shadow-[4px_6px_0_#74247A] transition-all duration-200 ease-in-out cursor-pointer hover:bg-[#74247A] hover:text-yellow-400 hover:shadow-[4px_4px_0_#ffcc00] w-fit ms-auto sm:ms-0">
                                 View My Portfolio
-                            </a>
+                            </Link>
                         </div>
 
                         {/* Right Section */}

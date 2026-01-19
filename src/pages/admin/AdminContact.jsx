@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PlusIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import toast from 'react-hot-toast';
-import { contactService } from '../services/serviceWrapper';
+import { contactService } from '../../services/serviceWrapper';
 
 const AdminContact = () => {
     const [contactData, setContactData] = useState([]);

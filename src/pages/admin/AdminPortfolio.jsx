@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PlusIcon, PencilIcon, TrashIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import toast from 'react-hot-toast';
-import { portfolioService } from '../services/serviceWrapper';
+import { portfolioService } from '../../services/serviceWrapper';
 
 console.log('AdminPortfolio.jsx loading...');
 

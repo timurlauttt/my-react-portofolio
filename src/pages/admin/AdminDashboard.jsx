@@ -16,7 +16,7 @@ import {
     portfolioService,
     activitiesService,
     contactService
-} from '../services/serviceWrapper';
+} from '../../services/serviceWrapper';
 
 const AdminDashboard = () => {
     const [stats, setStats] = useState({

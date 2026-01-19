@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { portfolioService } from '../services/serviceWrapper';
-import ImageUploader from '../components/ImageUploader';
+import { portfolioService } from '../../services/serviceWrapper';
+import ImageUploader from '../../components/ImageUploader';
 import toast from 'react-hot-toast';
 
 const AdminPortfolioForm = () => {
