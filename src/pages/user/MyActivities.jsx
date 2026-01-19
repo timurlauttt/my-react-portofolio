@@ -224,7 +224,7 @@ const MyActivities = () => {
                                 </div>
                             )}
 
-                            <div id="activity-modal-desc" className="mt-4 text-gray-700 leading-relaxed">
+                            <div id="activity-modal-desc" className="mt-4 text-gray-700 text-justify">
                                 <p>{selectedActivity.fullDescription || selectedActivity.description}</p>
                             </div>
 

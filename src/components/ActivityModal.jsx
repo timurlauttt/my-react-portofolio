@@ -91,13 +91,13 @@ const ActivityModal = ({ isOpen, onClose, activity }) => {
                     {/* Activity Description */}
                     <div className="mb-6">
                         <h3 className="text-lg font-semibold text-gray-900 mb-3">Deskripsi</h3>
-                        <div className="text-gray-700 leading-relaxed">
+                        <div className="text-gray-700 space-y-2">
                             {activity.fullDescription ? (
-                                <div className="whitespace-pre-line">
+                                <div className="whitespace-pre-line text-justify">
                                     {activity.fullDescription}
                                 </div>
                             ) : (
-                                <p>{activity.description}</p>
+                                <p className="text-justify whitespace-pre-line">{activity.description}</p>
                             )}
                         </div>
                     </div>
@@ -126,7 +126,7 @@ const ActivityModal = ({ isOpen, onClose, activity }) => {
                                         <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
-                                        <span className="text-gray-700">{achievement}</span>
+                                        <span className="text-gray-700 text-justify">{achievement}</span>
                                     </li>
                                 ))}
                             </ul>

@@ -46,8 +46,8 @@ const ActivityCard = ({ title, description, bgColor = "bg-yellow-400", link, isE
             </div>
             
             {/* White content area with description */}
-            <div className="p-2 text-xs flex flex-col flex-grow justify-center bg-white">
-                <p className="text-gray-700 text-start leading-tight">{description}</p>
+            <div className="p-2 text-xs flex flex-col flex-grow md:justify-center bg-white">
+                <p className="text-gray-700 text-justify">{description}</p>
             </div>
         </div>
     );
@@ -92,8 +92,8 @@ const ActivityCard = ({ title, description, bgColor = "bg-yellow-400", link, isE
                     </div>
                     
                     {/* White content area with description */}
-                    <div className="p-2 text-xs flex flex-col flex-grow justify-center bg-white">
-                        <p className="text-gray-700 text-start leading-tight">{description}</p>
+                    <div className="p-2 text-xs flex flex-col flex-grow bg-white">
+                        <p className="text-gray-700 text-justify leading-tight">{description}</p>
                     </div>
                 </div>
             </div>

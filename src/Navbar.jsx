@@ -128,7 +128,7 @@ const Navbar = () => {
                         <li>
                             <a 
                                 href="https://astro-blog-my-portofolio-guwa.vercel.app/" 
-                                className="block py-3 px-4 bg-yellow-400 text-black rounded text-center hover:bg-yellow-500"
+                                className="block py-3 px-4 bg-yellow-400 text-black rounded text-start hover:bg-yellow-500"
                                 onClick={() => setIsMenuOpen(false)}
                                 target="_blank"
                             >
