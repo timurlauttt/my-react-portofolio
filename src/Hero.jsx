@@ -7,7 +7,7 @@ function Hero() {
             <section id="home" className="min-h-[75vh] pt-24 sm:pt-32 md:pt-24 lg:pt-28 pb-4 bg-white">
                 <div className="container mx-auto px-4 md:px-6 rounded shadow-[10px_8px_0_#74247A] p-4 md:p-6 grid md:grid-cols-2 gap-4 items-center">
 
-                    <div className="flex flex-col items-start ms-5 md:ms-20 text-left md:text-left">
+                    <div className="flex flex-col items-start mx-5 md:ms-20 text-left md:text-left">
                         <h1 className="md:text-start text-2xl sm:text-xl md:text-5xl lg:text-6xl mb-4 leading-tight">
                             Hello, World!
                             <br />
@@ -53,5 +53,6 @@ function Hero() {
         </>
     );
 }
+
 
 export default Hero;
