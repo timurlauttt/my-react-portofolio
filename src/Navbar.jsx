@@ -22,7 +22,7 @@ const Navbar = () => {
     return (
         <>
             {/* Navbar - Desktop & Mobile */}
-            <nav className="navbar fixed top-0 w-full bg-white z-50 border-b border-gray-200 md:px-16 shadow-sm">
+            <nav className="navbar fixed top-0 w-full bg-white z-50 border-b border-gray-200 px-4 md:px-16 shadow-sm">
                 <div className="container mx-auto flex justify-between items-center p-4 md:p-6 text-black">
                     <Link
                         to="/"
@@ -81,8 +81,8 @@ const Navbar = () => {
                 <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96' : 'max-h-0'}`}>
                     <ul className="flex flex-col space-y-2 px-8 pb-4 bg-white border-t border-gray-100">
                         <li>
-                            <Link 
-                                to="/portfolio" 
+                            <Link
+                                to="/portfolio"
                                 className={`block py-3 px-4 rounded ${isActive("/portfolio") ? "bg-purple-100 text-[#74247A] font-semibold" : "text-black hover:bg-gray-100"}`}
                                 onClick={() => setIsMenuOpen(false)}
                             >
@@ -90,8 +90,8 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link 
-                                to="/skills" 
+                            <Link
+                                to="/skills"
                                 className={`block py-3 px-4 rounded ${isActive("/skills") ? "bg-purple-100 text-[#74247A] font-semibold" : "text-black hover:bg-gray-100"}`}
                                 onClick={() => setIsMenuOpen(false)}
                             >
@@ -99,8 +99,8 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link 
-                                to="/activities" 
+                            <Link
+                                to="/activities"
                                 className={`block py-3 px-4 rounded ${isActive("/activities") ? "bg-purple-100 text-[#74247A] font-semibold" : "text-black hover:bg-gray-100"}`}
                                 onClick={() => setIsMenuOpen(false)}
                             >
@@ -108,8 +108,8 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link 
-                                to="/contact" 
+                            <Link
+                                to="/contact"
                                 className={`block py-3 px-4 rounded ${isActive("/contact") ? "bg-purple-100 text-[#74247A] font-semibold" : "text-black hover:bg-gray-100"}`}
                                 onClick={() => setIsMenuOpen(false)}
                             >
@@ -117,8 +117,8 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link 
-                                to="/about" 
+                            <Link
+                                to="/about"
                                 className={`block py-3 px-4 rounded ${isActive("/about") ? "bg-purple-100 text-[#74247A] font-semibold" : "text-black hover:bg-gray-100"}`}
                                 onClick={() => setIsMenuOpen(false)}
                             >
@@ -126,8 +126,8 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li>
-                            <a 
-                                href="https://astro-blog-my-portofolio-guwa.vercel.app/" 
+                            <a
+                                href="https://astro-blog-my-portofolio-guwa.vercel.app/"
                                 className="block py-3 px-4 bg-yellow-400 text-black rounded text-start hover:bg-yellow-500"
                                 onClick={() => setIsMenuOpen(false)}
                                 target="_blank"

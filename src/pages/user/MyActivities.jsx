@@ -115,10 +115,10 @@ const MyActivities = () => {
     }, [isModalOpen]);
 
     return (
-        <section id="activities" className="pt-20 py-8 sm:py-12">
+        <section id="activities" className="pt-20 pb-8 sm:pb-12">
             <div className="max-w-6xl mx-auto px-3 sm:px-4 text-center">
                 <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Activities</h1>
-                <p className="text-sm text-gray-600 mb-8">Here are some of the activities I've participated during my study, you can click on the cards to find out more!</p>
+                <p className="text-sm md:text-lg text-gray-600 mb-8">Here are some of the activities I've participated during my study, you can click on the cards to find out more!</p>
 
                 {loading && <p className="text-center">Loading...</p>}
                 {error && <p className="text-red-500">{error}</p>}
@@ -177,11 +177,11 @@ const MyActivities = () => {
                     aria-labelledby="activity-modal-title"
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 sm:p-6"
                     // Tap/click overlay closes modal
-                        onClick={() => {
-                            closeModal();
-                        }}
+                    onClick={() => {
+                        closeModal();
+                    }}
                 >
-            <div ref={modalRef} className={`bg-white max-w-3xl w-full sm:w-11/12 md:w-3/4 p-4 sm:p-6 rounded shadow-lg transform transition-all duration-300 max-h-[80vh] overflow-hidden ${isAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`} onClick={(e) => e.stopPropagation()} aria-describedby="activity-modal-desc">
+                    <div ref={modalRef} className={`bg-white max-w-3xl w-full sm:w-11/12 md:w-3/4 p-4 sm:p-6 rounded shadow-lg transform transition-all duration-300 max-h-[80vh] overflow-hidden ${isAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`} onClick={(e) => e.stopPropagation()} aria-describedby="activity-modal-desc">
                         <div className="flex justify-between items-start">
                             <div>
                                 <h3 className="text-2xl font-semibold">{selectedActivity.title}</h3>
@@ -228,7 +228,7 @@ const MyActivities = () => {
                                 <p>{selectedActivity.fullDescription || selectedActivity.description}</p>
                             </div>
 
-                        {/* Skills */}
+                            {/* Skills */}
                             {selectedActivity.skills && selectedActivity.skills.length > 0 && (
                                 <div className="mt-4">
                                     <h4 className="text-sm font-medium text-gray-800 mb-2">Skills</h4>
@@ -240,7 +240,7 @@ const MyActivities = () => {
                                 </div>
                             )}
 
-                        {/* Achievements */}
+                            {/* Achievements */}
                             {selectedActivity.achievements && selectedActivity.achievements.length > 0 && (
                                 <div className="mt-4">
                                     <h4 className="text-sm font-medium text-gray-800 mb-2">Achievements</h4>
@@ -252,7 +252,7 @@ const MyActivities = () => {
                                 </div>
                             )}
 
-                        {/* External Links */}
+                            {/* External Links */}
                             {selectedActivity.links && selectedActivity.links.length > 0 && (
                                 <div className="mt-8">
                                     <h4 className="text-sm font-medium text-gray-800 mb-2">Links</h4>

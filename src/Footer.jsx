@@ -1,4 +1,5 @@
 import VisitorCounter from './components/VisitorCounter';
+import { Link, useLocation } from "react-router-dom";
 
 function Footer() {
     return (
@@ -26,7 +27,7 @@ function Footer() {
                                     </a>
                                 </div>
                                 <div>
-                                    <a href="https://www.linkedin.com/me?trk=p_mwlite_feed-secondary_nav" target="_blank" rel="noopener noreferrer"
+                                    <a href="https://www.linkedin.com/in/urip-yoga-pangestu-65a541231/" target="_blank" rel="noopener noreferrer"
                                         className="flex items-center gap-2 text-sm hover:text-yellow-300 transition-colors">
                                         <i className="fab fa-linkedin text-lg"></i>
                                         <span>Urip Yoga Pangestu</span>
@@ -46,12 +47,12 @@ function Footer() {
                         <div>
                             <h2 className="text-lg font-semibold mb-3 text-left">Navigation</h2>
                             <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-                                <a href="#" className="hover:text-yellow-300 transition-colors">Home</a>
-                                <a href="#about-me" className="hover:text-yellow-300 transition-colors">About</a>
-                                <a href="#skills" className="hover:text-yellow-300 transition-colors">Skills</a>
-                                <a href="#portfolio" className="hover:text-yellow-300 transition-colors">Portfolio</a>
-                                <a href="#activities" className="hover:text-yellow-300 transition-colors">Activities</a>
-                                <a href="#contact" className="hover:text-yellow-300 transition-colors">Contact</a>
+                                <a href="/" className="hover:text-yellow-300 transition-colors">Home</a>
+                                <a href="/portfolio" className="hover:text-yellow-300 transition-colors">Portfolio</a>
+                                <a href="/skills" className="hover:text-yellow-300 transition-colors">Skills</a>
+                                <a href="/activities" className="hover:text-yellow-300 transition-colors">Activities</a>
+                                <a href="/contact" className="hover:text-yellow-300 transition-colors">Contact</a>
+                                <a href="/about" className="hover:text-yellow-300 transition-colors">About</a>
                             </div>
                         </div>
 
@@ -100,12 +101,12 @@ function Footer() {
                         <div>
                             <h2 className="text-lg font-semibold mb-3">Navigation Links</h2>
                             <ul className="space-y-2">
-                                <li><a href="#" className="hover:text-yellow-300 transition-colors">Home</a></li>
-                                <li><a href="#about-me" className="hover:text-yellow-300 transition-colors">About Me</a></li>
-                                <li><a href="#skills" className="hover:text-yellow-300 transition-colors">Skills</a></li>
-                                <li><a href="#portfolio" className="hover:text-yellow-300 transition-colors">Portfolio</a></li>
-                                <li><a href="#activities" className="hover:text-yellow-300 transition-colors">Activities</a></li>
-                                <li><a href="#contact" className="hover:text-yellow-300 transition-colors">Contact</a></li>
+                                <li><a href="/" className="hover:text-yellow-300 transition-colors">Home</a></li>
+                                <li><a href="/portfolio" className="hover:text-yellow-300 transition-colors">Portfolio</a></li>
+                                <li><a href="/skills" className="hover:text-yellow-300 transition-colors">Skills</a></li>
+                                <li><a href="/activities" className="hover:text-yellow-300 transition-colors">Activities</a></li>
+                                <li><a href="/contact" className="hover:text-yellow-300 transition-colors">Contact</a></li>
+                                <li><a href="/about" className="hover:text-yellow-300 transition-colors">About Me</a></li>
                             </ul>
                         </div>
 
@@ -142,7 +143,7 @@ function Footer() {
                                     </a>
                                 </li>
                                 <li className="flex items-center gap-2">
-                                    <a href="https://www.linkedin.com/me?trk=p_mwlite_feed-secondary_nav" target="_blank" rel="noopener noreferrer"
+                                    <a href="https://www.linkedin.com/in/urip-yoga-pangestu-65a541231/" target="_blank" rel="noopener noreferrer"
                                         className="hover:text-yellow-300 transition-colors">
                                         <i className="fab fa-linkedin text-xl"></i> Urip Yoga Pangestu
                                     </a>

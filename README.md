@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website built with React.js and Firebase.
 
-## 🚀 Features
+## Features
 
 - **Dynamic Content Management**: Admin panel for managing portfolio content
 - **Firebase Integration**: Real-time database and authentication
@@ -11,27 +11,30 @@ A modern, responsive portfolio website built with React.js and Firebase.
 - **Image Upload**: Support for portfolio images
 - **Modern UI/UX**: Clean and professional design
 
-## 📦 Tech Stack
+## Tech Stack
 
 - **Frontend**: React.js, Vite, Tailwind CSS
 - **Backend**: Firebase (Firestore, Storage, Auth)
 - **Deployment**: Vercel
 - **State Management**: React Hooks & Context API
 
-## 🔧 Setup & Installation
+## Setup & Installation
 
 ### 1. Clone the repository
+
 ```bash
 git clone https://github.com/timurlauttt/my-react-portofolio.git
 cd my-react-portofolio
 ```
 
 ### 2. Install dependencies
+
 ```bash
 npm install
 ```
 
 ### 3. Environment Configuration
+
 Create a `.env` file in the root directory and add your Firebase configuration:
 
 ```env
@@ -46,6 +49,7 @@ VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
 ```
 
 ### 4. Firebase Setup
+
 1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
 2. Enable Firestore Database
 3. Enable Storage
@@ -53,13 +57,15 @@ VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
 5. Update Firebase security rules for development
 
 ### 5. Run Development Server
+
 ```bash
 npm run dev
 ```
 
-## 🎯 Portfolio Sections
+## Portfolio Sections
 
 ### Dynamic Sections (Admin Managed)
+
 - **About Me**: Personal background information
 - **Skills**: Technical skills with icons and colors
 - **Portfolio**: Project showcases with images
@@ -67,12 +73,13 @@ npm run dev
 - **Contact**: Contact information and social links
 
 ### Ordering System
+
 - **Skills**: Descending order (FILO - newest first)
 - **Activities**: Ascending order (oldest first)
 - **Portfolio**: Ascending order (oldest first)
 - **Contact**: Ascending order (oldest first)
 
-## 🔐 Admin Panel
+## Admin Panel
 
 Access the admin panel to manage your portfolio content:
 
@@ -82,6 +89,7 @@ Access the admin panel to manage your portfolio content:
 - **Image Upload**: Support for project and profile images
 
 ### Admin Routes
+
 - `/admin/dashboard` - Overview and statistics
 - `/admin/about` - Manage About Me section
 - `/admin/skills` - Manage Skills section
@@ -89,26 +97,29 @@ Access the admin panel to manage your portfolio content:
 - `/admin/activities` - Manage Activities section
 - `/admin/contact` - Manage Contact information
 
-## 📱 Responsive Design
+## Responsive Design
 
 The portfolio is fully responsive and optimized for:
+
 - Desktop (1200px+)
 - Tablet (768px - 1199px)
 - Mobile (320px - 767px)
 
-## 🚀 Deployment
+## Deployment
 
 ### Vercel Deployment
+
 1. Connect your GitHub repository to Vercel
 2. Add environment variables in Vercel dashboard
 3. Deploy with automatic CI/CD
 
 ### Manual Deployment
+
 ```bash
 npm run build
 ```
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -116,17 +127,17 @@ npm run build
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📧 Contact
+## Contact
 
 - **Email**: 2211103102@ittelkom-pwt.ac.id
-- **LinkedIn**: [LinkedIn Profile](https://www.linkedin.com/me?trk=p_mwlite_feed-secondary_nav)
+- **LinkedIn**: [LinkedIn Profile](https://www.linkedin.com/in/urip-yoga-pangestu-65a541231/)
 - **GitHub**: [timurlauttt](https://github.com/timurlauttt)
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - React.js Community
 - Firebase Team
@@ -135,4 +146,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Built with ❤️ by [Timur Laut](https://github.com/timurlauttt)
+Built with love by [Timur Laut](https://github.com/timurlauttt)

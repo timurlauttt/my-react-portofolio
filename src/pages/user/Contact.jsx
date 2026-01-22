@@ -32,11 +32,11 @@ function Contact() {
 
     if (loading) {
         return (
-            <section id="contact" className="pt-20 py-8 bg-gradient-to-br from-blue-50 to-purple-50">
+            <section id="contact" className="pt-20 pb-8 bg-gradient-to-br from-blue-50 to-purple-50">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
-                        <h1 className="font-bold text-2xl md:text-3xl mb-6 text-gray-900">Let's Work Together</h1>
-                        <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                        <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Contact</h1>
+                        <p className="text-sm md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
                             Ready to collaborate? Choose your preferred platform to get in touch.
                         </p>
                     </div>
@@ -51,7 +51,7 @@ function Contact() {
 
     if (error) {
         return (
-            <section id="contact" className="pt-20 py-8 bg-gradient-to-br from-blue-50 to-purple-50">
+            <section id="contact" className="pt-20 pb-8 bg-gradient-to-br from-blue-50 to-purple-50">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Contact</h1>
@@ -66,11 +66,11 @@ function Contact() {
     }
 
     return (
-        <section id="contact" className="pt-20 py-8 bg-gradient-to-br from-blue-50 to-purple-50">
+        <section id="contact" className="pt-20 pb-8 bg-gradient-to-br from-blue-50 to-purple-50">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Contact</h1>
-                    <p className="text-center text-sm text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-center text-sm md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
                         Ready to collaborate? Choose your preferred platform to get in touch.
                         I'm always excited to discuss new projects, opportunities, and innovative ideas.
                     </p>

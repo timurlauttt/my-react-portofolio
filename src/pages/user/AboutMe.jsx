@@ -54,7 +54,7 @@ function AboutMe() {
 
     if (loading) {
         return (
-            <section id="about-me" className="pt-20 mt-4 w-full text-black py-6 border-2 border-black">
+            <section id="about-me" className="pt-20 w-full text-black pb-8">
                 <div className="container mx-auto">
                     <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl"></h1>
                     <div className="flex justify-center items-center py-12">
@@ -79,9 +79,9 @@ function AboutMe() {
 
     return (
         <>
-            <section id="about-me" className="pt-20 mt-4 w-full text-black py-6">
+            <section id="about-me" className="pt-20 w-full text-black pb-8">
                 <div className="container mx-auto">
-                    <h1 className="font-bold mt-4 mb-6 text-center text-lg md:text-2xl">About Me</h1>
+                    <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">About Me</h1>
 
                     <div className="max-w-6xl mx-auto bg-white rounded-lg p-6 md:p-8 shadow-[10px_8px_0_#74247A]">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">

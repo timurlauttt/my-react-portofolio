@@ -47,7 +47,7 @@ function MyPortfolio() {
         <>
             <section id="portofolio" className="pt-20 py-8 flex flex-col items-center bg-white">
                 <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">Portfolio</h1>
-                <p className=" sm:text-xs text-gray-600 mb-8">click on the button to find out more!</p>
+                <p className="text-xs md:text-lg text-gray-600 mb-8">click on the button to find out more!</p>
 
                 {portfolioData.length === 0 && !loading ? (
                     <div className="text-center py-16">
