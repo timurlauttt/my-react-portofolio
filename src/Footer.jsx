@@ -1,5 +1,6 @@
 import VisitorCounter from './components/VisitorCounter';
 import { Link, useLocation } from "react-router-dom";
+import { FaInstagram, FaFacebook, FaTiktok, FaWhatsapp, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 function Footer() {
     return (
@@ -22,21 +23,21 @@ function Footer() {
                                 <div>
                                     <a href="mailto:2211103102@ittelkom-pwt.ac.id"
                                         className="flex items-center gap-2 text-sm hover:text-yellow-300 transition-colors">
-                                        <i className="fas fa-envelope text-lg"></i>
+                                        <FaEnvelope className="text-lg" />
                                         <span className="break-all">2211103102@ittelkom-pwt.ac.id</span>
                                     </a>
                                 </div>
                                 <div>
                                     <a href="https://www.linkedin.com/in/urip-yoga-pangestu-65a541231/" target="_blank" rel="noopener noreferrer"
                                         className="flex items-center gap-2 text-sm hover:text-yellow-300 transition-colors">
-                                        <i className="fab fa-linkedin text-lg"></i>
+                                        <FaLinkedin className="text-lg" />
                                         <span>Urip Yoga Pangestu</span>
                                     </a>
                                 </div>
                                 <div>
                                     <a href="wa.me/6285861466287" target="_blank" rel="noopener noreferrer"
                                         className="flex items-center gap-2 text-sm hover:text-yellow-300 transition-colors">
-                                        <i className="fab fa-whatsapp text-lg"></i>
+                                        <FaWhatsapp className="text-lg" />
                                         <span>+6285861466287</span>
                                     </a>
                                 </div>
@@ -62,19 +63,19 @@ function Footer() {
                             <div className="flex gap-6 text-sm">
                                 <div className="flex items-center gap-2">
                                     <a href="https://www.instagram.com/__timurlaut?igsh=MTE5ejg1bG81YmVwcQ==" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
-                                        <i className="fab fa-instagram text-lg"></i>
+                                        <FaInstagram className="text-lg" />
                                         <span>__timurlaut</span>
                                     </a>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <a href="https://www.facebook.com/share/1R9hRtCYSd/" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
-                                        <i className="fab fa-facebook text-lg"></i>
+                                        <FaFacebook className="text-lg" />
                                         <span>Urip Yoga</span>
                                     </a>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <a href="https://www.tiktok.com/@pangestuurip?_t=ZS-8ykixitNw0r&_r=1" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
-                                        <i className="fab fa-tiktok text-lg"></i>
+                                        <FaTiktok className="text-lg" />
                                         <span>pangestuurip</span>
                                     </a>
                                 </div>
@@ -116,17 +117,17 @@ function Footer() {
                             <ul className="space-y-2">
                                 <li className="flex items-center gap-2">
                                     <a href="https://www.instagram.com/__timurlaut?igsh=MTE5ejg1bG81YmVwcQ==" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
-                                        <i className="fab fa-instagram text-xl"></i> __timurlaut
+                                        <FaInstagram className="text-xl" /> __timurlaut
                                     </a>
                                 </li>
                                 <li className="flex items-center gap-2">
                                     <a href="https://www.facebook.com/share/1R9hRtCYSd/" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
-                                        <i className="fab fa-facebook text-xl"></i> Urip Yoga
+                                        <FaFacebook className="text-xl" /> Urip Yoga
                                     </a>
                                 </li>
-                                <li className="flex-items-center gap-2" >
+                                <li className="flex items-center gap-2" >
                                     <a href="https://www.tiktok.com/@pangestuurip?_t=ZS-8ykixitNw0r&_r=1" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300 transition-colors">
-                                        <i className="fab fa-tiktok text-xl"></i> pangestuurip
+                                        <FaTiktok className="text-xl" /> pangestuurip
                                     </a>
                                 </li>
                             </ul>
@@ -139,19 +140,19 @@ function Footer() {
                                 <li className="flex items-center gap-2">
                                     <a href="mailto:2211103102@ittelkom-pwt.ac.id"
                                         className="hover:text-yellow-300 transition-colors">
-                                        <i className="fas fa-envelope text-lg"></i> 2211103102@ittelkom-pwt.ac.id
+                                        <FaEnvelope className="text-lg" /> 2211103102@ittelkom-pwt.ac.id
                                     </a>
                                 </li>
                                 <li className="flex items-center gap-2">
                                     <a href="https://www.linkedin.com/in/urip-yoga-pangestu-65a541231/" target="_blank" rel="noopener noreferrer"
                                         className="hover:text-yellow-300 transition-colors">
-                                        <i className="fab fa-linkedin text-xl"></i> Urip Yoga Pangestu
+                                        <FaLinkedin className="text-xl" /> Urip Yoga Pangestu
                                     </a>
                                 </li>
                                 <li className="flex items-center gap-2">
                                     <a href="wa.me/6285861466287" target="_blank" rel="noopener noreferrer"
                                         className="hover:text-yellow-300 transition-colors">
-                                        <i className="fab fa-whatsapp text-xl"></i> +6285861466287
+                                        <FaWhatsapp className="text-xl" /> +6285861466287
                                     </a>
                                 </li>
                             </ul>
