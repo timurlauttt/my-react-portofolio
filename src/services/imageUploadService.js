@@ -1,6 +1,3 @@
-import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
-import { storage, auth } from '../firebase';
-import { signInAnonymously } from 'firebase/auth';
 import simpleLocalUploadService from './simpleImageUploadService';
 
 // Configuration untuk upload service
@@ -13,9 +10,10 @@ const UPLOAD_MODE = {
 const CURRENT_MODE = UPLOAD_MODE.LOCAL; // Change to FIREBASE if you want Firebase
 
 // Ensure user is authenticated before upload (for Firebase)
-const ensureAuth = async () => {
+const ensureAuth = async (auth) => {
     if (!auth.currentUser) {
         try {
+            const { signInAnonymously } = await import('firebase/auth');
             await signInAnonymously(auth);
         } catch (error) {
             console.warn('Anonymous auth failed, continuing without auth:', error);
@@ -27,8 +25,12 @@ const ensureAuth = async () => {
 const firebaseUploadService = {
     uploadImage: async (file, folder = 'portfolio') => {
         try {
-            // Ensure authentication
-            await ensureAuth();
+            // Ensure authentication (lazy firebase)
+            const fb = await import('../firebase');
+            const storage = await fb.getStorageInstance();
+            const auth = await fb.getAuthInstance();
+            await ensureAuth(auth);
+            const { ref, uploadBytes, getDownloadURL } = await import('firebase/storage');
             
             // Validasi file
             if (!file) {
@@ -64,7 +66,7 @@ const firebaseUploadService = {
 
             // Upload file
             const snapshot = await uploadBytes(storageRef, file, metadata);
-            
+
             // Dapatkan download URL
             const downloadURL = await getDownloadURL(snapshot.ref);
 
@@ -94,7 +96,11 @@ const firebaseUploadService = {
 
     deleteImage: async (imagePath) => {
         try {
-            await ensureAuth();
+            const fb = await import('../firebase');
+            const auth = await fb.getAuthInstance();
+            await ensureAuth(auth);
+            const { ref, deleteObject } = await import('firebase/storage');
+            const storage = await fb.getStorageInstance();
             const imageRef = ref(storage, imagePath);
             await deleteObject(imageRef);
             return { success: true, message: 'Image deleted successfully' };

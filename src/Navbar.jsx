@@ -11,18 +11,33 @@ const Navbar = () => {
 
     // helper to build link class
     const linkClass = (path) => {
-        const base = 'navbar-text hover';
+        const base = 'navbar-text hover:text-gray-700';
         return isActive(path) ? `${base} navbar-text active` : `${base} text-black`;
     };
 
     // Toggle menu
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+    // Close menu when navigation changes
+    useEffect(() => {
+        setIsMenuOpen(false);
+    }, [location.pathname]);
+
+    // Prevent background scroll when mobile menu is open
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => { document.body.style.overflow = ''; };
+    }, [isMenuOpen]);
+
     // Desktop Navbar
     return (
         <>
             {/* Navbar - Desktop & Mobile */}
-            <nav className="navbar fixed top-0 w-full bg-white z-50 border-b border-gray-200 px-4 md:px-16 shadow-sm">
+            <nav className="navbar fixed top-0 w-full bg-white z-50 border-b border-gray-200 px-4 md:px-40 shadow-sm">
                 <div className="container mx-auto flex justify-between items-center p-4 md:p-6 text-black">
                     <Link
                         to="/"
@@ -34,12 +49,15 @@ const Navbar = () => {
                     {/* Hamburger Button - Mobile Only */}
                     <button
                         onClick={toggleMenu}
-                        className="md:hidden flex flex-col justify-center items-center w-10 h-10 focus:outline-none"
+                        className="md:hidden flex flex-col justify-center items-center w-10 h-10 focus:outline-none transform"
                         aria-label="Toggle menu"
+                        aria-expanded={isMenuOpen}
+                        aria-controls="mobile-menu"
+                        type="button"
                     >
-                        <span className={`bg-black block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`}></span>
-                        <span className={`bg-black block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-                        <span className={`bg-black block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>
+                        <span className={`bg-black block transition-transform duration-300 ease-out h-0.5 w-6 rounded-sm ${isMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-1'}`}></span>
+                        <span className={`bg-black block transition-opacity duration-200 ease-out h-0.5 w-6 rounded-sm my-0.5 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+                        <span className={`bg-black block transition-transform duration-300 ease-out h-0.5 w-6 rounded-sm ${isMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-1'}`}></span>
                     </button>
 
                     {/* Menu (Desktop View) */}
@@ -78,57 +96,57 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Menu Dropdown */}
-                <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96' : 'max-h-0'}`}>
+                <div id="mobile-menu" className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96' : 'max-h-0'}`}>
                     <ul className="flex flex-col space-y-2 pb-4 bg-white border-t border-gray-100">
                         <li>
-                            <Link
-                                to="/portfolio"
-                                className={`block py-3 px-4 rounded ${isActive("/portfolio") ? "bg-purple-100 text-[#74247A] font-semibold" : "text-black hover:bg-gray-100"}`}
-                                onClick={() => setIsMenuOpen(false)}
-                            >
+                                <Link
+                                    to="/portfolio"
+                                    className={`block py-3 px-4 rounded ${isActive('/portfolio') ? 'bg-purple-100 text-[#74247A] font-semibold' : 'text-black hover:bg-gray-100'}`}
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
                                 Portfolio
                             </Link>
                         </li>
                         <li>
-                            <Link
-                                to="/skills"
-                                className={`block py-3 px-4 rounded ${isActive("/skills") ? "bg-purple-100 text-[#74247A] font-semibold" : "text-black hover:bg-gray-100"}`}
-                                onClick={() => setIsMenuOpen(false)}
-                            >
+                                <Link
+                                    to="/skills"
+                                    className={`block py-3 px-4 rounded ${isActive('/skills') ? 'bg-purple-100 text-[#74247A] font-semibold' : 'text-black hover:bg-gray-100'}`}
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
                                 Skills
                             </Link>
                         </li>
                         <li>
-                            <Link
-                                to="/activities"
-                                className={`block py-3 px-4 rounded ${isActive("/activities") ? "bg-purple-100 text-[#74247A] font-semibold" : "text-black hover:bg-gray-100"}`}
-                                onClick={() => setIsMenuOpen(false)}
-                            >
+                                <Link
+                                    to="/activities"
+                                    className={`block py-3 px-4 rounded ${isActive('/activities') ? 'bg-purple-100 text-[#74247A] font-semibold' : 'text-black hover:bg-gray-100'}`}
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
                                 Activities
                             </Link>
                         </li>
                         <li>
-                            <Link
-                                to="/contact"
-                                className={`block py-3 px-4 rounded ${isActive("/contact") ? "bg-purple-100 text-[#74247A] font-semibold" : "text-black hover:bg-gray-100"}`}
-                                onClick={() => setIsMenuOpen(false)}
-                            >
+                                <Link
+                                    to="/contact"
+                                    className={`block py-3 px-4 rounded ${isActive('/contact') ? 'bg-purple-100 text-[#74247A] font-semibold' : 'text-black hover:bg-gray-100'}`}
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
                                 Contact
                             </Link>
                         </li>
                         <li>
-                            <Link
-                                to="/about"
-                                className={`block py-3 px-4 rounded ${isActive("/about") ? "bg-purple-100 text-[#74247A] font-semibold" : "text-black hover:bg-gray-100"}`}
-                                onClick={() => setIsMenuOpen(false)}
-                            >
+                                <Link
+                                    to="/about"
+                                    className={`block py-3 px-4 rounded ${isActive('/about') ? 'bg-purple-100 text-[#74247A] font-semibold' : 'text-black hover:bg-gray-100'}`}
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
                                 About Me
                             </Link>
                         </li>
                         <li>
                             <a
                                 href="https://astro-blog-my-portofolio-guwa.vercel.app/"
-                                className="block py-3 px-4 bg-yellow-400 text-black rounded text-start hover:bg-yellow-500"
+                                className="block py-3 px-4 bg-black text-white rounded text-start hover:bg-gray-400"
                                 onClick={() => setIsMenuOpen(false)}
                                 target="_blank"
                             >

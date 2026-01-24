@@ -19,7 +19,9 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         try {
             const { signInWithEmailAndPassword } = await import('firebase/auth');
-            const { auth } = await import('../firebase');
+            const { getAuthInstance } = await import('../firebase');
+            const auth = await getAuthInstance();
+            if (!auth) throw new Error('Auth not initialized');
             const result = await signInWithEmailAndPassword(auth, email, password);
             return result;
         } catch (error) {
@@ -31,7 +33,9 @@ export const AuthProvider = ({ children }) => {
     const logout = async () => {
         try {
             const { signOut } = await import('firebase/auth');
-            const { auth } = await import('../firebase');
+            const { getAuthInstance } = await import('../firebase');
+            const auth = await getAuthInstance();
+            if (!auth) return;
             return await signOut(auth);
         } catch (error) {
             console.error('Logout error:', error);
@@ -42,7 +46,9 @@ export const AuthProvider = ({ children }) => {
     const signup = async (email, password) => {
         try {
             const { createUserWithEmailAndPassword } = await import('firebase/auth');
-            const { auth } = await import('../firebase');
+            const { getAuthInstance } = await import('../firebase');
+            const auth = await getAuthInstance();
+            if (!auth) throw new Error('Auth not initialized');
             return await createUserWithEmailAndPassword(auth, email, password);
         } catch (error) {
             console.error('Signup error:', error);
@@ -56,8 +62,15 @@ export const AuthProvider = ({ children }) => {
         const initializeAuth = async () => {
             try {
                 const { onAuthStateChanged } = await import('firebase/auth');
-                const { auth } = await import('../firebase');
-                
+                const { getAuthInstance } = await import('../firebase');
+                const auth = await getAuthInstance();
+
+                if (!auth) {
+                    console.warn('Auth instance not available for onAuthStateChanged');
+                    setLoading(false);
+                    return;
+                }
+
                 unsubscribe = onAuthStateChanged(auth, 
                     (user) => {
                         setCurrentUser(user);

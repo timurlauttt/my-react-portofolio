@@ -1,50 +1,80 @@
-// src/firebase.js
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getDatabase } from "firebase/database";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+// Lazy init Firebase app and provide getters per service to avoid importing whole SDK
+let _app = null;
+const cache = {};
 
-// Konfigurasi Firebase dari environment variables
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-    databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_FIREBASE_APP_ID,
-    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+        apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+        authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+        databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+        projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+        storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+        messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+        appId: import.meta.env.VITE_FIREBASE_APP_ID,
+        measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-// Inisialisasi Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const database = getDatabase(app);
-const auth = getAuth(app);
-const firestore = getFirestore(app);
-const storage = getStorage(app);
+async function initApp() {
+    if (_app) return _app;
+    const { initializeApp } = await import('firebase/app');
+    _app = initializeApp(firebaseConfig);
+    return _app;
+}
 
-// Enable anonymous authentication for development
-import { signInAnonymously, onAuthStateChanged } from "firebase/auth";
-
-// Auto sign in anonymously for development
-const initAuth = async () => {
+export async function getAuthInstance() {
+    if (cache.auth) return cache.auth;
+    const app = await initApp();
+    const { getAuth, onAuthStateChanged, signInAnonymously } = await import('firebase/auth');
+    const auth = getAuth(app);
     try {
         onAuthStateChanged(auth, (user) => {
             if (!user) {
-                signInAnonymously(auth).catch((error) => {
-                    console.log("Anonymous auth failed:", error);
-                });
+                signInAnonymously(auth).catch(() => {});
             }
         });
-    } catch (error) {
-        console.log("Auth initialization failed:", error);
+    } catch (e) {
+        // ignore
     }
-};
+    cache.auth = auth;
+    return auth;
+}
 
-// Initialize anonymous auth
-initAuth();
+export async function getDatabaseInstance() {
+    if (cache.database) return cache.database;
+    const app = await initApp();
+    const { getDatabase } = await import('firebase/database');
+    const database = getDatabase(app);
+    cache.database = database;
+    return database;
+}
 
-export { database, auth, firestore, storage };
+export async function getFirestoreInstance() {
+    if (cache.firestore) return cache.firestore;
+    const app = await initApp();
+    const { getFirestore } = await import('firebase/firestore');
+    const firestore = getFirestore(app);
+    cache.firestore = firestore;
+    return firestore;
+}
+
+export async function getStorageInstance() {
+    if (cache.storage) return cache.storage;
+    const app = await initApp();
+    const { getStorage } = await import('firebase/storage');
+    const storage = getStorage(app);
+    cache.storage = storage;
+    return storage;
+}
+
+export async function getAnalyticsInstance() {
+    if (cache.analytics) return cache.analytics;
+    const app = await initApp();
+    try {
+        const { getAnalytics } = await import('firebase/analytics');
+        const analytics = getAnalytics(app);
+        cache.analytics = analytics;
+        return analytics;
+    } catch (e) {
+        return null;
+    }
+}
+

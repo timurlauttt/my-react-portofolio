@@ -22,13 +22,8 @@ export const simpleLocalUploadService = {
                 throw new Error('File size must be less than 2MB for local storage');
             }
 
-            // Convert file to base64
-            const base64 = await new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = reject;
-                reader.readAsDataURL(file);
-            });
+            // Do not convert or store file content (base64) to avoid embedding data URIs.
+            const base64 = null;
 
             // Generate unique filename
             const timestamp = Date.now();
@@ -41,7 +36,6 @@ export const simpleLocalUploadService = {
             const imageData = {
                 fileName: fileName,
                 fullPath: fullPath,
-                base64: base64,
                 uploadedAt: new Date().toISOString(),
                 originalName: file.name,
                 size: file.size,
@@ -58,7 +52,7 @@ export const simpleLocalUploadService = {
             return {
                 success: true,
                 fileName: fileName,
-                downloadURL: base64, // Return base64 as URL
+                downloadURL: '/images/placeholder.svg', // Use public placeholder instead of embedding base64
                 fullPath: fullPath
             };
 
@@ -75,8 +69,8 @@ export const simpleLocalUploadService = {
                 throw new Error('Image not found');
             }
             
-            const parsed = JSON.parse(imageData);
-            return parsed.base64;
+            // Return a public placeholder to avoid embedding base64 in img src
+            return '/images/placeholder.svg';
         } catch (error) {
             console.error('Error getting image:', error);
             throw error;

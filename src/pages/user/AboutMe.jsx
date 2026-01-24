@@ -83,7 +83,7 @@ function AboutMe() {
                 <div className="container mx-auto">
                     <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl">About Me</h1>
 
-                    <div className="max-w-6xl mx-auto bg-white rounded-lg p-6 md:p-8 shadow-[10px_8px_0_#74247A]">
+                    <div className="max-w-7xl mx-auto bg-white rounded-lg p-6 md:p-8 shadow-[10px_8px_0_#74247A]">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                             <div>
                                 <h2 className="text-sm font-medium mb-3">{backgroundItem?.title || 'My Background'}</h2>

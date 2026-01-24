@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PortfolioModal from './PortfolioModal';
+import LazyImage from './LazyImage';
 
 const PortfolioCard = ({ image, title, description, longDescription = '', link, isExternal = true, delay = 0, tech = null, startDate = null, endDate = null }) => {
     const [isVisible, setIsVisible] = useState(false);
@@ -48,11 +49,14 @@ const PortfolioCard = ({ image, title, description, longDescription = '', link, 
             }`}
         >
 
-            <img
+            <LazyImage
                 src={image}
-                className="w-full sm:w-3/5 h-auto object-cover shadow-[4px_4px_0_#000] 
-                    hover:scale-105 hover:transition-all hover:border-yellow-700 hover:shadow-[8px_8px_0_#74247A]"
                 alt={title}
+                className="w-full sm:w-3/5 h-auto object-cover shadow-[4px_4px_0_#000] \
+                    hover:scale-105 hover:transition-all hover:border-yellow-700 hover:shadow-[8px_8px_0_#74247A]"
+                placeholderHeight={'h-48'}
+                width={800}
+                height={450}
             />
 
             <div className="mt-3 sm:mt-0 sm:ml-4 flex flex-col flex-1">

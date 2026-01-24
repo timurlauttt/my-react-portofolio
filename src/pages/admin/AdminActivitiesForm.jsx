@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { activitiesService } from '../../services/serviceWrapper';
 import toast from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
+import { simpleLocalUploadService } from '../../services/simpleImageUploadService';
 
 const AdminActivitiesForm = () => {
     const navigate = useNavigate();
@@ -189,15 +190,7 @@ const AdminActivitiesForm = () => {
         }
     };
 
-    // Convert file to base64 - EXACT COPY dari Portfolio
-    const convertToBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = (error) => reject(error);
-        });
-    };
+    // Use local upload service to avoid embedding base64 in Firestore
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -217,13 +210,13 @@ const AdminActivitiesForm = () => {
             setUploading(true);
             let finalImageData = formData.image;
 
-            // Handle image upload - EXACT COPY dari Portfolio
+            // Handle image upload using simple local upload (returns public placeholder URL)
             if (imageFile) {
                 try {
-                    const base64Image = await convertToBase64(imageFile);
-                    finalImageData = base64Image;
+                    const uploadResult = await simpleLocalUploadService.uploadImage(imageFile, 'activities');
+                    finalImageData = uploadResult.downloadURL;
                 } catch (error) {
-                    console.error('Error converting image to base64:', error);
+                    console.error('Error uploading image:', error);
                     toast.error('Failed to process image');
                     return;
                 }

@@ -18,25 +18,8 @@ import SkillsSection from "./components/SkillsSection";
 import FloatingActionButton from "./components/FloatingActionButton";
 import ErrorBoundary from "./components/ErrorBoundary";
 
-// Admin Components (Lazy loaded)
 import { AuthProvider } from "./contexts/AuthContext";
-
-// Lazy load admin components to reduce initial bundle size
-const ProtectedRoute = React.lazy(() => import("./components/ProtectedRoute"));
-const AdminLayout = React.lazy(() => import("./components/AdminLayout"));
-const AdminLogin = React.lazy(() => import("./pages/admin/AdminLogin"));
-const AdminDashboard = React.lazy(() => import("./pages/admin/AdminDashboard"));
-const AdminAbout = React.lazy(() => import("./pages/admin/AdminAbout"));
-const AdminAboutForm = React.lazy(() => import("./pages/admin/AdminAboutForm"));
-const AdminSkills = React.lazy(() => import("./pages/admin/AdminSkills"));
-const AdminSkillsForm = React.lazy(() => import("./pages/admin/AdminSkillsForm"));
-const AdminPortfolio = React.lazy(() => import("./pages/admin/AdminPortfolio"));
-const AdminPortfolioForm = React.lazy(() => import("./pages/admin/AdminPortfolioForm"));
-const AdminActivities = React.lazy(() => import("./pages/admin/AdminActivities"));
-const AdminActivitiesForm = React.lazy(() => import("./pages/admin/AdminActivitiesForm"));
-const AdminContact = React.lazy(() => import("./pages/admin/AdminContact"));
-const AdminContactForm = React.lazy(() => import("./pages/admin/AdminContactForm"));
-const AdminCV = React.lazy(() => import("./pages/admin/AdminCV"));
+import AdminRoutes from "./routes/AdminRoutes";
 
 // Main Portfolio Page Component (Home Page - Only Hero)
 const HomePage = () => {
@@ -141,189 +124,15 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/about" element={<AboutPage />} />
           
-          {/* Admin Routes - Lazy loaded with Suspense */}
-          <Route path="/admin/login" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <AdminLogin />
-            </Suspense>
-          } />
-          
-          <Route path="/admin/dashboard" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ProtectedRoute>
-                <AdminLayout>
-                  <AdminDashboard />
-                </AdminLayout>
-              </ProtectedRoute>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/about" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ProtectedRoute>
-                <AdminLayout>
-                  <AdminAbout />
-                </AdminLayout>
-              </ProtectedRoute>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/about/add" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ProtectedRoute>
-                <AdminLayout>
-                  <AdminAboutForm />
-                </AdminLayout>
-              </ProtectedRoute>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/about/edit/:id" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ProtectedRoute>
-                <AdminLayout>
-                  <AdminAboutForm />
-                </AdminLayout>
-              </ProtectedRoute>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/skills" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ProtectedRoute>
-                <AdminLayout>
-                  <AdminSkills />
-                </AdminLayout>
-              </ProtectedRoute>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/skills/add" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ProtectedRoute>
-                <AdminLayout>
-                  <AdminSkillsForm />
-                </AdminLayout>
-              </ProtectedRoute>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/skills/edit/:id" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ProtectedRoute>
-                <AdminLayout>
-                  <AdminSkillsForm />
-                </AdminLayout>
-              </ProtectedRoute>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/portfolio" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ErrorBoundary>
-                <ProtectedRoute>
-                  <AdminLayout>
-                    <AdminPortfolio />
-                  </AdminLayout>
-                </ProtectedRoute>
-              </ErrorBoundary>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/portfolio/add" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ProtectedRoute>
-                <AdminLayout>
-                  <AdminPortfolioForm />
-                </AdminLayout>
-              </ProtectedRoute>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/portfolio/edit/:id" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ProtectedRoute>
-                <AdminLayout>
-                  <AdminPortfolioForm />
-                </AdminLayout>
-              </ProtectedRoute>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/activities" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ErrorBoundary>
-                <ProtectedRoute>
-                  <AdminLayout>
-                    <AdminActivities />
-                  </AdminLayout>
-                </ProtectedRoute>
-              </ErrorBoundary>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/activities/add" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ProtectedRoute>
-                <AdminLayout>
-                  <AdminActivitiesForm />
-                </AdminLayout>
-              </ProtectedRoute>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/activities/edit/:id" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ProtectedRoute>
-                <AdminLayout>
-                  <AdminActivitiesForm />
-                </AdminLayout>
-              </ProtectedRoute>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/contact" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ProtectedRoute>
-                <AdminLayout>
-                  <AdminContact />
-                </AdminLayout>
-              </ProtectedRoute>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/contact/add" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ProtectedRoute>
-                <AdminLayout>
-                  <AdminContactForm />
-                </AdminLayout>
-              </ProtectedRoute>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/contact/edit/:id" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ProtectedRoute>
-                <AdminLayout>
-                  <AdminContactForm />
-                </AdminLayout>
-              </ProtectedRoute>
-            </Suspense>
-          } />
-          
-          <Route path="/admin/cv" element={
-            <Suspense fallback={<AdminLoadingFallback />}>
-              <ProtectedRoute>
-                <AdminLayout>
-                  <AdminCV />
-                </AdminLayout>
-              </ProtectedRoute>
-            </Suspense>
-          } />
-          
-          {/* Redirect /admin to /admin/dashboard */}
-          <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+          {/* Admin routes are grouped into a single lazily-loaded chunk */}
+          <Route
+            path="/admin/*"
+            element={
+              <Suspense fallback={<AdminLoadingFallback />}>
+                <AdminRoutes />
+              </Suspense>
+            }
+          />
         </Routes>
       </Router>
     </AuthProvider>

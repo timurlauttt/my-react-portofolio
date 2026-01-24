@@ -7,7 +7,9 @@ const LazyImage = ({
     alt, 
     className = '', 
     placeholderHeight = 'h-48',
-    fallbackSrc = '/api/placeholder/400/300'
+    fallbackSrc = '/api/placeholder/400/300',
+    width, // optional numeric width
+    height // optional numeric height
 }) => {
     const { isLoading, hasError, handleImageLoad, handleImageError } = useImageLazyLoading();
     const [setElementRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
@@ -26,6 +28,10 @@ const LazyImage = ({
                     onError={handleImageError}
                     className={`${className} ${isLoading ? 'hidden' : 'block'} transition-opacity duration-300`}
                     loading="lazy"
+                    decoding="async"
+                    {...(width ? { width } : {})}
+                    {...(height ? { height } : {})}
+                    style={{ width: '100%', height: 'auto' }}
                 />
             )}
             
