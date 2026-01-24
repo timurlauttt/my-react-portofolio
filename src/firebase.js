@@ -23,8 +23,12 @@ async function initApp() {
 export async function getAuthInstance() {
     if (cache.auth) return cache.auth;
     const app = await initApp();
-    const { getAuth, onAuthStateChanged, signInAnonymously } = await import('firebase/auth');
+    const { getAuth } = await import('firebase/auth');
     const auth = getAuth(app);
+    // Automatic anonymous sign-in removed to prevent 400 (Bad Request) errors
+    // if the "Anonymous" provider is not enabled in Firebase Console.
+    /*
+    const { onAuthStateChanged, signInAnonymously } = await import('firebase/auth');
     try {
         onAuthStateChanged(auth, (user) => {
             if (!user) {
@@ -34,6 +38,7 @@ export async function getAuthInstance() {
     } catch (e) {
         // ignore
     }
+    */
     cache.auth = auth;
     return auth;
 }
