@@ -36,7 +36,7 @@ function AboutMe() {
         {
             id: 'default-2',
             title: 'My Skills',
-            description: 'I can use HTML, CSS, and Javascript to build websites. I can also use frameworks like Laravel and Django to create or build websites. I am also currently learning React.JS for front-end development of a website.',
+            description: 'I have hands-on experience in developing websites using PHP-based frameworks such as Laravel and CodeIgniter, as well as Python-based frameworks like Django. I also have a solid foundation in React.js for building modern and interactive front-end interfaces.',
             imagePath: 'me.webp',
             order: 2
         },
