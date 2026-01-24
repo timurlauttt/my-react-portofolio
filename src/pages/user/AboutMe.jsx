@@ -30,21 +30,21 @@ function AboutMe() {
             id: 'default-1',
             title: 'My Background',
             description: 'I am a 7th semester Information Systems student who likes challenges, is enthusiastic about web development, and is always open to learning new things.',
-            imagePath: 'me.jpg',
+            imagePath: 'me.webp',
             order: 1
         },
         {
             id: 'default-2',
             title: 'My Skills',
             description: 'I can use HTML, CSS, and Javascript to build websites. I can also use frameworks like Laravel and Django to create or build websites. I am also currently learning React.JS for front-end development of a website.',
-            imagePath: 'aku.jpg',
+            imagePath: 'me.webp',
             order: 2
         },
         {
             id: 'default-3',
             title: 'My Hobbies',
             description: 'In my free time, I like listening to music, watching football matches, reading and exploring new technologies.',
-            imagePath: 'me2.jpg',
+            imagePath: 'me.webp',
             order: 3
         }
     ];
@@ -74,8 +74,8 @@ function AboutMe() {
     const skillsItem = displayData[1] || null;
     const hobbiesItem = displayData[2] || null;
 
-    // Always use the `public/me.jpg` image for the About card image
-    const cardImage = '/me.jpg';
+    // Always use the `public/me.webp` image for the About card image
+    const cardImage = '/me.webp';
 
     return (
         <>
