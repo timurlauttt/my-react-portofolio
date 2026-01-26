@@ -8,7 +8,7 @@ function Hero() {
 
                     <div className="flex flex-col items-start text-start">
                         <h1 className="text-start text-2xl sm:text-xl md:text-5xl lg:text-6xl mb-4 leading-tight">
-                            Hello, World!
+                            Hello World!
                             <br />
                             <span className="text-3xl md:text-5xl lg:text-6xl font-light">
                                 <span className="font-bold">Urip here</span>
@@ -31,3 +31,4 @@ function Hero() {
 }
 
 export default Hero;
+
