@@ -22,8 +22,13 @@ export const simpleLocalUploadService = {
                 throw new Error('File size must be less than 2MB for local storage');
             }
 
-            // Do not convert or store file content (base64) to avoid embedding data URIs.
-            const base64 = null;
+            // Convert file to base64
+            const base64 = await new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onloadend = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
 
             // Generate unique filename
             const timestamp = Date.now();
@@ -32,14 +37,15 @@ export const simpleLocalUploadService = {
             const fileName = `${timestamp}_${randomString}.${fileExtension}`;
             const fullPath = `${folder}/${fileName}`;
 
-            // Save to localStorage
+            // Save to localStorage including base64 data
             const imageData = {
                 fileName: fileName,
                 fullPath: fullPath,
                 uploadedAt: new Date().toISOString(),
                 originalName: file.name,
                 size: file.size,
-                type: file.type
+                type: file.type,
+                base64: base64
             };
 
             localStorage.setItem(`image_${fullPath}`, JSON.stringify(imageData));
@@ -52,7 +58,7 @@ export const simpleLocalUploadService = {
             return {
                 success: true,
                 fileName: fileName,
-                downloadURL: '/images/placeholder.svg', // Use public placeholder instead of embedding base64
+                downloadURL: base64, // Return base64 data URL
                 fullPath: fullPath
             };
 
@@ -64,13 +70,14 @@ export const simpleLocalUploadService = {
 
     getImage: async (fullPath) => {
         try {
-            const imageData = localStorage.getItem(`image_${fullPath}`);
-            if (!imageData) {
+            const imageDataStr = localStorage.getItem(`image_${fullPath}`);
+            if (!imageDataStr) {
                 throw new Error('Image not found');
             }
             
-            // Return a public placeholder to avoid embedding base64 in img src
-            return '/images/placeholder.svg';
+            const imageData = JSON.parse(imageDataStr);
+            // Return the stored base64 data
+            return imageData.base64 || '/images/placeholder.svg';
         } catch (error) {
             console.error('Error getting image:', error);
             throw error;

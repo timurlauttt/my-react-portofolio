@@ -34,8 +34,7 @@ const COLLECTIONS = {
 export const aboutService = {
     getAll: async () => {
         try {
-            const firestore = await getFirestoreInstance();
-            const auth = await getAuthInstance();
+            const { firestore, auth } = await getFirebase();
             await ensureAuth(auth);
             const { collection, query, orderBy, getDocs } = await import('firebase/firestore');
             const q = query(collection(firestore, COLLECTIONS.ABOUT), orderBy('createdAt', 'desc'));
@@ -52,8 +51,7 @@ export const aboutService = {
     
     getById: async (id) => {
         try {
-            const firestore = await getFirestoreInstance();
-            const auth = await getAuthInstance();
+            const { firestore, auth } = await getFirebase();
             await ensureAuth(auth);
             const { doc, getDoc } = await import('firebase/firestore');
             const docRef = doc(firestore, COLLECTIONS.ABOUT, id);
@@ -70,8 +68,7 @@ export const aboutService = {
     
     create: async (data) => {
         try {
-            const firestore = await getFirestoreInstance();
-            const auth = await getAuthInstance();
+            const { firestore, auth } = await getFirebase();
             await ensureAuth(auth);
             const aboutData = {
                 ...data,
@@ -289,16 +286,25 @@ export const activitiesService = {
     create: async (data) => {
         const { firestore, auth } = await getFirebase();
         await ensureAuth(auth);
+        const activityData = {
+            ...data,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        };
         const { addDoc, collection } = await import('firebase/firestore');
-        return await addDoc(collection(firestore, COLLECTIONS.ACTIVITIES), data);
+        return await addDoc(collection(firestore, COLLECTIONS.ACTIVITIES), activityData);
     },
     
     update: async (id, data) => {
         const { firestore, auth } = await getFirebase();
         await ensureAuth(auth);
+        const updateData = {
+            ...data,
+            updatedAt: new Date()
+        };
         const { doc, updateDoc } = await import('firebase/firestore');
         const docRef = doc(firestore, COLLECTIONS.ACTIVITIES, id);
-        return await updateDoc(docRef, data);
+        return await updateDoc(docRef, updateData);
     },
     
     delete: async (id) => {
