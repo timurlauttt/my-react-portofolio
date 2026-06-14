@@ -16,7 +16,7 @@ function Hero() {
                         </h1>
                         <p className="mt-4 text-gray-700 bg-white p-4 shadow-lg max-w-md text-justify">
                             Hello! I'm Urip Yoga Pangestu,
-                            a 7th semester Information Systems student at Telkom University Purwokerto who loves challenges,
+                            Information Systems student at Telkom University Purwokerto who loves challenges,
                             web development enthusiast,
                             and always open to learning new things.
                         </p>
