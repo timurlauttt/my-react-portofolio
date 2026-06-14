@@ -266,10 +266,14 @@ export const activitiesService = {
     getAll: async () => {
         const { firestore, auth } = await getFirebase();
         await ensureAuth(auth);
-        const { collection, query, orderBy, getDocs } = await import('firebase/firestore');
-        const q = query(collection(firestore, COLLECTIONS.ACTIVITIES), orderBy('createdAt', 'desc'));
-        const querySnapshot = await getDocs(q);
-        return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const { collection, getDocs } = await import('firebase/firestore');
+        const querySnapshot = await getDocs(collection(firestore, COLLECTIONS.ACTIVITIES));
+        const docs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        return docs.sort((a, b) => {
+            const ta = a.createdAt?.toDate?.() ?? a.createdAt ?? 0;
+            const tb = b.createdAt?.toDate?.() ?? b.createdAt ?? 0;
+            return new Date(tb) - new Date(ta);
+        });
     },
 
     getById: async (id) => {
