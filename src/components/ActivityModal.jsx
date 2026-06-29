@@ -10,11 +10,11 @@ const ActivityModal = ({ isOpen, onClose, activity }) => {
     };
 
     return (
-        <div 
-            className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
+        <div
+            className="fixed inset-0 bg-black bg-opacity-75 flex items-start sm:items-center justify-center z-50 p-4 overflow-y-auto"
             onClick={handleBackdropClick}
         >
-            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto relative animate-fadeIn">
+            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[100dvh] sm:max-h-[90dvh] overflow-y-auto relative animate-fadeIn my-auto">
                 {/* Close Button */}
                 <button
                     onClick={onClose}
@@ -28,7 +28,7 @@ const ActivityModal = ({ isOpen, onClose, activity }) => {
 
                 {/* Activity Image */}
                 {activity.image && (
-                    <div className="w-full h-64 bg-gray-200 rounded-t-lg overflow-hidden">
+                    <div className="w-full h-48 sm:h-64 bg-gray-200 rounded-t-lg overflow-hidden">
                         <img 
                             src={activity.image} 
                             alt={activity.title}

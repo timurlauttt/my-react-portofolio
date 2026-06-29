@@ -175,14 +175,14 @@ const MyActivities = () => {
                     role="dialog"
                     aria-modal="true"
                     aria-labelledby="activity-modal-title"
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 sm:p-6"
+                    className="fixed inset-0 z-50 flex items-start sm:items-center justify-center bg-black/50 p-4 sm:p-6 overflow-y-auto"
                     // Tap/click overlay closes modal
                     onClick={() => {
                         closeModal();
                     }}
                 >
-                    <div ref={modalRef} className={`bg-white max-w-3xl w-full sm:w-11/12 md:w-3/4 p-4 sm:p-6 rounded shadow-lg transform transition-all duration-300 max-h-[80vh] overflow-hidden ${isAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`} onClick={(e) => e.stopPropagation()} aria-describedby="activity-modal-desc">
-                        <div className="flex justify-between items-start">
+                    <div ref={modalRef} className={`bg-white max-w-3xl w-full sm:w-11/12 md:w-3/4 p-4 sm:p-6 rounded shadow-lg transform transition-all duration-300 max-h-[90dvh] my-auto flex flex-col overflow-hidden ${isAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`} onClick={(e) => e.stopPropagation()} aria-describedby="activity-modal-desc">
+                        <div className="flex justify-between items-start flex-shrink-0">
                             <div>
                                 <h3 className="text-2xl font-semibold">{selectedActivity.title}</h3>
                                 <div className="mt-1 flex flex-wrap gap-2 text-sm text-gray-600">
@@ -204,7 +204,7 @@ const MyActivities = () => {
                         {/* Images: support either string or array */}
                         {/* Image fallback: prefer `images`, fallback to `image` */}
                         {/* Make modal content scrollable and constrain image sizes so layout doesn't break */}
-                        <div className="mt-4 overflow-y-auto pr-2 pb-2" style={{ maxHeight: 'calc(80vh - 160px)' }}>
+                        <div className="mt-4 flex-1 min-h-0 overflow-y-auto pr-2 pb-2">
                             {(selectedActivity.images || selectedActivity.image) && (
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {Array.isArray(selectedActivity.images)
