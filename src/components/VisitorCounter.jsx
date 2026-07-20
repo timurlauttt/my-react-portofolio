@@ -7,7 +7,7 @@ const VisitorCounter = ({ className }) => {
     useEffect(() => {
         let mounted = true;
 
-        (async () => {
+        const run = async () => {
             try {
                 const fb = await import('../firebase');
                 const database = await fb.getDatabaseInstance();
@@ -28,9 +28,15 @@ const VisitorCounter = ({ className }) => {
                 console.error('Error reading visitor count:', error);
                 if (mounted) setCount('tidak tersedia');
             }
-        })();
+        };
 
-        return () => { mounted = false };
+        // Not part of the visible UI's critical content, so push the
+        // Realtime Database SDK fetch off the initial render's critical path.
+        const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 200));
+        const cancelIdle = window.cancelIdleCallback || clearTimeout;
+        const idleId = idle(run);
+
+        return () => { mounted = false; cancelIdle(idleId); };
     }, []);
 
     return (

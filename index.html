@@ -4,20 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-N2M82X53ER"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-N2M82X53ER");
-    </script>
+    <!-- Google Analytics is loaded by src/main.jsx after initial render (deferred),
+         using the correct measurement ID from VITE_FIREBASE_MEASUREMENT_ID.
+         Do not add a gtag script here -- it was previously duplicated with a stale ID. -->
 
     <meta name="theme-color" content="#000000" />
     <meta name="format-detection" content="telephone=no" />
@@ -84,40 +73,31 @@
     />
     <meta name="twitter:creator" content="@timurlaut" />
     <meta name="twitter:site" content="@timurlaut" />
-    <!-- Dev fallback: load Tailwind from CDN when running on localhost for immediate styling while build-time Tailwind is configured -->
-    <script>
-      try {
-        if (
-          location &&
-          (location.hostname === "localhost" ||
-            location.hostname === "127.0.0.1")
-        ) {
-          const s = document.createElement("script");
-          s.src = "https://cdn.tailwindcss.com";
-          s.defer = true;
-          document.head.appendChild(s);
-        }
-      } catch (e) {
-        // ignore
-      }
-    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://my-portofolio-guwa.vercel.app" />
-    <link rel="preconnect" href="https://my-react-portofolio.firebaseapp.com" />
-    <link rel="preconnect" href="https://firestore.googleapis.com" />
-    <link rel="preconnect" href="https://identitytoolkit.googleapis.com" />
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Firebase (auth/firestore) is only used under /admin, not on public pages,
+         so it doesn't need a preconnect here -- see src/App.jsx -->
 
+    <!-- Single combined Google Fonts request, loaded non-render-blocking -->
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      />
+    </noscript>
 
     <!-- JSON-LD Structured Data untuk SEO -->
     <script type="application/ld+json">
@@ -147,21 +127,6 @@
           "https://www.instagram.com/__timurlaut"
         ]
       }
-    </script>
-
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-N2M82X53ER"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-N2M82X53ER");
     </script>
 
     <title>

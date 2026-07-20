@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
@@ -19,7 +19,7 @@ import FloatingActionButton from "./components/FloatingActionButton";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 import { AuthProvider } from "./contexts/AuthContext";
-import AdminRoutes from "./routes/AdminRoutes";
+const AdminRoutes = lazy(() => import("./routes/AdminRoutes"));
 
 // Main Portfolio Page Component (Home Page - Only Hero)
 const HomePage = () => {
@@ -112,30 +112,31 @@ const AdminLoadingFallback = () => (
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Toaster position="top-right" />
-        <Routes>
-          {/* Main Routes */}
-          <Route path="/" element={<HomePage />} />
-          <Route path="/portfolio" element={<PortfolioPage />} />
-          <Route path="/skills" element={<SkillsPage />} />
-          <Route path="/activities" element={<ActivitiesPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          
-          {/* Admin routes are grouped into a single lazily-loaded chunk */}
-          <Route
-            path="/admin/*"
-            element={
+    <Router>
+      <Toaster position="top-right" />
+      <Routes>
+        {/* Main Routes */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/portfolio" element={<PortfolioPage />} />
+        <Route path="/skills" element={<SkillsPage />} />
+        <Route path="/activities" element={<ActivitiesPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/about" element={<AboutPage />} />
+
+        {/* Admin routes are grouped into a single lazily-loaded chunk;
+            AuthProvider is scoped here so Firebase Auth never initializes on public pages */}
+        <Route
+          path="/admin/*"
+          element={
+            <AuthProvider>
               <Suspense fallback={<AdminLoadingFallback />}>
                 <AdminRoutes />
               </Suspense>
-            }
-          />
-        </Routes>
-      </Router>
-    </AuthProvider>
+            </AuthProvider>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 

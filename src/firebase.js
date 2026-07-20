@@ -55,7 +55,7 @@ export async function getDatabaseInstance() {
 export async function getFirestoreInstance() {
     if (cache.firestore) return cache.firestore;
     const app = await initApp();
-    const { getFirestore } = await import('firebase/firestore');
+    const { getFirestore } = await import('firebase/firestore/lite');
     const firestore = getFirestore(app);
     cache.firestore = firestore;
     return firestore;

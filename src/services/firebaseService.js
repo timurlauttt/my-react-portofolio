@@ -1,6 +1,14 @@
 import { imageUploadService } from './imageUploadService';
 
-// Backwards-compatible helper: return only firestore and auth instances
+// Read-only helper: Firestore rules allow public reads on every collection below,
+// so read paths never need to touch Firebase Auth (avoids loading the auth SDK
+// and attempting anonymous sign-in on public pages).
+async function getFirestoreOnly() {
+    const mod = await import('../firebase');
+    return await mod.getFirestoreInstance();
+}
+
+// Write helper: Firestore rules require request.auth != null for write/delete.
 async function getFirebase() {
     const mod = await import('../firebase');
     const firestore = await mod.getFirestoreInstance();
@@ -8,7 +16,7 @@ async function getFirebase() {
     return { firestore, auth };
 }
 
-// Ensure user is authenticated before Firestore operations
+// Ensure user is authenticated before Firestore write operations
 const ensureAuth = async (auth) => {
     if (!auth.currentUser) {
         try {
@@ -34,9 +42,8 @@ const COLLECTIONS = {
 export const aboutService = {
     getAll: async () => {
         try {
-            const { firestore, auth } = await getFirebase();
-            await ensureAuth(auth);
-            const { collection, query, orderBy, getDocs } = await import('firebase/firestore');
+            const firestore = await getFirestoreOnly();
+            const { collection, query, orderBy, getDocs } = await import('firebase/firestore/lite');
             const q = query(collection(firestore, COLLECTIONS.ABOUT), orderBy('createdAt', 'desc'));
             const querySnapshot = await getDocs(q);
             return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -48,12 +55,11 @@ export const aboutService = {
             throw error;
         }
     },
-    
+
     getById: async (id) => {
         try {
-            const { firestore, auth } = await getFirebase();
-            await ensureAuth(auth);
-            const { doc, getDoc } = await import('firebase/firestore');
+            const firestore = await getFirestoreOnly();
+            const { doc, getDoc } = await import('firebase/firestore/lite');
             const docRef = doc(firestore, COLLECTIONS.ABOUT, id);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
@@ -65,7 +71,7 @@ export const aboutService = {
             throw error;
         }
     },
-    
+
     create: async (data) => {
         try {
             const { firestore, auth } = await getFirebase();
@@ -75,7 +81,7 @@ export const aboutService = {
                 createdAt: new Date(),
                 updatedAt: new Date()
             };
-            const { addDoc, collection } = await import('firebase/firestore');
+            const { addDoc, collection } = await import('firebase/firestore/lite');
             return await addDoc(collection(firestore, COLLECTIONS.ABOUT), aboutData);
         } catch (error) {
             console.error('Error creating about item:', error);
@@ -85,34 +91,33 @@ export const aboutService = {
             throw error;
         }
     },
-    
+
     update: async (id, data) => {
         try {
-            const firestore = await getFirestoreInstance();
-            const auth = await getAuthInstance();
+            const { firestore, auth } = await getFirebase();
             await ensureAuth(auth);
-            const docRef = (await import('firebase/firestore')).doc(firestore, COLLECTIONS.ABOUT, id);
+            const docRef = (await import('firebase/firestore/lite')).doc(firestore, COLLECTIONS.ABOUT, id);
             const updateData = {
                 ...data,
                 updatedAt: new Date()
             };
-            const { updateDoc } = await import('firebase/firestore');
+            const { updateDoc } = await import('firebase/firestore/lite');
             return await updateDoc(docRef, updateData);
         } catch (error) {
             console.error('Error updating about item:', error);
             throw error;
         }
     },
-    
+
     delete: async (id) => {
         try {
             // Get document first to check if it has images to delete
             const { firestore, auth } = await getFirebase();
             await ensureAuth(auth);
-            const { doc, getDoc } = await import('firebase/firestore');
+            const { doc, getDoc } = await import('firebase/firestore/lite');
             const docRef = doc(firestore, COLLECTIONS.ABOUT, id);
             const docSnap = await getDoc(docRef);
-            
+
             if (docSnap.exists()) {
                 const data = docSnap.data();
                 // If document has imagePath, delete the image from storage
@@ -120,9 +125,9 @@ export const aboutService = {
                     await imageUploadService.deleteImage(data.imagePath);
                 }
             }
-            
+
             // Delete the document
-            const { deleteDoc } = await import('firebase/firestore');
+            const { deleteDoc } = await import('firebase/firestore/lite');
             return await deleteDoc(docRef);
         } catch (error) {
             console.error('Error deleting about item:', error);
@@ -134,18 +139,16 @@ export const aboutService = {
 // Skills Service
 export const skillsService = {
     getAll: async () => {
-        const { firestore, auth } = await getFirebase();
-        await ensureAuth(auth);
-        const { collection, query, orderBy, getDocs } = await import('firebase/firestore');
+        const firestore = await getFirestoreOnly();
+        const { collection, query, orderBy, getDocs } = await import('firebase/firestore/lite');
         const q = query(collection(firestore, COLLECTIONS.SKILLS), orderBy('createdAt', 'desc'));
         const querySnapshot = await getDocs(q);
         return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     },
-    
+
     getById: async (id) => {
-        const { firestore, auth } = await getFirebase();
-        await ensureAuth(auth);
-        const { doc, getDoc } = await import('firebase/firestore');
+        const firestore = await getFirestoreOnly();
+        const { doc, getDoc } = await import('firebase/firestore/lite');
         const docRef = doc(firestore, COLLECTIONS.SKILLS, id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
@@ -153,7 +156,7 @@ export const skillsService = {
         }
         return null;
     },
-    
+
     create: async (data) => {
         const { firestore, auth } = await getFirebase();
         await ensureAuth(auth);
@@ -162,14 +165,14 @@ export const skillsService = {
             createdAt: new Date(),
             updatedAt: new Date()
         };
-        const { addDoc, collection } = await import('firebase/firestore');
+        const { addDoc, collection } = await import('firebase/firestore/lite');
         return await addDoc(collection(firestore, COLLECTIONS.SKILLS), createData);
     },
-    
+
     update: async (id, data) => {
         const { firestore, auth } = await getFirebase();
         await ensureAuth(auth);
-        const { doc, updateDoc } = await import('firebase/firestore');
+        const { doc, updateDoc } = await import('firebase/firestore/lite');
         const docRef = doc(firestore, COLLECTIONS.SKILLS, id);
         const updateData = {
             ...data,
@@ -177,11 +180,11 @@ export const skillsService = {
         };
         return await updateDoc(docRef, updateData);
     },
-    
+
     delete: async (id) => {
         const { firestore, auth } = await getFirebase();
         await ensureAuth(auth);
-        const { doc, deleteDoc } = await import('firebase/firestore');
+        const { doc, deleteDoc } = await import('firebase/firestore/lite');
         const docRef = doc(firestore, COLLECTIONS.SKILLS, id);
         return await deleteDoc(docRef);
     }
@@ -190,18 +193,16 @@ export const skillsService = {
 // Portfolio Service
 export const portfolioService = {
     getAll: async () => {
-        const { firestore, auth } = await getFirebase();
-        await ensureAuth(auth);
-        const { collection, query, orderBy, getDocs } = await import('firebase/firestore');
+        const firestore = await getFirestoreOnly();
+        const { collection, query, orderBy, getDocs } = await import('firebase/firestore/lite');
         const q = query(collection(firestore, COLLECTIONS.PORTFOLIO), orderBy('createdAt', 'desc'));
         const querySnapshot = await getDocs(q);
         return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     },
-    
+
     getById: async (id) => {
-        const { firestore, auth } = await getFirebase();
-        await ensureAuth(auth);
-        const { doc, getDoc } = await import('firebase/firestore');
+        const firestore = await getFirestoreOnly();
+        const { doc, getDoc } = await import('firebase/firestore/lite');
         const docRef = doc(firestore, COLLECTIONS.PORTFOLIO, id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
@@ -209,7 +210,7 @@ export const portfolioService = {
         }
         return null;
     },
-    
+
     create: async (data) => {
         const { firestore, auth } = await getFirebase();
         await ensureAuth(auth);
@@ -218,14 +219,14 @@ export const portfolioService = {
             createdAt: new Date(),
             updatedAt: new Date()
         };
-        const { addDoc, collection } = await import('firebase/firestore');
+        const { addDoc, collection } = await import('firebase/firestore/lite');
         return await addDoc(collection(firestore, COLLECTIONS.PORTFOLIO), portfolioData);
     },
-    
+
     update: async (id, data) => {
         const { firestore, auth } = await getFirebase();
         await ensureAuth(auth);
-        const { doc, updateDoc } = await import('firebase/firestore');
+        const { doc, updateDoc } = await import('firebase/firestore/lite');
         const docRef = doc(firestore, COLLECTIONS.PORTFOLIO, id);
         const updateData = {
             ...data,
@@ -233,16 +234,16 @@ export const portfolioService = {
         };
         return await updateDoc(docRef, updateData);
     },
-    
+
     delete: async (id) => {
         try {
             // Get document first to check if it has images to delete
             const { firestore, auth } = await getFirebase();
             await ensureAuth(auth);
-            const { doc, getDoc } = await import('firebase/firestore');
+            const { doc, getDoc } = await import('firebase/firestore/lite');
             const docRef = doc(firestore, COLLECTIONS.PORTFOLIO, id);
             const docSnap = await getDoc(docRef);
-            
+
             if (docSnap.exists()) {
                 const data = docSnap.data();
                 // If document has imagePath, delete the image from storage
@@ -250,9 +251,9 @@ export const portfolioService = {
                     await imageUploadService.deleteImage(data.imagePath);
                 }
             }
-            
+
             // Delete the document
-            const { deleteDoc } = await import('firebase/firestore');
+            const { deleteDoc } = await import('firebase/firestore/lite');
             return await deleteDoc(docRef);
         } catch (error) {
             console.error('Error deleting portfolio item:', error);
@@ -264,9 +265,8 @@ export const portfolioService = {
 // Activities Service
 export const activitiesService = {
     getAll: async () => {
-        const { firestore, auth } = await getFirebase();
-        await ensureAuth(auth);
-        const { collection, getDocs } = await import('firebase/firestore');
+        const firestore = await getFirestoreOnly();
+        const { collection, getDocs } = await import('firebase/firestore/lite');
         const querySnapshot = await getDocs(collection(firestore, COLLECTIONS.ACTIVITIES));
         const docs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         return docs.sort((a, b) => {
@@ -277,9 +277,8 @@ export const activitiesService = {
     },
 
     getById: async (id) => {
-        const { firestore, auth } = await getFirebase();
-        await ensureAuth(auth);
-        const { doc, getDoc } = await import('firebase/firestore');
+        const firestore = await getFirestoreOnly();
+        const { doc, getDoc } = await import('firebase/firestore/lite');
         const docRef = doc(firestore, COLLECTIONS.ACTIVITIES, id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
@@ -287,7 +286,7 @@ export const activitiesService = {
         }
         return null;
     },
-    
+
     create: async (data) => {
         const { firestore, auth } = await getFirebase();
         await ensureAuth(auth);
@@ -296,10 +295,10 @@ export const activitiesService = {
             createdAt: new Date(),
             updatedAt: new Date()
         };
-        const { addDoc, collection } = await import('firebase/firestore');
+        const { addDoc, collection } = await import('firebase/firestore/lite');
         return await addDoc(collection(firestore, COLLECTIONS.ACTIVITIES), activityData);
     },
-    
+
     update: async (id, data) => {
         const { firestore, auth } = await getFirebase();
         await ensureAuth(auth);
@@ -307,15 +306,15 @@ export const activitiesService = {
             ...data,
             updatedAt: new Date()
         };
-        const { doc, updateDoc } = await import('firebase/firestore');
+        const { doc, updateDoc } = await import('firebase/firestore/lite');
         const docRef = doc(firestore, COLLECTIONS.ACTIVITIES, id);
         return await updateDoc(docRef, updateData);
     },
-    
+
     delete: async (id) => {
         const { firestore, auth } = await getFirebase();
         await ensureAuth(auth);
-        const { doc, deleteDoc } = await import('firebase/firestore');
+        const { doc, deleteDoc } = await import('firebase/firestore/lite');
         const docRef = doc(firestore, COLLECTIONS.ACTIVITIES, id);
         return await deleteDoc(docRef);
     }
@@ -324,17 +323,15 @@ export const activitiesService = {
 // Contact Service
 export const contactService = {
     getAll: async () => {
-        const { firestore, auth } = await getFirebase();
-        await ensureAuth(auth);
-        const { collection, getDocs } = await import('firebase/firestore');
+        const firestore = await getFirestoreOnly();
+        const { collection, getDocs } = await import('firebase/firestore/lite');
         const querySnapshot = await getDocs(collection(firestore, COLLECTIONS.CONTACT));
         return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     },
-    
+
     getById: async (id) => {
-        const { firestore, auth } = await getFirebase();
-        await ensureAuth(auth);
-        const { doc, getDoc } = await import('firebase/firestore');
+        const firestore = await getFirestoreOnly();
+        const { doc, getDoc } = await import('firebase/firestore/lite');
         const docRef = doc(firestore, COLLECTIONS.CONTACT, id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
@@ -342,26 +339,26 @@ export const contactService = {
         }
         return null;
     },
-    
+
     create: async (data) => {
         const { firestore, auth } = await getFirebase();
         await ensureAuth(auth);
-        const { addDoc, collection } = await import('firebase/firestore');
+        const { addDoc, collection } = await import('firebase/firestore/lite');
         return await addDoc(collection(firestore, COLLECTIONS.CONTACT), data);
     },
-    
+
     update: async (id, data) => {
         const { firestore, auth } = await getFirebase();
         await ensureAuth(auth);
-        const { doc, updateDoc } = await import('firebase/firestore');
+        const { doc, updateDoc } = await import('firebase/firestore/lite');
         const docRef = doc(firestore, COLLECTIONS.CONTACT, id);
         return await updateDoc(docRef, data);
     },
-    
+
     delete: async (id) => {
         const { firestore, auth } = await getFirebase();
         await ensureAuth(auth);
-        const { doc, deleteDoc } = await import('firebase/firestore');
+        const { doc, deleteDoc } = await import('firebase/firestore/lite');
         const docRef = doc(firestore, COLLECTIONS.CONTACT, id);
         return await deleteDoc(docRef);
     }
@@ -372,9 +369,8 @@ export const cvService = {
     // Get current CV info
     get: async () => {
         try {
-            const { firestore, auth } = await getFirebase();
-            await ensureAuth(auth);
-            const { doc, getDoc } = await import('firebase/firestore');
+            const firestore = await getFirestoreOnly();
+            const { doc, getDoc } = await import('firebase/firestore/lite');
             const docRef = doc(firestore, COLLECTIONS.SETTINGS, 'cv');
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
@@ -411,7 +407,7 @@ export const cvService = {
 
             const { firestore, auth } = await getFirebase();
             await ensureAuth(auth);
-            const { doc, setDoc } = await import('firebase/firestore');
+            const { doc, setDoc } = await import('firebase/firestore/lite');
             const docRef = doc(firestore, COLLECTIONS.SETTINGS, 'cv');
             await setDoc(docRef, cvData);
 
@@ -433,7 +429,7 @@ export const cvService = {
             // Delete from Firestore
             const { firestore, auth } = await getFirebase();
             await ensureAuth(auth);
-            const { doc, deleteDoc } = await import('firebase/firestore');
+            const { doc, deleteDoc } = await import('firebase/firestore/lite');
             const docRef = doc(firestore, COLLECTIONS.SETTINGS, 'cv');
             await deleteDoc(docRef);
 
@@ -444,4 +440,3 @@ export const cvService = {
         }
     }
 };
-
