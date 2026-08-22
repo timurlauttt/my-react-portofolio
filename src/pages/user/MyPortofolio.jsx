@@ -31,7 +31,7 @@ function MyPortfolio() {
     if (loading) {
         return (
             <section id="portfolio" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-[#0a0a0a]">
-                <h1 className="font-bold mt-4 mb-4 text-center text-xl md:text-2xl dark:text-white">{t('portfolioTitle')}</h1>
+                <h2 className="font-bold mt-4 mb-4 text-center text-xl md:text-2xl dark:text-white">{t('portfolioTitle')}</h2>
                 <div className="flex justify-center items-center py-16">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#74247A]"></div>
                     <span className="ml-3 text-gray-600 dark:text-gray-400">{t('loading')}</span>
@@ -43,7 +43,7 @@ function MyPortfolio() {
     return (
         <>
             <section id="portfolio" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-[#0a0a0a]">
-                <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl dark:text-white">{t('portfolioTitle')}</h1>
+                <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl dark:text-white">{t('portfolioTitle')}</h2>
                 <p className="text-xs md:text-lg text-gray-600 dark:text-gray-400 mb-8">{t('portfolioSubtitle')}</p>
 
                 {portfolioData.length === 0 && !loading ? (

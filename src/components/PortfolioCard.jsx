@@ -46,7 +46,7 @@ const PortfolioCard = ({ image, title, description, longDescription = '', link, 
                     <LazyImage src={image} alt={title} className="w-full h-48 sm:h-full object-cover" placeholderHeight="h-48" width={800} height={450} />
                 </div>
                 <div className="p-4 flex flex-col flex-1">
-                    <h5 className="text-base sm:text-lg font-bold mb-2 text-black dark:text-white">{title}</h5>
+                    <h3 className="text-base sm:text-lg font-bold mb-2 text-black dark:text-white">{title}</h3>
                     <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 mt-1 sm:mt-2 text-justify line-clamp-3">{description}</p>
                     <div className="mt-3 flex justify-end">
                         <button type="button" onClick={(e) => { e.stopPropagation(); setIsModalOpen(true); }}

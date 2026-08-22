@@ -104,7 +104,7 @@ const SkillsSection = () => {
         return (
             <section className="pt-20 pb-8 px-4 md:px-40 bg-white dark:bg-[#0a0a0a]" id="skills">
                 <div>
-                    <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl dark:text-white">{t('skillsTitle')}</h1>
+                    <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl dark:text-white">{t('skillsTitle')}</h2>
                     <p className="text-gray-600 dark:text-gray-400 text-left text-sm sm:text-base">{t('skillsSubtitle')}</p>
                     <div className="flex justify-center items-center py-16">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#74247A]"></div>
@@ -117,7 +117,7 @@ const SkillsSection = () => {
     return (
         <section className="pt-20 pb-8 px-4 md:px-40 bg-white dark:bg-[#0a0a0a]" id="skills">
             <div>
-                <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl dark:text-white">{t('skillsTitle')}</h1>
+                <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl dark:text-white">{t('skillsTitle')}</h2>
                 <p className="text-gray-600 dark:text-gray-400 text-left text-sm md:text-lg">{t('skillsSubtitle')}</p>
 
                 {sortedSkills.length === 0 ? (

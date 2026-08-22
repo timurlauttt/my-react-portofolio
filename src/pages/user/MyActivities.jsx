@@ -117,7 +117,7 @@ const MyActivities = () => {
     return (
         <section id="activities" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-[#0a0a0a]">
             <div className=" px-3 sm:px-4 text-center">
-                <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl dark:text-white">{t('activitiesTitle')}</h1>
+                <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl dark:text-white">{t('activitiesTitle')}</h2>
                 <p className="text-sm md:text-lg text-gray-600 dark:text-gray-400 mb-8 text-left">{t('activitiesSubtitle')}</p>
 
                 {loading && <p className="text-center">Loading...</p>}

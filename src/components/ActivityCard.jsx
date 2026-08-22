@@ -47,12 +47,14 @@ const ActivityCard = ({ title, description, link, isExternal = true, delay = 0, 
                 style={{ backgroundColor: headerColor }}
             >
                 {link ? (
-                    <a href={link} target={isExternal ? '_blank' : '_self'} rel={isExternal ? 'noopener noreferrer' : ''}
-                        className={`font-bold text-center leading-[1.15] sm:leading-tight text-white no-underline px-0.5 line-clamp-3 sm:line-clamp-none ${title.length > 22 ? 'text-[8.5px] sm:text-[10.5px] md:text-xs' : 'text-[9.5px] sm:text-xs md:text-xs'}`} onClick={(e) => e.stopPropagation()}>
-                        {title}
-                    </a>
+                    <h3 className={`font-bold text-center leading-[1.15] sm:leading-tight text-white px-0.5 line-clamp-3 sm:line-clamp-none ${title.length > 22 ? 'text-[8.5px] sm:text-[10.5px] md:text-xs' : 'text-[9.5px] sm:text-xs md:text-xs'}`}>
+                        <a href={link} target={isExternal ? '_blank' : '_self'} rel={isExternal ? 'noopener noreferrer' : ''}
+                            className="text-white no-underline hover:underline" onClick={(e) => e.stopPropagation()}>
+                            {title}
+                        </a>
+                    </h3>
                 ) : (
-                    <h5 className={`font-bold text-center leading-[1.15] sm:leading-tight text-white px-0.5 line-clamp-3 sm:line-clamp-none ${title.length > 22 ? 'text-[8.5px] sm:text-[10.5px] md:text-xs' : 'text-[9.5px] sm:text-xs md:text-xs'}`}>{title}</h5>
+                    <h3 className={`font-bold text-center leading-[1.15] sm:leading-tight text-white px-0.5 line-clamp-3 sm:line-clamp-none ${title.length > 22 ? 'text-[8.5px] sm:text-[10.5px] md:text-xs' : 'text-[9.5px] sm:text-xs md:text-xs'}`}>{title}</h3>
                 )}
                 {link && (
                     <div className="absolute top-1 right-1 opacity-50 group-hover:opacity-100 transition-opacity">

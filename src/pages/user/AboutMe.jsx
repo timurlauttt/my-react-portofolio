@@ -63,7 +63,7 @@ function AboutMe() {
         return (
             <section id="about" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-[#0a0a0a] text-black dark:text-white">
                 <div>
-                    <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl dark:text-white">{t('aboutTitle')}</h1>
+                    <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl dark:text-white">{t('aboutTitle')}</h2>
                     <div className="flex justify-center items-center py-12">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-black dark:border-white"></div>
                         <span className="ml-3 text-gray-600 dark:text-gray-400">{t('loading')}</span>
@@ -76,11 +76,11 @@ function AboutMe() {
     return (
         <section id="about" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-[#0a0a0a] text-black dark:text-white">
             <div>
-                <h1 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl text-black dark:text-white">{t('aboutTitle')}</h1>
+                <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl text-black dark:text-white">{t('aboutTitle')}</h2>
 
                 <div className="bg-white dark:bg-[#1a1a1a] rounded-lg p-6 md:p-8 shadow-[10px_8px_0_#0f172a] border-2 border-black dark:border-neutral-700">
                     <div>
-                        <h2 className="text-sm font-bold mb-3 text-black dark:text-white">{getBgTitle()}</h2>
+                        <h3 className="text-sm font-bold mb-3 text-black dark:text-white">{getBgTitle()}</h3>
                         <p className="text-gray-700 dark:text-gray-300 mb-4 text-justify">{getBgDesc()}</p>
                         
                         <h3 className="text-sm font-bold mb-2 text-black dark:text-white">{getSkillsTitle()}</h3>

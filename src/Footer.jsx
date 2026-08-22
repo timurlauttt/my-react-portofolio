@@ -13,14 +13,14 @@ function Footer() {
                     <div className="block sm:hidden space-y-6">
                         {/* Mobile: Name Section */}
                         <div className="text-left">
-                            <h1 className="text-xl font-bold leading-tight">
+                            <p className="text-xl font-bold leading-tight">
                                 Urip Yoga Pangestu
-                            </h1>
+                            </p>
                         </div>
 
                         {/* Mobile: Contact Info */}
                         <div>
-                            <h2 className="text-lg font-semibold mb-3 text-left">{t('contact')}</h2>
+                            <h3 className="text-lg font-semibold mb-3 text-left">{t('contact')}</h3>
                             <div className="space-y-3">
                                 <div>
                                     <a href="mailto:2211103102@ittelkom-pwt.ac.id"
@@ -48,7 +48,7 @@ function Footer() {
 
                         {/* Mobile: Navigation */}
                         <div>
-                            <h2 className="text-lg font-semibold mb-3 text-left">{t('navigation')}</h2>
+                            <h3 className="text-lg font-semibold mb-3 text-left">{t('navigation')}</h3>
                             <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
                                 <a href="#home" className="hover:text-[#38BDF8] transition-colors">{t('home')}</a>
                                 <a href="#portfolio" className="hover:text-[#38BDF8] transition-colors">{t('portfolio')}</a>
@@ -61,7 +61,7 @@ function Footer() {
 
                         {/* Mobile: Social Media */}
                         <div>
-                            <h2 className="text-lg font-semibold mb-3 text-left">{t('social')}</h2>
+                            <h3 className="text-lg font-semibold mb-3 text-left">{t('social')}</h3>
                             <div className="flex gap-6 text-sm">
                                 <div className="flex items-center gap-2">
                                     <a href="https://www.instagram.com/__timurlaut?igsh=MTE5ejg1bG81YmVwcQ==" target="_blank" rel="noopener noreferrer" className="hover:text-[#38BDF8] transition-colors">
@@ -69,7 +69,7 @@ function Footer() {
                                         <span>__timurlaut</span>
                                     </a>
                                 </div>
-                                <div className="flex items-center gap-2">
+                                <div>
                                     <a href="https://www.facebook.com/share/1R9hRtCYSd/" target="_blank" rel="noopener noreferrer" className="hover:text-[#38BDF8] transition-colors">
                                         <FaFacebook className="text-lg" />
                                         <span>Urip Yoga</span>
@@ -86,7 +86,7 @@ function Footer() {
 
                         {/* Mobile: Collaboration */}
                         <div className="text-left">
-                            <h2 className="text-lg font-semibold mb-2">{t('collaborate')}</h2>
+                            <h3 className="text-lg font-semibold mb-2">{t('collaborate')}</h3>
                             <p className="text-sm opacity-90">{t('collaborateDesc')}</p>
                         </div>
                     </div>
@@ -95,14 +95,14 @@ function Footer() {
                     <div className="hidden sm:grid grid-cols-1 md:grid-cols-5 gap-6 text-center md:text-left">
                         {/* Column 1: Name */}
                         <div>
-                            <h1 className="text-2xl font-bold leading-tight">
+                            <p className="text-2xl font-bold leading-tight">
                                 Urip <br /> Yoga <br /> Pangestu
-                            </h1>
+                            </p>
                         </div>
 
                         {/* Column 2: Navigation Links */}
                         <div>
-                            <h2 className="text-lg font-semibold mb-3">{t('navigationLinks')}</h2>
+                            <h3 className="text-lg font-semibold mb-3">{t('navigationLinks')}</h3>
                             <ul className="space-y-2">
                                 <li><a href="#home" className="hover:text-[#38BDF8] transition-colors">{t('home')}</a></li>
                                 <li><a href="#portfolio" className="hover:text-[#38BDF8] transition-colors">{t('portfolio')}</a></li>
@@ -115,7 +115,7 @@ function Footer() {
 
                         {/* Column 3: Social Media */}
                         <div>
-                            <h2 className="text-lg font-semibold mb-3">{t('social')}</h2>
+                            <h3 className="text-lg font-semibold mb-3">{t('social')}</h3>
                             <ul className="space-y-2">
                                 <li className="flex items-center gap-2">
                                     <a href="https://www.instagram.com/__timurlaut?igsh=MTE5ejg1bG81YmVwcQ==" target="_blank" rel="noopener noreferrer" className="hover:text-[#38BDF8] transition-colors">
@@ -137,7 +137,7 @@ function Footer() {
 
                         {/* Column 4: Contact */}
                         <div>
-                            <h2 className="text-lg font-semibold mb-3">{t('contact')}</h2>
+                            <h3 className="text-lg font-semibold mb-3">{t('contact')}</h3>
                             <ul className="space-y-2">
                                 <li className="flex items-center gap-2">
                                     <a href="mailto:2211103102@ittelkom-pwt.ac.id"
@@ -162,7 +162,7 @@ function Footer() {
 
                         {/* Column 5: Collaboration */}
                         <div>
-                            <h2 className="text-lg font-semibold mb-3">{t('collaborate')}</h2>
+                            <h3 className="text-lg font-semibold mb-3">{t('collaborate')}</h3>
                             <p className="text-sm">{t('collaborateDesc')}</p>
                         </div>
                     </div>
