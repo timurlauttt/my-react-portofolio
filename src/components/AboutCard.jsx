@@ -8,11 +8,13 @@ const AboutCard = ({ image, title, description, imageAlt, index = 0 }) => {
         imgSrc = defaultImages[index] || 'me.jpg';
     }
     return (
-        <div className="p-5 bg-gray-100 border-4 border-black shadow-[8px_8px_0_#000] hover:scale-105 hover:transition-all hover:border-yellow-500 hover:shadow-[8px_8px_0_#74247A] cursor-pointer">
+        <div className="p-5 bg-gray-100 border-4 border-black shadow-[8px_8px_0_#0f172a] hover:scale-105 hover:transition-all hover:border-[#0EA5E9] hover:shadow-[8px_8px_0_#0f172a] cursor-pointer">
             <img
                 src={imgSrc}
-                className="w-3/5 h-auto mx-auto shadow-[4px_4px_0_#000] hover:scale-105 hover:transition-all hover:border-yellow-700 hover:shadow-[8px_8px_0_#74247A] cursor-pointer"
+                className="w-3/5 h-auto mx-auto shadow-[4px_4px_0_#0f172a] hover:scale-105 hover:transition-all hover:border-[#0EA5E9] hover:shadow-[8px_8px_0_#0f172a] cursor-pointer"
                 alt={imageAlt}
+                loading="lazy"
+                decoding="async"
                 onError={e => { e.target.src = defaultImages[index] || 'me.jpg'; }}
             />
             <div className="mt-4">
@@ -26,4 +28,4 @@ const AboutCard = ({ image, title, description, imageAlt, index = 0 }) => {
     );
 };
 
-export default AboutCard;
+export default React.memo(AboutCard);

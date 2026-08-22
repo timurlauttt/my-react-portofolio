@@ -48,7 +48,10 @@ export const useIntersectionObserver = (options = {}) => {
         if (!elementRef) return;
 
         const observer = new IntersectionObserver(([entry]) => {
-            setIsVisible(entry.isIntersecting);
+            if (entry.isIntersecting) {
+                setIsVisible(true);
+                observer.unobserve(elementRef);
+            }
         }, {
             threshold: 0.1,
             ...options
@@ -59,7 +62,7 @@ export const useIntersectionObserver = (options = {}) => {
         return () => {
             observer.disconnect();
         };
-    }, [elementRef, options]);
+    }, [elementRef]);
 
     return [setElementRef, isVisible];
 };

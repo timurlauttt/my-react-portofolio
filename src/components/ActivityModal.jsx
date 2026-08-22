@@ -55,7 +55,7 @@ const ActivityModal = ({ isOpen, onClose, activity }) => {
                             {activity.status && (
                                 <div className={`px-3 py-1 rounded-full text-xs font-semibold ${
                                     activity.status === 'completed' ? 'bg-green-100 text-green-800' :
-                                    activity.status === 'ongoing' ? 'bg-yellow-100 text-yellow-800' :
+                                    activity.status === 'ongoing' ? 'bg-[#E0F2FE] text-[#0EA5E9]' :
                                     'bg-gray-100 text-gray-800'
                                 }`}>
                                     {activity.status === 'completed' ? 'Selesai' :

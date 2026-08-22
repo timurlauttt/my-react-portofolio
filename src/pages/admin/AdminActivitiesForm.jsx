@@ -12,11 +12,14 @@ const AdminActivitiesForm = () => {
 
     const [formData, setFormData] = useState({
         title: '',
+        title_id: '',
         description: '',
+        description_id: '',
         fullDescription: '',
+        fullDescription_id: '',
         date: '',
         location: '',
-    category: 'Activity',
+        category: 'Activity',
         status: 'completed',
         bgColor: 'bg-blue-500',
         link: '',
@@ -317,7 +320,7 @@ const AdminActivitiesForm = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">
-                                Title *
+                                Title (English) *
                             </label>
                             <input
                                 type="text"
@@ -326,7 +329,21 @@ const AdminActivitiesForm = () => {
                                 onChange={handleInputChange}
                                 required
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Activity title"
+                                placeholder="Activity title in English"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Title (Bahasa Indonesia)
+                            </label>
+                            <input
+                                type="text"
+                                name="title_id"
+                                value={formData.title_id || ''}
+                                onChange={handleInputChange}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Judul aktivitas dalam Bahasa Indonesia (opsional)"
                             />
                         </div>
 
@@ -411,33 +428,63 @@ const AdminActivitiesForm = () => {
                     </div>
 
                     {/* Descriptions */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Short Description (for card) *
-                        </label>
-                        <textarea
-                            name="description"
-                            value={formData.description}
-                            onChange={handleInputChange}
-                            required
-                            rows={2}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="Brief description shown on activity card"
-                        />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Short Description (English) *
+                            </label>
+                            <textarea
+                                name="description"
+                                value={formData.description}
+                                onChange={handleInputChange}
+                                required
+                                rows={2}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Brief description shown on activity card in English"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Short Description (Bahasa Indonesia)
+                            </label>
+                            <textarea
+                                name="description_id"
+                                value={formData.description_id || ''}
+                                onChange={handleInputChange}
+                                rows={2}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Deskripsi singkat dalam Bahasa Indonesia"
+                            />
+                        </div>
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Full Description (for modal)
-                        </label>
-                        <textarea
-                            name="fullDescription"
-                            value={formData.fullDescription}
-                            onChange={handleInputChange}
-                            rows={4}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="Detailed description shown in modal popup"
-                        />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Full Description (English)
+                            </label>
+                            <textarea
+                                name="fullDescription"
+                                value={formData.fullDescription}
+                                onChange={handleInputChange}
+                                rows={4}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Detailed description shown in modal popup in English"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Full Description (Bahasa Indonesia)
+                            </label>
+                            <textarea
+                                name="fullDescription_id"
+                                value={formData.fullDescription_id || ''}
+                                onChange={handleInputChange}
+                                rows={4}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Deskripsi lengkap modal dalam Bahasa Indonesia"
+                            />
+                        </div>
                     </div>
 
                     {/* Skills */}

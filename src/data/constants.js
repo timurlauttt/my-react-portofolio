@@ -56,7 +56,7 @@ export const activitiesData = [
         id: 1,
         title: "HMSI Member",
         description: "I am a member of the Himpunan Mahasiswa Sistem Informasi ITTP at Entrepreneur Division for the 2023/2024 period.",
-        bgColor: "bg-yellow-400",
+        bgColor: "bg-[#0EA5E9]",
         link: "https://www.instagram.com/p/Cys8fJrPp11/?igsh=d2Q3Nmx2ZTlmY3Jz", // Ganti dengan link Instagram post HMSI
         isExternal: true
     },
@@ -209,7 +209,7 @@ export const skillsData = [
     {
         name: "Django",
         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
-        color: "#facc15" // bg-yellow-400 equivalent
+        color: "#facc15" // bg-[#0EA5E9] equivalent
     },
     {
         name: "React",
@@ -264,24 +264,55 @@ export const contactData = [
         type: "linkedin",
         href: "https://www.linkedin.com/in/urip-yoga-pangestu-65a541231/",
         bgColor: "bg-[#69D3FA]",
-        order: "order-1",
+        order: 1,
         label: "LinkedIn"
     },
-
+    {
+        id: 2,
+        type: "github",
+        href: "https://github.com/timurlauttt",
+        bgColor: "bg-[#FF6B6B]",
+        order: 2,
+        label: "GitHub"
+    },
     {
         id: 3,
         type: "email",
         href: "mailto:2211103102@ittelkom-pwt.ac.id",
-        bgColor: "bg-[#FFC700]",
-        order: "order-4",
+        bgColor: "bg-[#0EA5E9]",
+        order: 3,
         label: "Email"
     },
     {
         id: 4,
-        type: "github",
-        href: "https://github.com/timurlauttt",
-        bgColor: "bg-[#FF6B6B]",
-        order: "order-3",
-        label: "GitHub"
+        type: "whatsapp",
+        href: "https://wa.me/6285861466287",
+        bgColor: "bg-[#25D366]",
+        order: 4,
+        label: "WhatsApp"
+    },
+    {
+        id: 5,
+        type: "instagram",
+        href: "https://www.instagram.com/__timurlaut?igsh=MTE5ejg1bG81YmVwcQ==",
+        bgColor: "bg-[#E1306C]",
+        order: 5,
+        label: "Instagram"
+    },
+    {
+        id: 6,
+        type: "tiktok",
+        href: "https://www.tiktok.com/@pangestuurip?_t=ZS-8ykixitNw0r&_r=1",
+        bgColor: "bg-[#010101]",
+        order: 6,
+        label: "TikTok"
+    },
+    {
+        id: 7,
+        type: "facebook",
+        href: "https://www.facebook.com/share/1R9hRtCYSd/",
+        bgColor: "bg-[#1877F2]",
+        order: 7,
+        label: "Facebook"
     }
 ];

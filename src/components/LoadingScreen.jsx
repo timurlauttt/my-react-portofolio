@@ -28,7 +28,7 @@ const LoadingScreen = () => {
                 <div className="w-full max-w-xs mx-auto mb-4">
                     <div className="relative w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                         <div 
-                            className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#74247A] to-[#FFC700] rounded-full transition-all duration-300"
+                            className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#74247A] to-[#0EA5E9] rounded-full transition-all duration-300"
                             style={{ width: `${progress}%` }}
                         ></div>
                     </div>

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-// Lazy-load Firebase helpers to avoid bundling the whole SDK in the main chunk
+import { useLanguage } from "../contexts/LanguageContext";
 
 const VisitorCounter = ({ className }) => {
+    const { t } = useLanguage();
     const [count, setCount] = useState(null);
 
     useEffect(() => {
@@ -26,12 +27,10 @@ const VisitorCounter = ({ className }) => {
                 }
             } catch (error) {
                 console.error('Error reading visitor count:', error);
-                if (mounted) setCount('tidak tersedia');
+                if (mounted) setCount('error');
             }
         };
 
-        // Not part of the visible UI's critical content, so push the
-        // Realtime Database SDK fetch off the initial render's critical path.
         const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 200));
         const cancelIdle = window.cancelIdleCallback || clearTimeout;
         const idleId = idle(run);
@@ -39,9 +38,11 @@ const VisitorCounter = ({ className }) => {
         return () => { mounted = false; cancelIdle(idleId); };
     }, []);
 
+    const countDisplay = count === 'error' ? t('unavailable') : (count !== null ? count : t('loading'));
+
     return (
         <p className={className}>
-            Total Kunjungan : {count !== null ? count : "memuat..."}
+            {t('totalVisits')} : {countDisplay}
         </p>
     );
 };

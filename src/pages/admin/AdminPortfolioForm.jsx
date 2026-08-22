@@ -11,8 +11,11 @@ const AdminPortfolioForm = () => {
     const [formData, setFormData] = useState({
         portfolioId: '',
         title: '',
+        title_id: '',
         description: '',
+        description_id: '',
         longDescription: '',
+        longDescription_id: '',
         image: '',
         imagePath: '',
         imageUrl: '',
@@ -40,8 +43,11 @@ const AdminPortfolioForm = () => {
                 setFormData({
                     portfolioId: data.portfolioId || '',
                     title: data.title || '',
+                    title_id: data.title_id || '',
                     description: data.description || '',
+                    description_id: data.description_id || '',
                     longDescription: data.longDescription || data.long_description || '',
+                    longDescription_id: data.longDescription_id || '',
                     image: data.image || '',
                     imagePath: data.imagePath || '',
                     imageUrl: data.imageUrl || '',
@@ -105,16 +111,19 @@ const AdminPortfolioForm = () => {
             const submitData = {
                 portfolioId: formData.portfolioId,
                 title: formData.title,
+                title_id: formData.title_id || formData.title,
                 description: formData.description,
+                description_id: formData.description_id || formData.description,
                 longDescription: formData.longDescription,
+                longDescription_id: formData.longDescription_id || formData.longDescription,
                 image: formData.image,
                 imagePath: formData.imagePath,
                 imageUrl: formData.imageUrl,
                 link: formData.link,
-                    isExternal: formData.isExternal,
-                    tech: formData.tech ? formData.tech.split(',').map(s => s.trim()).filter(Boolean) : [],
-                    startDate: formData.startDate || null,
-                    endDate: formData.endDate || null
+                isExternal: formData.isExternal,
+                tech: formData.tech ? formData.tech.split(',').map(s => s.trim()).filter(Boolean) : [],
+                startDate: formData.startDate || null,
+                endDate: formData.endDate || null
             };
             
             if (isEditMode) {
@@ -175,50 +184,96 @@ const AdminPortfolioForm = () => {
                         </p>
                     </div>
 
-                    <div>
-                        <label htmlFor="title" className="block text-sm font-medium text-gray-700">
-                            Project Title *
-                        </label>
-                        <input
-                            type="text"
-                            id="title"
-                            name="title"
-                            value={formData.title}
-                            onChange={handleInputChange}
-                            required
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-3 py-2 border"
-                            placeholder="e.g., E-Learning Platform"
-                        />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                                Project Title (English) *
+                            </label>
+                            <input
+                                type="text"
+                                id="title"
+                                name="title"
+                                value={formData.title}
+                                onChange={handleInputChange}
+                                required
+                                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-3 py-2 border"
+                                placeholder="e.g., E-Learning Platform"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="title_id" className="block text-sm font-medium text-gray-700">
+                                Project Title (Bahasa Indonesia)
+                            </label>
+                            <input
+                                type="text"
+                                id="title_id"
+                                name="title_id"
+                                value={formData.title_id}
+                                onChange={handleInputChange}
+                                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-3 py-2 border"
+                                placeholder="opsional (jika berbeda)"
+                            />
+                        </div>
                     </div>
 
                     <div>
                         <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-                            Project Description *
+                            Project Description (English) *
                         </label>
                         <textarea
                             id="description"
                             name="description"
-                            rows={4}
+                            rows={3}
                             value={formData.description}
                             onChange={handleInputChange}
                             required
                             className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-3 py-2 border"
-                            placeholder="Describe your project..."
+                            placeholder="Describe your project in English..."
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="description_id" className="block text-sm font-medium text-gray-700">
+                            Project Description (Bahasa Indonesia)
+                        </label>
+                        <textarea
+                            id="description_id"
+                            name="description_id"
+                            rows={3}
+                            value={formData.description_id}
+                            onChange={handleInputChange}
+                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-3 py-2 border"
+                            placeholder="Deskripsikan proyek Anda dalam Bahasa Indonesia..."
                         />
                     </div>
 
                     <div>
                         <label htmlFor="longDescription" className="block text-sm font-medium text-gray-700">
-                            Long Description (optional)
+                            Long Description (English - optional)
                         </label>
                         <textarea
                             id="longDescription"
                             name="longDescription"
-                            rows={6}
+                            rows={4}
                             value={formData.longDescription}
                             onChange={handleInputChange}
                             className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-3 py-2 border"
-                            placeholder="More detailed explanation, can be longer. Markdown supported if markdown renderer is installed."
+                            placeholder="Detailed explanation in English..."
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="longDescription_id" className="block text-sm font-medium text-gray-700">
+                            Long Description (Bahasa Indonesia - opsional)
+                        </label>
+                        <textarea
+                            id="longDescription_id"
+                            name="longDescription_id"
+                            rows={4}
+                            value={formData.longDescription_id}
+                            onChange={handleInputChange}
+                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-3 py-2 border"
+                            placeholder="Penjelasan detail dalam Bahasa Indonesia..."
                         />
                     </div>
 

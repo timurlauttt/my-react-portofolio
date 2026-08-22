@@ -1,2 +1,8 @@
+# Robots.txt for Urip Yoga Pangestu Portfolio
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /login
+
+# Sitemap location
+Sitemap: https://portofolio.pangestudev.web.id/sitemap.xml

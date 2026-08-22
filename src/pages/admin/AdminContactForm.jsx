@@ -123,6 +123,7 @@ const AdminContactForm = () => {
                         <option value="email">Email</option>
                         <option value="github">GitHub</option>
                         <option value="instagram">Instagram</option>
+                        <option value="tiktok">TikTok</option>
                         <option value="twitter">Twitter</option>
                         <option value="facebook">Facebook</option>
                         <option value="website">Website</option>
@@ -179,7 +180,7 @@ const AdminContactForm = () => {
                         <option value="">Select a color</option>
                         <option value="bg-[#69D3FA]">LinkedIn Blue</option>
                         <option value="bg-[#5CF1A4]">WhatsApp Green</option>
-                        <option value="bg-[#FFC700]">Email Yellow</option>
+                        <option value="bg-[#0EA5E9]">Email Yellow</option>
                         <option value="bg-[#FF6B6B]">GitHub Red</option>
                         <option value="bg-[#E4405F]">Instagram Pink</option>
                         <option value="bg-[#1DA1F2]">Twitter Blue</option>

@@ -17,15 +17,7 @@ import toast from 'react-hot-toast';
 
 const AdminLayout = ({ children }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    
-    // Handle cases where auth context might not be available
-    let auth;
-    try {
-        auth = useAuth();
-    } catch (error) {
-        console.warn('Auth context not available, using fallback');
-        auth = { logout: null };
-    }
+    const auth = useAuth();
     
     const navigate = useNavigate();
     const location = useLocation();
