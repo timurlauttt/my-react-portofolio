@@ -21,7 +21,7 @@ function Hero() {
                             </p>
                         </div>
                         <div className="flex-shrink-0 flex justify-center">
-                            <img src="/hero-fix.webp" alt="Urip Yoga Pangestu" className="w-56 h-56 sm:w-64 sm:h-64 md:w-96 md:h-96 object-cover rounded shadow-[6px_6px_0_#0f172a]" width="384" height="384" loading="eager" decoding="async" />
+                            <img src="/hero-fix.webp" alt="Urip Yoga Pangestu" className="w-56 h-56 sm:w-64 sm:h-64 md:w-96 md:h-96 object-cover rounded shadow-[6px_6px_0_#0f172a]" width="384" height="384" loading="eager" fetchPriority="high" decoding="async" />
                         </div>
                     </div>
                     {/* View Portfolio Button */}

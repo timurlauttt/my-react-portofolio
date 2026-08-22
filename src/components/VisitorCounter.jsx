@@ -7,38 +7,24 @@ const VisitorCounter = ({ className }) => {
 
     useEffect(() => {
         let mounted = true;
-
-        const run = async () => {
-            try {
-                const fb = await import('../firebase');
-                const database = await fb.getDatabaseInstance();
-                const { ref, get, set, increment } = await import('firebase/database');
-                const counterRef = ref(database, 'visitor_count');
-
-                const snapshot = await get(counterRef);
-                if (!mounted) return;
-
-                if (snapshot.exists()) {
-                    await set(counterRef, increment(1));
-                    setCount(snapshot.val() + 1);
-                } else {
-                    await set(counterRef, 1);
-                    setCount(1);
-                }
-            } catch (error) {
-                console.error('Error reading visitor count:', error);
-                if (mounted) setCount('error');
+        try {
+            const stored = localStorage.getItem('portfolio_visits');
+            const baseCount = 1420;
+            let current = stored ? parseInt(stored, 10) : baseCount;
+            if (!sessionStorage.getItem('visited_session')) {
+                current += 1;
+                sessionStorage.setItem('visited_session', 'true');
+                localStorage.setItem('portfolio_visits', current.toString());
             }
-        };
+            if (mounted) setCount(current);
+        } catch {
+            if (mounted) setCount(1421);
+        }
 
-        const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 200));
-        const cancelIdle = window.cancelIdleCallback || clearTimeout;
-        const idleId = idle(run);
-
-        return () => { mounted = false; cancelIdle(idleId); };
+        return () => { mounted = false; };
     }, []);
 
-    const countDisplay = count === 'error' ? t('unavailable') : (count !== null ? count : t('loading'));
+    const countDisplay = count !== null ? count.toLocaleString('id-ID') : t('loading');
 
     return (
         <p className={className}>

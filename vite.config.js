@@ -19,7 +19,6 @@ export default defineConfig({
             if (id.includes('firebase/firestore')) return 'firebase-firestore';
             if (id.includes('firebase/storage')) return 'firebase-storage';
             if (id.includes('firebase/analytics')) return 'firebase-analytics';
-            if (id.includes('firebase/database')) return 'firebase-database';
             if (id.includes('firebase')) return 'firebase-vendor';
             if (id.includes('react-router')) return 'react-router';
             if (id.includes('react')) return 'react-vendor';

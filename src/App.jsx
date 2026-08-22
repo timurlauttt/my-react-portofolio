@@ -35,12 +35,14 @@ const HomePage = ({ scrollTo }) => {
     <div className="relative">
       <Navbar />
       <ScrollProgress />
-      <Hero />
-      <MyPortofolio />
-      <SkillsSection />
-      <MyActivities />
-      <Contact />
-      <AboutMe />
+      <main id="main-content">
+        <Hero />
+        <MyPortofolio />
+        <SkillsSection />
+        <MyActivities />
+        <Contact />
+        <AboutMe />
+      </main>
       <Footer />
       <FloatingActionButton />
     </div>

@@ -43,14 +43,6 @@ export async function getAuthInstance() {
     return auth;
 }
 
-export async function getDatabaseInstance() {
-    if (cache.database) return cache.database;
-    const app = await initApp();
-    const { getDatabase } = await import('firebase/database');
-    const database = getDatabase(app);
-    cache.database = database;
-    return database;
-}
 
 export async function getFirestoreInstance() {
     if (cache.firestore) return cache.firestore;
