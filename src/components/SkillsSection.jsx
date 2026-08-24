@@ -26,9 +26,26 @@ const FALLBACK_ICONS = Object.freeze({
     'Bootstrap': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg'
 });
 
+const SKILL_DETAILS = Object.freeze({
+    'Laravel': { category: 'Backend Framework', proficiency: 'skillLevelProficient' },
+    'Django': { category: 'Backend Framework', proficiency: 'skillLevelProficient' },
+    'React': { category: 'Frontend Library', proficiency: 'skillLevelProficient' },
+    'JavaScript': { category: 'Core Language', proficiency: 'skillLevelProficient' },
+    'PHP': { category: 'Core Language', proficiency: 'skillLevelProficient' },
+    'Tailwind CSS': { category: 'CSS Framework', proficiency: 'skillLevelProficient' },
+    'HTML5': { category: 'Markup Language', proficiency: 'skillLevelProficient' },
+    'CSS3': { category: 'Stylesheet Language', proficiency: 'skillLevelProficient' },
+    'MySQL': { category: 'Relational Database', proficiency: 'skillLevelProficient' },
+    'Git': { category: 'Version Control', proficiency: 'skillLevelProficient' },
+    'Python': { category: 'Core Language', proficiency: 'skillLevelIntermediate' },
+    'Bootstrap': { category: 'CSS Framework', proficiency: 'skillLevelIntermediate' }
+});
+
 const SkillIcon = React.memo(({ skill, delay = 0, index = 0 }) => {
+    const { t } = useLanguage();
     const [isVisible, setIsVisible] = useState(false);
     const [imageError, setImageError] = useState(false);
+    const [showTooltip, setShowTooltip] = useState(false);
     const ref = useRef();
 
     useEffect(() => {
@@ -54,16 +71,18 @@ const SkillIcon = React.memo(({ skill, delay = 0, index = 0 }) => {
     }, [delay]);
 
     const getFallbackIcon = (skillName) => FALLBACK_ICONS[skillName] || `https://via.placeholder.com/48/374151/FFFFFF?text=${skillName.charAt(0)}`;
-
     const headerColor = SKY_SHADES[index % SKY_SHADES.length];
+    const detail = SKILL_DETAILS[skill.name] || { category: 'Tech Skill', proficiency: 'skillLevelIntermediate' };
 
     return (
         <div
             ref={ref}
-            className={`w-full aspect-square border-2 border-black dark:border-neutral-700 shadow-[4px_4px_0_#0f172a] duration-500 transform ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'} group overflow-hidden bg-white dark:bg-[#1a1a1a] rounded`}
+            onMouseEnter={() => setShowTooltip(true)}
+            onMouseLeave={() => setShowTooltip(false)}
+            className={`relative w-full aspect-square border-2 border-black dark:border-neutral-700 shadow-[4px_4px_0_#0f172a] duration-500 transform nb-card-hover ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'} group bg-white dark:bg-[#1a1a1a] rounded cursor-pointer`}
         >
             <div
-                className="h-12 sm:h-16 md:h-20 w-full flex-shrink-0 flex items-center justify-center"
+                className="h-12 sm:h-16 md:h-20 w-full flex-shrink-0 flex items-center justify-center relative"
                 style={{ backgroundColor: headerColor }}
             >
                 <img
@@ -80,6 +99,14 @@ const SkillIcon = React.memo(({ skill, delay = 0, index = 0 }) => {
                     {skill.name}
                 </span>
             </div>
+
+            {/* Interactive Neo-Brutalism Tooltip on Hover */}
+            {showTooltip && (
+                <div className="absolute -top-14 left-1/2 -translate-x-1/2 z-30 pointer-events-none whitespace-nowrap bg-black text-white text-[10px] sm:text-xs font-mono font-medium px-2.5 py-1.5 rounded border border-white/20 shadow-[3px_3px_0_#0EA5E9] animate-fadeIn">
+                    <span className="font-bold text-[#38BDF8]">{skill.name}</span>
+                    <span className="text-gray-300"> • {detail.category}</span>
+                </div>
+            )}
         </div>
     );
 });

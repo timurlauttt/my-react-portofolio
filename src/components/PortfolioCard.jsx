@@ -36,7 +36,7 @@ const PortfolioCard = ({ image, title, description, longDescription = '', link, 
         <>
             <div
                 ref={ref}
-                className={`bg-white dark:bg-[#1a1a1a] border-2 sm:border-3 border-black dark:border-neutral-700 shadow-[6px_6px_0_#0f172a] dark:shadow-[6px_6px_0_#0f172a] cursor-pointer flex flex-col sm:flex-row transform duration-500 rounded ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+                className={`bg-white dark:bg-[#1a1a1a] border-2 sm:border-3 border-black dark:border-neutral-700 shadow-[6px_6px_0_#0f172a] dark:shadow-[6px_6px_0_#0f172a] cursor-pointer flex flex-col sm:flex-row transform duration-500 rounded nb-card-hover ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                 onClick={() => setIsModalOpen(true)}
                 onKeyDown={(e) => { if (e.key === 'Enter') setIsModalOpen(true); }}
                 tabIndex={0}

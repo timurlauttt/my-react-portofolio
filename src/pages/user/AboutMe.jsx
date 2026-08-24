@@ -74,7 +74,7 @@ function AboutMe() {
     }
 
     return (
-        <section id="about" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-[#0a0a0a] text-black dark:text-white">
+        <section id="about" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-[#0a0a0a] text-black dark:text-white bg-dot-pattern">
             <div>
                 <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl text-black dark:text-white">{t('aboutTitle')}</h2>
 

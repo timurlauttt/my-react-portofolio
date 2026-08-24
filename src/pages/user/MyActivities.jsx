@@ -10,9 +10,10 @@ const MyActivities = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // State modal
+    // State modal & filter
     const [selectedActivity, setSelectedActivity] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [activeFilter, setActiveFilter] = useState('all');
 
     useEffect(() => {
         const loadActivitiesData = async () => {
@@ -28,6 +29,40 @@ const MyActivities = () => {
         };
         loadActivitiesData();
     }, []);
+
+    const filterCategories = [
+        { key: 'all', label: t('filterActAll') },
+        { key: 'org', label: t('filterActOrganization') },
+        { key: 'cert', label: t('filterActCertification') },
+        { key: 'edu', label: t('filterActEducation') },
+    ];
+
+    const matchesFilter = (activity, filterKey) => {
+        if (filterKey === 'all') return true;
+        const cat = (activity.category || '').toLowerCase();
+        const title = (activity.title || '').toLowerCase();
+
+        if (filterKey === 'cert') {
+            return cat.includes('cert') || cat.includes('sertifikat') || title.includes('certificate') || title.includes('sertifikat') || title.includes('bnsp');
+        }
+        if (filterKey === 'edu') {
+            return cat.includes('edu') || cat.includes('project') || cat.includes('intern') || title.includes('msib') || title.includes('elearning') || title.includes('assistant');
+        }
+        if (filterKey === 'org') {
+            return (
+                cat.includes('org') || cat.includes('vol') || cat.includes('social') || cat.includes('relawan') || 
+                cat.includes('work') || cat.includes('comp') || cat.includes('act') || cat.includes('committee') || cat.includes('kepanitiaan') ||
+                title.includes('hmsi') || title.includes('committee') || title.includes('election') || title.includes('dies natalis') || title.includes('malam sanggar') ||
+                title.includes('praktisi') || title.includes('infection') || title.includes('community service') || title.includes('orphanage') || title.includes('care for maba') || title.includes('talkshow')
+            );
+        }
+        return true;
+    };
+
+    const filteredActivities = React.useMemo(() => {
+        if (activeFilter === 'all') return activitiesData;
+        return activitiesData.filter(act => matchesFilter(act, activeFilter));
+    }, [activitiesData, activeFilter]);
 
     // Previously used hover timers removed; modal now opens on click/tap
 
@@ -115,16 +150,47 @@ const MyActivities = () => {
     }, [isModalOpen]);
 
     return (
-        <section id="activities" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-[#0a0a0a]">
-            <div className=" px-3 sm:px-4 text-center">
-                <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl dark:text-white">{t('activitiesTitle')}</h2>
-                <p className="text-sm md:text-lg text-gray-600 dark:text-gray-400 mb-8 text-left">{t('activitiesSubtitle')}</p>
+        <section id="activities" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-[#0a0a0a] bg-dot-pattern">
+            <div className="px-3 sm:px-4 text-center md:text-left">
+                <h2 className="font-bold mt-4 mb-2 text-center text-xl md:text-3xl dark:text-white">{t('activitiesTitle')}</h2>
+                <p className="text-xs md:text-base text-gray-600 dark:text-gray-400 mb-6 text-center">{t('activitiesSubtitle')}</p>
 
-                {loading && <p className="text-center">Loading...</p>}
+                {/* Interactive Neo-Brutalist Category Filter Tabs */}
+                <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8">
+                    {filterCategories.map(({ key, label }) => {
+                        const count = key === 'all'
+                            ? activitiesData.length
+                            : activitiesData.filter(act => matchesFilter(act, key)).length;
+
+                        const isActive = activeFilter === key;
+
+                        return (
+                            <button
+                                key={key}
+                                type="button"
+                                onClick={() => setActiveFilter(key)}
+                                className={`px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold uppercase rounded-md border-2 border-black dark:border-neutral-700 transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+                                    isActive
+                                        ? 'bg-[#0EA5E9] text-white shadow-[4px_4px_0_#0f172a] -translate-y-0.5'
+                                        : 'bg-white dark:bg-[#1a1a1a] text-gray-800 dark:text-gray-200 shadow-[2px_2px_0_#0f172a] hover:bg-gray-100 dark:hover:bg-[#252525]'
+                                }`}
+                            >
+                                <span>{label}</span>
+                                <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
+                                    isActive ? 'bg-black text-white' : 'bg-gray-200 dark:bg-neutral-800 text-gray-800 dark:text-gray-200'
+                                }`}>
+                                    {count}
+                                </span>
+                            </button>
+                        );
+                    })}
+                </div>
+
+                {loading && <p className="text-center">{t('loading')}</p>}
                 {error && <p className="text-red-500">{error}</p>}
 
                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4 md:gap-6">
-                    {activitiesData.map((activity, index) => {
+                    {filteredActivities.map((activity, index) => {
                         const translated = getTranslatedActivity(activity, lang);
                         return (
                         <div

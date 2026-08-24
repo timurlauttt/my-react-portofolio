@@ -25,6 +25,7 @@ const AdminActivitiesForm = () => {
         link: '',
         skills: [],
         achievements: [],
+        achievements_id: [],
         image: '',
         links: []
     });
@@ -37,6 +38,7 @@ const AdminActivitiesForm = () => {
     // Input states for textarea fields (to properly handle line breaks)
     const [skillsInput, setSkillsInput] = useState('');
     const [achievementsInput, setAchievementsInput] = useState('');
+    const [achievementsIdInput, setAchievementsIdInput] = useState('');
     const [linksInput, setLinksInput] = useState('');
 
     // Color options untuk background
@@ -81,6 +83,7 @@ const AdminActivitiesForm = () => {
                 ...activity,
                 skills: activity.skills || [],
                 achievements: activity.achievements || [],
+                achievements_id: activity.achievements_id || [],
                 links: activity.links || [],
                 image: activity.image || ''
             });
@@ -88,6 +91,7 @@ const AdminActivitiesForm = () => {
             // Set input states for textarea fields
             setSkillsInput((activity.skills || []).join(', '));
             setAchievementsInput((activity.achievements || []).join('\n'));
+            setAchievementsIdInput((activity.achievements_id || []).join('\n'));
             setLinksInput((activity.links || []).map(link => `${link.title}|${link.url}`).join('\n'));
             
             // Set image preview - sama seperti portfolio
@@ -127,7 +131,7 @@ const AdminActivitiesForm = () => {
         }));
     };
 
-    // Achievements Handler
+    // Achievements Handler (English)
     const handleAchievementsChange = (e) => {
         const value = e.target.value;
         setAchievementsInput(value);
@@ -140,6 +144,22 @@ const AdminActivitiesForm = () => {
         setFormData(prev => ({
             ...prev,
             achievements: achievementsArray
+        }));
+    };
+
+    // Achievements Handler (Bahasa Indonesia)
+    const handleAchievementsIdChange = (e) => {
+        const value = e.target.value;
+        setAchievementsIdInput(value);
+
+        const achievementsArray = value
+            .split('\n')
+            .map(achievement => achievement.trim())
+            .filter(achievement => achievement !== '');
+
+        setFormData(prev => ({
+            ...prev,
+            achievements_id: achievementsArray
         }));
     };
 
@@ -513,32 +533,61 @@ const AdminActivitiesForm = () => {
                         )}
                     </div>
 
-                    {/* Achievements */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Achievements (one per line)
-                        </label>
-                        <textarea
-                            value={achievementsInput}
-                            onChange={handleAchievementsChange}
-                            rows={4}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="First achievement here&#10;Second achievement here&#10;Third achievement here"
-                            style={{ whiteSpace: 'pre-wrap' }}
-                        />
-                        <p className="text-xs text-gray-500 mt-1">
-                            Press Enter to start a new line for each achievement
-                        </p>
-                        {formData.achievements.length > 0 && (
-                            <div className="mt-2">
-                                <p className="text-sm font-medium text-gray-700">Preview:</p>
-                                <ul className="list-disc list-inside text-sm text-gray-600 mt-1">
-                                    {formData.achievements.map((achievement, index) => (
-                                        <li key={index}>{achievement}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
+                    {/* Achievements - Bilingual Support */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Achievements (English - one per line)
+                            </label>
+                            <textarea
+                                value={achievementsInput}
+                                onChange={handleAchievementsChange}
+                                rows={4}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="First achievement in English&#10;Second achievement in English"
+                                style={{ whiteSpace: 'pre-wrap' }}
+                            />
+                            <p className="text-xs text-gray-500 mt-1">
+                                Press Enter for each new achievement
+                            </p>
+                            {formData.achievements.length > 0 && (
+                                <div className="mt-2">
+                                    <p className="text-xs font-medium text-gray-700">Preview (EN):</p>
+                                    <ul className="list-disc list-inside text-xs text-gray-600 mt-1">
+                                        {formData.achievements.map((item, index) => (
+                                            <li key={index}>{item}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Pencapaian (Bahasa Indonesia - satu per baris)
+                            </label>
+                            <textarea
+                                value={achievementsIdInput}
+                                onChange={handleAchievementsIdChange}
+                                rows={4}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Pencapaian pertama dalam Bahasa Indonesia&#10;Pencapaian kedua dalam Bahasa Indonesia"
+                                style={{ whiteSpace: 'pre-wrap' }}
+                            />
+                            <p className="text-xs text-gray-500 mt-1">
+                                Tekan Enter untuk setiap poin baru
+                            </p>
+                            {formData.achievements_id && formData.achievements_id.length > 0 && (
+                                <div className="mt-2">
+                                    <p className="text-xs font-medium text-gray-700">Preview (ID):</p>
+                                    <ul className="list-disc list-inside text-xs text-gray-600 mt-1">
+                                        {formData.achievements_id.map((item, index) => (
+                                            <li key={index}>{item}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
                     </div>
 
                     {/* External Links */}

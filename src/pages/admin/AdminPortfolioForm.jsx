@@ -12,6 +12,7 @@ const AdminPortfolioForm = () => {
         portfolioId: '',
         title: '',
         title_id: '',
+        category: 'Web App',
         description: '',
         description_id: '',
         longDescription: '',
@@ -26,6 +27,14 @@ const AdminPortfolioForm = () => {
         endDate: ''
     });
     const [initialLoading, setInitialLoading] = useState(id ? true : false);
+
+    const categoryOptions = [
+        'Web App',
+        'Start-up',
+        'Capstone',
+        'Client Project',
+        'Open Source'
+    ];
 
     const isEditMode = !!id;
 
@@ -44,6 +53,7 @@ const AdminPortfolioForm = () => {
                     portfolioId: data.portfolioId || '',
                     title: data.title || '',
                     title_id: data.title_id || '',
+                    category: data.category || 'Web App',
                     description: data.description || '',
                     description_id: data.description_id || '',
                     longDescription: data.longDescription || data.long_description || '',
@@ -164,24 +174,48 @@ const AdminPortfolioForm = () => {
 
             <div className="bg-white shadow rounded-lg p-6">
                 <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                        <label htmlFor="portfolioId" className="block text-sm font-medium text-gray-700">
-                            Portfolio ID *
-                        </label>
-                        <input
-                            type="number"
-                            id="portfolioId"
-                            name="portfolioId"
-                            value={formData.portfolioId}
-                            onChange={handleInputChange}
-                            required
-                            min="1"
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-3 py-2 border"
-                            placeholder="1"
-                        />
-                        <p className="mt-1 text-sm text-gray-500">
-                            Enter a unique number ID for this portfolio project (e.g., 1, 2, 3...)
-                        </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label htmlFor="portfolioId" className="block text-sm font-medium text-gray-700">
+                                Portfolio ID *
+                            </label>
+                            <input
+                                type="number"
+                                id="portfolioId"
+                                name="portfolioId"
+                                value={formData.portfolioId}
+                                onChange={handleInputChange}
+                                required
+                                min="1"
+                                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-3 py-2 border"
+                                placeholder="1"
+                            />
+                            <p className="mt-1 text-xs text-gray-500">
+                                Unique number ID (e.g., 1, 2, 3...)
+                            </p>
+                        </div>
+
+                        <div>
+                            <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+                                Project Category *
+                            </label>
+                            <select
+                                id="category"
+                                name="category"
+                                value={formData.category}
+                                onChange={handleInputChange}
+                                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-3 py-2 border bg-white"
+                            >
+                                {categoryOptions.map((cat) => (
+                                    <option key={cat} value={cat}>
+                                        {cat}
+                                    </option>
+                                ))}
+                            </select>
+                            <p className="mt-1 text-xs text-gray-500">
+                                Determines which filter tab this project belongs to
+                            </p>
+                        </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
