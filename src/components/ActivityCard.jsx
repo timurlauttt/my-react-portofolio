@@ -40,7 +40,7 @@ const ActivityCard = ({ title, description, link, isExternal = true, delay = 0, 
     return (
         <div
             ref={ref}
-            className={`w-full aspect-square border-2 border-black dark:border-neutral-700 shadow-[4px_4px_0_#0f172a] duration-500 transform nb-card-hover ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'} group overflow-hidden bg-white dark:bg-[#1a1a1a] rounded`}
+            className={`w-full aspect-square border-2 border-black dark:border-slate-300 shadow-[4px_4px_0_#0f172a] dark:shadow-[4px_4px_0_#ffffff] duration-500 transform nb-card-hover ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'} group overflow-hidden bg-white dark:bg-slate-900 rounded`}
         >
             <div
                 className="h-14 sm:h-16 md:h-20 w-full flex-shrink-0 flex items-center justify-center relative p-1 sm:p-1.5"
@@ -64,8 +64,8 @@ const ActivityCard = ({ title, description, link, isExternal = true, delay = 0, 
                     </div>
                 )}
             </div>
-            <div className="p-1 sm:p-2 flex flex-col flex-grow justify-center bg-white dark:bg-[#1a1a1a] overflow-hidden">
-                <p className="text-[9.5px] sm:text-xs text-gray-700 dark:text-gray-300 text-justify leading-[1.2] sm:leading-tight line-clamp-3 sm:line-clamp-4">{description}</p>
+            <div className="p-1 sm:p-2 flex flex-col flex-grow justify-center bg-white dark:bg-slate-900 overflow-hidden">
+                <p className="text-[9.5px] sm:text-xs text-slate-600 dark:text-slate-300 text-justify leading-[1.2] sm:leading-tight line-clamp-3 sm:line-clamp-4">{description}</p>
             </div>
         </div>
     );

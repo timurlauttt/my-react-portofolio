@@ -48,9 +48,12 @@ const FloatingActionButton = () => {
     return (
         <>
             {isVisible && (
-                <div className="fixed right-6 md:right-8 bottom-24 md:bottom-6 z-40 flex items-center gap-3">
+                <div className="fixed right-6 md:right-8 bottom-24 md:bottom-6 z-40 flex items-end gap-3">
                     {/* CV Download Link */}
                     <div className="relative flex flex-col items-center">
+                        <span className="hidden md:block text-[10px] font-bold mb-1 text-center whitespace-nowrap text-black dark:text-white">
+                            Download CV
+                        </span>
                         <a
                             href={cvHref || '#'}
                             target="_blank"

@@ -36,21 +36,21 @@ const PortfolioCard = ({ image, title, description, longDescription = '', link, 
         <>
             <div
                 ref={ref}
-                className={`bg-white dark:bg-[#1a1a1a] border-2 sm:border-3 border-black dark:border-neutral-700 shadow-[6px_6px_0_#0f172a] dark:shadow-[6px_6px_0_#0f172a] cursor-pointer flex flex-col sm:flex-row transform duration-500 rounded nb-card-hover ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+                className={`bg-white dark:bg-slate-900 border-2 sm:border-3 border-black dark:border-slate-300 shadow-[6px_6px_0_#0f172a] dark:shadow-[6px_6px_0px_0px_#ffffff] cursor-pointer flex flex-col sm:flex-row transform duration-500 rounded nb-card-hover ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                 onClick={() => setIsModalOpen(true)}
                 onKeyDown={(e) => { if (e.key === 'Enter') setIsModalOpen(true); }}
                 tabIndex={0}
                 role="button"
             >
-                <div className="w-full sm:w-3/5 h-auto overflow-hidden border-b-2 sm:border-b-0 sm:border-r-2 border-black dark:border-neutral-700">
+                <div className="w-full sm:w-3/5 h-auto overflow-hidden border-b-2 sm:border-b-0 sm:border-r-2 border-black dark:border-slate-800">
                     <LazyImage src={image} alt={title} className="w-full h-48 sm:h-full object-cover" placeholderHeight="h-48" width={800} height={450} />
                 </div>
                 <div className="p-4 flex flex-col flex-1">
-                    <h3 className="text-base sm:text-lg font-bold mb-2 text-black dark:text-white">{title}</h3>
-                    <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 mt-1 sm:mt-2 text-justify line-clamp-3">{description}</p>
+                    <h3 className="text-base sm:text-lg font-bold mb-2 text-black dark:text-slate-100">{title}</h3>
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1 sm:mt-2 text-justify line-clamp-3">{description}</p>
                     <div className="mt-3 flex justify-end">
                         <button type="button" onClick={(e) => { e.stopPropagation(); setIsModalOpen(true); }}
-                            className="bg-[#0EA5E9] text-white border-2 border-[#0EA5E9] px-3 py-2 text-xs uppercase font-semibold shadow-[4px_6px_0_#0f172a] transition-all duration-200 ease-in-out cursor-pointer hover:bg-[#0f172a] hover:text-white hover:shadow-[4px_4px_0_#0EA5E9] w-fit">
+                            className="bg-[#0EA5E9] dark:bg-[#38BDF8] text-white dark:text-slate-950 border-2 border-black dark:border-white px-3 py-1.5 text-xs uppercase font-bold shadow-[3px_3px_0_#0f172a] dark:shadow-[3px_3px_0_#ffffff] transition-all duration-200 ease-in-out cursor-pointer hover:translate-x-0.5 hover:translate-y-0.5 w-fit rounded">
                             {t('learnMore')}
                         </button>
                     </div>

@@ -57,26 +57,31 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   return (
-    <nav className="navbar fixed top-0 w-full bg-white dark:bg-[#0a0a0a] dark:border-neutral-800 z-50 border-b border-gray-200 px-4 md:px-40 shadow-sm">
-      <div className="container mx-auto flex justify-between items-center p-3.5 sm:p-4 md:p-6 text-black dark:text-white">
+    <nav className="navbar fixed top-0 w-full bg-white/95 dark:bg-slate-950/95 backdrop-blur-md dark:border-slate-800 z-50 border-b border-slate-200 px-4 md:px-40 shadow-sm">
+      <div className="container mx-auto flex justify-between items-center p-3.5 sm:p-4 md:p-6 text-black dark:text-slate-100">
         {/* Brand / Logo */}
         <button onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); setActiveSection(""); }}
-          className="text-lg md:text-2xl font-bold hover:text-[#74247A] dark:hover:text-purple-400 dark:text-white transition-colors cursor-pointer">
+          className="text-lg md:text-2xl font-bold hover:text-[#0EA5E9] dark:hover:text-[#38BDF8] text-black dark:text-slate-100 transition-colors cursor-pointer">
           Urip
         </button>
 
         {/* Desktop Nav Links */}
-        <ul className="hidden md:flex items-center gap-4">
+        <ul className="hidden md:flex items-center gap-3">
           {navItems.map((item) => (
             <li key={item.href}>
               <button onClick={(e) => scrollTo(e, item.href)}
-                className={`navbar-text font-medium px-3 py-1 text-sm md:text-base cursor-pointer ${activeSection === item.href.replace("#", "") ? "navbar-text active" : "text-black dark:text-gray-200 hover:text-[#0EA5E9] dark:hover:text-sky-400"}`}>
+                className={`navbar-text font-bold px-3.5 py-1 text-sm md:text-base cursor-pointer ${activeSection === item.href.replace("#", "") ? "navbar-text active" : "text-black dark:text-gray-200 hover:text-[#0EA5E9] dark:hover:text-sky-400"}`}>
                 {t(item.key)}
               </button>
             </li>
           ))}
           <li>
-            <a href="https://astro-blog-my-portofolio-guwa.vercel.app/" className="btn btn-md bg-black dark:bg-white text-white dark:text-black rounded-md py-2 px-4 hover:bg-gray-700 dark:hover:bg-gray-200 text-sm font-semibold transition-colors" target="_blank" rel="noopener noreferrer">
+            <a 
+              href="https://astro-blog-my-portofolio-guwa.vercel.app/" 
+              className="inline-flex items-center bg-white dark:bg-[#1a1a1a] text-black dark:text-white border-2 border-black dark:border-white shadow-[2.5px_2.5px_0_#0f172a] dark:shadow-[2.5px_2.5px_0_#ffffff] hover:shadow-[1px_1px_0_#0f172a] dark:hover:shadow-[1px_1px_0_#ffffff] hover:translate-x-0.5 hover:translate-y-0.5 rounded py-1.5 px-3.5 text-sm font-bold transition-all" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
               {t("blog")}
             </a>
           </li>
@@ -84,12 +89,12 @@ const Navbar = () => {
             {/* Desktop Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 border border-gray-200 dark:border-neutral-700 rounded-md hover:bg-gray-100 dark:hover:bg-neutral-800 text-gray-700 dark:text-gray-200 transition-colors flex items-center justify-center cursor-pointer"
+              className="p-1.5 border-2 border-black dark:border-white rounded shadow-[2.5px_2.5px_0_#0f172a] dark:shadow-[2.5px_2.5px_0_#ffffff] hover:shadow-[1px_1px_0_#0f172a] dark:hover:shadow-[1px_1px_0_#ffffff] hover:translate-x-0.5 hover:translate-y-0.5 text-gray-800 dark:text-gray-200 transition-all flex items-center justify-center cursor-pointer bg-white dark:bg-[#1a1a1a]"
               title={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
               aria-label="Toggle theme"
             >
               {theme === "light" ? (
-                <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                 </svg>
               ) : (
@@ -103,7 +108,7 @@ const Navbar = () => {
             {/* Desktop Language Toggle */}
             <button
               onClick={toggleLang}
-              className="px-2.5 py-1.5 border border-gray-200 dark:border-neutral-700 rounded-md hover:bg-gray-100 dark:hover:bg-neutral-800 text-gray-800 dark:text-gray-200 transition-colors flex items-center justify-center cursor-pointer"
+              className="px-2.5 py-1 border-2 border-black dark:border-white rounded shadow-[2.5px_2.5px_0_#0f172a] dark:shadow-[2.5px_2.5px_0_#ffffff] hover:shadow-[1px_1px_0_#0f172a] dark:hover:shadow-[1px_1px_0_#ffffff] hover:translate-x-0.5 hover:translate-y-0.5 text-gray-800 dark:text-gray-200 transition-all flex items-center justify-center cursor-pointer bg-white dark:bg-[#1a1a1a]"
               title={lang === "en" ? "Ganti ke Bahasa Indonesia" : "Switch to English"}
               aria-label="Toggle language"
             >
@@ -117,12 +122,12 @@ const Navbar = () => {
           {/* Theme Toggle (Mobile) */}
           <button
             onClick={toggleTheme}
-            className="w-9 h-9 border border-gray-200 dark:border-neutral-700 rounded-md hover:bg-gray-100 dark:hover:bg-neutral-800 text-gray-700 dark:text-gray-200 transition-colors flex items-center justify-center cursor-pointer"
+            className="w-9 h-9 border-2 border-black dark:border-white rounded shadow-[2px_2px_0_#0f172a] dark:shadow-[2px_2px_0_#ffffff] text-gray-800 dark:text-gray-200 transition-all flex items-center justify-center cursor-pointer bg-white dark:bg-[#1a1a1a]"
             title={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
             aria-label="Toggle theme"
           >
             {theme === "light" ? (
-              <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
               </svg>
             ) : (
@@ -135,7 +140,7 @@ const Navbar = () => {
           {/* Language Toggle (Mobile) */}
           <button
             onClick={toggleLang}
-            className="h-9 px-2.5 border border-gray-200 dark:border-neutral-700 rounded-md hover:bg-gray-100 dark:hover:bg-neutral-800 text-gray-800 dark:text-gray-200 transition-colors flex items-center justify-center cursor-pointer"
+            className="h-9 px-2.5 border-2 border-black dark:border-white rounded shadow-[2px_2px_0_#0f172a] dark:shadow-[2px_2px_0_#ffffff] text-gray-800 dark:text-gray-200 transition-all flex items-center justify-center cursor-pointer bg-white dark:bg-[#1a1a1a]"
             title={lang === "en" ? "Ganti ke Bahasa Indonesia" : "Switch to English"}
             aria-label="Toggle language"
           >
@@ -145,7 +150,7 @@ const Navbar = () => {
           {/* Hamburger Menu Toggle */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="w-9 h-9 p-2 border border-gray-200 dark:border-neutral-700 rounded-md text-black dark:text-white hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors flex flex-col justify-center items-center cursor-pointer"
+            className="w-9 h-9 p-2 border-2 border-black dark:border-white rounded shadow-[2px_2px_0_#0f172a] dark:shadow-[2px_2px_0_#ffffff] text-black dark:text-white transition-all flex flex-col justify-center items-center cursor-pointer bg-white dark:bg-[#1a1a1a]"
             aria-label="Toggle menu"
           >
             <span className={`bg-current block transition-transform duration-300 h-0.5 w-5 rounded-sm ${isMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-1'}`}></span>
@@ -156,18 +161,22 @@ const Navbar = () => {
       </div>
 
       {/* Mobile dropdown */}
-      <div id="mobile-menu" className={`md:hidden overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
-        <ul className="flex flex-col space-y-1.5 pb-4 pt-1 bg-white dark:bg-[#0a0a0a] border-t border-gray-100 dark:border-neutral-800 px-4">
+      <div id="mobile-menu" className={`md:hidden overflow-hidden transition-all duration-300 ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <ul className="flex flex-col space-y-2 pb-4 pt-2 bg-white dark:bg-[#0a0a0a] border-t-2 border-black/10 dark:border-neutral-800 px-4">
           {navItems.map((item) => (
             <li key={item.href}>
               <button onClick={(e) => scrollTo(e, item.href)}
-                className={`block w-full text-left py-2.5 px-3.5 rounded-md text-sm cursor-pointer transition-colors ${activeSection === item.href.replace("#", "") ? 'bg-sky-100 text-[#0EA5E9] dark:bg-sky-950/70 dark:text-sky-300 font-semibold' : 'text-black dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-neutral-800'}`}>
+                className={`block w-full text-left py-2 px-3.5 rounded text-sm cursor-pointer transition-all ${
+                  activeSection === item.href.replace("#", "") 
+                    ? 'bg-[#0EA5E9] text-white font-bold border-2 border-[#0f172a] shadow-[3px_3px_0_#0f172a]' 
+                    : 'text-black dark:text-gray-200 border-2 border-transparent hover:border-black dark:hover:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-900 font-medium'
+                }`}>
                 {t(item.key)}
               </button>
             </li>
           ))}
           <li className="pt-1">
-            <a href="https://astro-blog-my-portofolio-guwa.vercel.app/" className="block py-2.5 px-3.5 bg-black dark:bg-white text-white dark:text-black rounded-md text-sm font-semibold text-start hover:bg-gray-700 dark:hover:bg-gray-200 transition-colors" target="_blank" rel="noopener noreferrer">
+            <a href="https://astro-blog-my-portofolio-guwa.vercel.app/" className="block py-2 px-3.5 bg-white dark:bg-[#1a1a1a] text-black dark:text-white rounded border-2 border-black dark:border-white shadow-[3px_3px_0_#0f172a] dark:shadow-[3px_3px_0_#ffffff] text-sm font-bold text-start hover:bg-gray-100 dark:hover:bg-gray-800 transition-all" target="_blank" rel="noopener noreferrer">
               {t("blog")}
             </a>
           </li>

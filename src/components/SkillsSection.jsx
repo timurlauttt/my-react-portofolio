@@ -79,7 +79,7 @@ const SkillIcon = React.memo(({ skill, delay = 0, index = 0 }) => {
             ref={ref}
             onMouseEnter={() => setShowTooltip(true)}
             onMouseLeave={() => setShowTooltip(false)}
-            className={`relative w-full aspect-square border-2 border-black dark:border-neutral-700 shadow-[4px_4px_0_#0f172a] duration-500 transform nb-card-hover ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'} group bg-white dark:bg-[#1a1a1a] rounded cursor-pointer`}
+            className={`relative w-full aspect-square border-2 border-black dark:border-slate-300 shadow-[4px_4px_0_#0f172a] dark:shadow-[4px_4px_0_#ffffff] duration-500 transform nb-card-hover ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'} group bg-white dark:bg-slate-900 rounded cursor-pointer`}
         >
             <div
                 className="h-12 sm:h-16 md:h-20 w-full flex-shrink-0 flex items-center justify-center relative"
@@ -94,8 +94,8 @@ const SkillIcon = React.memo(({ skill, delay = 0, index = 0 }) => {
                     onError={() => setImageError(true)}
                 />
             </div>
-            <div className="p-1 sm:p-2 flex flex-col flex-grow justify-center bg-white dark:bg-[#1a1a1a]">
-                <span className="text-xs md:text-sm font-bold text-gray-800 dark:text-gray-200 text-center leading-tight">
+            <div className="p-1 sm:p-2 flex flex-col flex-grow justify-center bg-white dark:bg-slate-900">
+                <span className="text-xs md:text-sm font-bold text-slate-800 dark:text-slate-100 text-center leading-tight">
                     {skill.name}
                 </span>
             </div>
@@ -104,7 +104,7 @@ const SkillIcon = React.memo(({ skill, delay = 0, index = 0 }) => {
             {showTooltip && (
                 <div className="absolute -top-14 left-1/2 -translate-x-1/2 z-30 pointer-events-none whitespace-nowrap bg-black text-white text-[10px] sm:text-xs font-mono font-medium px-2.5 py-1.5 rounded border border-white/20 shadow-[3px_3px_0_#0EA5E9] animate-fadeIn">
                     <span className="font-bold text-[#38BDF8]">{skill.name}</span>
-                    <span className="text-gray-300"> • {detail.category}</span>
+                    <span className="text-slate-300"> • {detail.category}</span>
                 </div>
             )}
         </div>
@@ -129,12 +129,12 @@ const SkillsSection = () => {
 
     if (loading) {
         return (
-            <section className="pt-20 pb-8 px-4 md:px-40 bg-white dark:bg-[#0a0a0a]" id="skills">
+            <section className="pt-20 pb-8 px-4 md:px-40 bg-white dark:bg-slate-950" id="skills">
                 <div>
-                    <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl dark:text-white">{t('skillsTitle')}</h2>
-                    <p className="text-gray-600 dark:text-gray-400 text-left text-sm sm:text-base">{t('skillsSubtitle')}</p>
+                    <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl text-black dark:text-slate-100">{t('skillsTitle')}</h2>
+                    <p className="text-slate-600 dark:text-slate-400 text-left text-sm sm:text-base">{t('skillsSubtitle')}</p>
                     <div className="flex justify-center items-center py-16">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#74247A]"></div>
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0EA5E9] dark:border-[#38BDF8]"></div>
                     </div>
                 </div>
             </section>
@@ -142,14 +142,14 @@ const SkillsSection = () => {
     }
 
     return (
-        <section className="pt-20 pb-8 px-4 md:px-40 bg-white dark:bg-[#0a0a0a]" id="skills">
+        <section className="pt-20 pb-8 px-4 md:px-40 bg-white dark:bg-slate-950" id="skills">
             <div>
-                <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl dark:text-white">{t('skillsTitle')}</h2>
-                <p className="text-gray-600 dark:text-gray-400 text-left text-sm md:text-lg">{t('skillsSubtitle')}</p>
+                <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl text-black dark:text-slate-100">{t('skillsTitle')}</h2>
+                <p className="text-slate-600 dark:text-slate-400 text-left text-sm md:text-lg">{t('skillsSubtitle')}</p>
 
                 {sortedSkills.length === 0 ? (
                     <div className="text-center py-16">
-                        <p className="text-gray-500 dark:text-gray-400 text-lg">{t('noSkills')}</p>
+                        <p className="text-slate-500 dark:text-slate-400 text-lg">{t('noSkills')}</p>
                     </div>
                 ) : (
                     <div className="mt-6 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4 md:gap-6">

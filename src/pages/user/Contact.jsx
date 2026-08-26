@@ -54,11 +54,11 @@ function Contact() {
     const displayContacts = contactData.length > 0 ? contactData : defaultContacts;
 
     return (
-        <section id="contact" className="pt-20 pb-8 px-4 md:px-40 bg-white dark:bg-[#0a0a0a] bg-dot-pattern">
+        <section id="contact" className="pt-20 pb-8 px-4 md:px-40 bg-white dark:bg-slate-950 bg-dot-pattern">
             <div>
                 <div className="text-center mb-8 sm:mb-12">
-                    <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl dark:text-white">{t('contactTitle')}</h2>
-                    <p className="text-sm md:text-lg text-gray-700 dark:text-gray-300 text-left leading-relaxed">
+                    <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl text-black dark:text-slate-100">{t('contactTitle')}</h2>
+                    <p className="text-sm md:text-lg text-slate-600 dark:text-slate-400 text-left leading-relaxed">
                         {t('contactSubtitle')}
                     </p>
                 </div>

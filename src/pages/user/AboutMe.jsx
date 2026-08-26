@@ -74,20 +74,20 @@ function AboutMe() {
     }
 
     return (
-        <section id="about" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-[#0a0a0a] text-black dark:text-white bg-dot-pattern">
+        <section id="about" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-slate-950 text-black dark:text-slate-100 bg-dot-pattern">
             <div>
-                <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl text-black dark:text-white">{t('aboutTitle')}</h2>
+                <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl text-black dark:text-slate-100">{t('aboutTitle')}</h2>
 
-                <div className="bg-white dark:bg-[#1a1a1a] rounded-lg p-6 md:p-8 shadow-[10px_8px_0_#0f172a] border-2 border-black dark:border-neutral-700">
+                <div className="bg-white dark:bg-slate-900 rounded-lg p-6 md:p-8 shadow-[8px_8px_0_#0f172a] dark:shadow-[6px_6px_0px_0px_#ffffff] border-2 border-black dark:border-slate-300">
                     <div>
-                        <h3 className="text-sm font-bold mb-3 text-black dark:text-white">{getBgTitle()}</h3>
-                        <p className="text-gray-700 dark:text-gray-300 mb-4 text-justify">{getBgDesc()}</p>
+                        <h3 className="text-sm sm:text-base font-bold mb-3 text-black dark:text-slate-100">{getBgTitle()}</h3>
+                        <p className="text-slate-700 dark:text-slate-300 mb-5 text-justify leading-relaxed">{getBgDesc()}</p>
                         
-                        <h3 className="text-sm font-bold mb-2 text-black dark:text-white">{getSkillsTitle()}</h3>
-                        <p className="text-gray-700 dark:text-gray-300 mb-4 text-justify">{getSkillsDesc()}</p>
+                        <h3 className="text-sm sm:text-base font-bold mb-2 text-black dark:text-slate-100">{getSkillsTitle()}</h3>
+                        <p className="text-slate-700 dark:text-slate-300 mb-5 text-justify leading-relaxed">{getSkillsDesc()}</p>
 
-                        <h3 className="text-sm font-bold mb-2 text-black dark:text-white">{getHobbiesTitle()}</h3>
-                        <p className="text-gray-700 dark:text-gray-300 text-justify">{getHobbiesDesc()}</p>
+                        <h3 className="text-sm sm:text-base font-bold mb-2 text-black dark:text-slate-100">{getHobbiesTitle()}</h3>
+                        <p className="text-slate-700 dark:text-slate-300 text-justify leading-relaxed">{getHobbiesDesc()}</p>
                     </div>
                 </div>
             </div>

@@ -62,21 +62,21 @@ function MyPortfolio() {
 
     if (loading) {
         return (
-            <section id="portfolio" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-[#0a0a0a] bg-dot-pattern">
-                <h2 className="font-bold mt-4 mb-4 text-center text-xl md:text-2xl dark:text-white">{t('portfolioTitle')}</h2>
+            <section id="portfolio" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-slate-950 bg-dot-pattern">
+                <h2 className="font-bold mt-4 mb-4 text-center text-xl md:text-2xl text-black dark:text-slate-100">{t('portfolioTitle')}</h2>
                 <div className="flex justify-center items-center py-16">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#74247A]"></div>
-                    <span className="ml-3 text-gray-600 dark:text-gray-400">{t('loading')}</span>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0EA5E9] dark:border-[#38BDF8]"></div>
+                    <span className="ml-3 text-slate-600 dark:text-slate-400">{t('loading')}</span>
                 </div>
             </section>
         );
     }
 
     return (
-        <section id="portfolio" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-[#0a0a0a] bg-dot-pattern">
+        <section id="portfolio" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-slate-950 bg-dot-pattern">
             <div className="text-center md:text-left">
-                <h2 className="font-bold mt-4 mb-2 text-center text-xl md:text-3xl dark:text-white">{t('portfolioTitle')}</h2>
-                <p className="text-xs md:text-base text-gray-600 dark:text-gray-400 mb-6 text-center">{t('portfolioSubtitle')}</p>
+                <h2 className="font-bold mt-4 mb-2 text-center text-xl md:text-3xl text-black dark:text-slate-100">{t('portfolioTitle')}</h2>
+                <p className="text-xs md:text-base text-slate-600 dark:text-slate-400 mb-6 text-center">{t('portfolioSubtitle')}</p>
 
                 {/* Interactive Neo-Brutalist Category Filter Tabs */}
                 <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8">
@@ -92,15 +92,15 @@ function MyPortfolio() {
                                 key={key}
                                 type="button"
                                 onClick={() => setActiveFilter(key)}
-                                className={`px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold uppercase rounded-md border-2 border-black dark:border-neutral-700 transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+                                className={`px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold uppercase rounded border-2 border-black dark:border-slate-300 transition-all duration-200 cursor-pointer flex items-center gap-2 ${
                                     isActive
-                                        ? 'bg-[#0EA5E9] text-white shadow-[4px_4px_0_#0f172a] -translate-y-0.5'
-                                        : 'bg-white dark:bg-[#1a1a1a] text-gray-800 dark:text-gray-200 shadow-[2px_2px_0_#0f172a] hover:bg-gray-100 dark:hover:bg-[#252525]'
+                                        ? 'bg-[#0EA5E9] dark:bg-[#38BDF8] text-white dark:text-slate-950 shadow-[4px_4px_0_#0f172a] dark:shadow-[4px_4px_0_#ffffff] -translate-y-0.5'
+                                        : 'bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 shadow-[2.5px_2.5px_0_#0f172a] dark:shadow-[2.5px_2.5px_0_#ffffff] hover:bg-slate-50 dark:hover:bg-slate-800'
                                 }`}
                             >
                                 <span>{label}</span>
-                                <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
-                                    isActive ? 'bg-black text-white' : 'bg-gray-200 dark:bg-neutral-800 text-gray-800 dark:text-gray-200'
+                                <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono font-bold ${
+                                    isActive ? 'bg-black text-white dark:bg-slate-950 dark:text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300'
                                 }`}>
                                     {count}
                                 </span>
