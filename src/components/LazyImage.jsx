@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { ImagePlaceholder } from './Loading';
 
 const LazyImage = ({ 
     src, 
@@ -16,9 +15,7 @@ const LazyImage = ({
     return (
         <div className="relative w-full h-full min-h-[12rem] bg-neutral-100 dark:bg-neutral-900 overflow-hidden flex items-center justify-center">
             {!loaded && !hasError && (
-                <div className="absolute inset-0 z-0">
-                    <ImagePlaceholder height="h-full" />
-                </div>
+                <div className="absolute inset-0 z-0 shimmer-bg" aria-hidden />
             )}
             
             <img

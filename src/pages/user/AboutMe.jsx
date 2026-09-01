@@ -1,11 +1,14 @@
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useState, useEffect } from 'react';
 import { aboutService } from '../../services/serviceWrapper';
+import { useReveal } from '../../hooks/usePerformance';
 
 function AboutMe() {
     const { t, lang } = useLanguage();
     const [aboutData, setAboutData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [titleVisible, titleRef] = useReveal(0.2);
+    const [cardVisible, cardRef] = useReveal(0.15);
 
     useEffect(() => {
         const fetchAboutData = async () => {
@@ -76,9 +79,9 @@ function AboutMe() {
     return (
         <section id="about" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-slate-950 text-black dark:text-slate-100 bg-dot-pattern">
             <div>
-                <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl text-black dark:text-slate-100">{t('aboutTitle')}</h2>
+                <h2 ref={titleRef} className={`font-bold mt-4 mb-4 text-center text-lg md:text-2xl text-black dark:text-slate-100 reveal ${titleVisible ? 'reveal-visible' : ''}`}>{t('aboutTitle')}</h2>
 
-                <div className="bg-white dark:bg-slate-900 rounded-lg p-6 md:p-8 shadow-[8px_8px_0_#0f172a] dark:shadow-[6px_6px_0px_0px_#ffffff] border-2 border-black dark:border-slate-300">
+                <div ref={cardRef} className={`bg-white dark:bg-slate-900 rounded-lg p-6 md:p-8 shadow-[8px_8px_0_#0f172a] dark:shadow-[6px_6px_0px_0px_#ffffff] border-2 border-black dark:border-slate-300 reveal ${cardVisible ? 'reveal-visible reveal-delay-1' : ''}`}>
                     <div>
                         <h3 className="text-sm sm:text-base font-bold mb-3 text-black dark:text-slate-100">{getBgTitle()}</h3>
                         <p className="text-slate-700 dark:text-slate-300 mb-5 text-justify leading-relaxed">{getBgDesc()}</p>

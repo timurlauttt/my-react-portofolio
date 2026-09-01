@@ -80,7 +80,7 @@ const AdminAbout = () => {
 												className="h-16 w-16 rounded-lg object-cover"
 												src={item.downloadURL || `/${item.imagePath || item.image}`}
 												alt={item.title}
-												onError={(e) => { e.target.src = '/me.jpg'; }}
+												onError={(e) => { e.target.src = '/me-600.webp'; }}
 											/>
 										</div>
 										<div className="ml-4">

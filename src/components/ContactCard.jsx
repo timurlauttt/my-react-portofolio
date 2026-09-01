@@ -26,7 +26,7 @@ const ContactCard = ({ type, href, label, index = 0 }) => {
 
     return (
         <a href={href} target="_blank" rel="noopener noreferrer" aria-label={`Contact via ${label}`} className="block group w-full">
-            <div className="w-full aspect-square border-2 border-black dark:border-neutral-700 shadow-[4px_4px_0_#0f172a] duration-300 group-hover:scale-105 group overflow-hidden bg-white dark:bg-[#1a1a1a] rounded flex flex-col transition-transform">
+            <div className="w-full aspect-square border-2 border-black dark:border-neutral-700 shadow-[4px_4px_0_#0f172a] nb-card-hover overflow-hidden bg-white dark:bg-[#1a1a1a] rounded flex flex-col">
                 <div className="h-12 sm:h-16 md:h-20 w-full flex-shrink-0 flex items-center justify-center" style={{ backgroundColor: headerColor }}>
                     <div className="relative w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 flex items-center justify-center">
                         {IconComponent && <IconComponent />}

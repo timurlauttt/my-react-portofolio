@@ -55,9 +55,9 @@ function Hero() {
   return (
     <section
       id="home"
-      className="min-h-[75vh] pt-24 sm:pt-32 md:pt-24 px-4 md:px-40 lg:pt-28 pb-4 bg-white dark:bg-slate-950 bg-dot-pattern"
+      className="min-h-[75vh] pt-24 sm:pt-32 md:pt-24 px-4 md:px-40 lg:pt-28 pb-4 bg-white dark:bg-slate-950 bg-dot-pattern overflow-visible"
     >
-      <div className="container mx-auto px-4 md:px-6 rounded-lg border-2 border-black dark:border-slate-300 shadow-[8px_8px_0_#0f172a] dark:shadow-[6px_6px_0px_0px_#ffffff] bg-white dark:bg-slate-900 bg-grid-blueprint p-6 md:p-8">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 rounded-lg border-2 border-black dark:border-slate-300 shadow-[8px_8px_0_#0f172a] dark:shadow-[6px_6px_0px_0px_#ffffff] bg-white dark:bg-slate-900 bg-grid-blueprint animate-drift p-4 sm:p-6 md:p-8 overflow-visible">
         {/* Available for Work Status Badge */}
         <div className="mb-4 inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border-2 border-black dark:border-emerald-500/40 bg-emerald-50 dark:bg-emerald-950/80 shadow-[3px_3px_0_#0f172a] dark:shadow-[3px_3px_0_#ffffff] transition-transform hover:-translate-y-0.5">
           <span className="relative flex h-3 w-3">
@@ -70,8 +70,8 @@ function Hero() {
         </div>
 
         <div className="flex flex-col md:flex-row items-center gap-6 md:gap-4">
-          <div className="md:w-3/5 flex flex-col items-start text-start">
-            <h1 className="text-start text-2xl sm:text-xl md:text-5xl lg:text-6xl mb-2 leading-tight text-black dark:text-slate-100">
+          <div className="md:w-3/5 flex flex-col items-start text-start w-full min-w-0">
+            <h1 className="text-start text-2xl sm:text-xl md:text-5xl lg:text-6xl mb-2 leading-tight text-black dark:text-slate-100 break-words">
               {t("greeting")}
               <br />
               <span className="text-3xl md:text-5xl lg:text-6xl font-light">
@@ -80,8 +80,8 @@ function Hero() {
             </h1>
 
             {/* Interactive Dynamic Typewriter Subtitle */}
-            <div className="h-10 sm:h-8 flex items-center mb-3">
-              <span className="text-sm sm:text-base md:text-lg font-mono font-semibold text-[#0EA5E9] dark:text-[#38BDF8] bg-sky-50 dark:bg-sky-950 px-2.5 py-1 rounded border border-sky-300 dark:border-sky-800">
+            <div className="min-h-10 sm:min-h-8 flex items-start sm:items-center mb-3 w-full max-w-full overflow-hidden">
+              <span className="text-xs sm:text-base md:text-lg font-mono font-semibold text-[#0EA5E9] dark:text-[#38BDF8] bg-sky-50 dark:bg-sky-950 px-2.5 py-1.5 rounded border border-sky-300 dark:border-sky-800 break-words leading-snug max-w-full">
                 &gt; {displayText}
                 <span className="animate-pulse font-bold text-black dark:text-slate-100">
                   |
@@ -89,13 +89,13 @@ function Hero() {
               </span>
             </div>
 
-            <p className="mt-2 text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-950 p-4 border-2 border-black dark:border-slate-800 rounded shadow-[4px_4px_0_#0f172a] dark:shadow-[4px_4px_0_#ffffff] max-w-md text-justify text-sm sm:text-base">
+            <p className="mt-2 text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-950 p-3 sm:p-4 border-2 border-black dark:border-slate-800 rounded shadow-[4px_4px_0_#0f172a] dark:shadow-[4px_4px_0_#ffffff] w-full max-w-md text-left sm:text-justify text-sm sm:text-base leading-relaxed break-words">
               {t("heroTagline")}
             </p>
           </div>
 
           <div className="flex-shrink-0 flex justify-center">
-            <div className="relative group">
+            <div className="relative group animate-float">
               <img
                 src="/hero-fix.webp"
                 alt="Urip Yoga Pangestu"

@@ -4,12 +4,14 @@ import PortfolioCard from '../../components/PortfolioCard';
 import GitHubStatsWidget from '../../components/GitHubStatsWidget';
 import { portfolioService } from '../../services/serviceWrapper';
 import { getTranslatedPortfolio } from '../../utils/dynamicTranslations';
+import { useReveal } from '../../hooks/usePerformance';
 
 function MyPortfolio() {
     const { t, lang } = useLanguage();
     const [portfolioData, setPortfolioData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [activeFilter, setActiveFilter] = useState('all');
+    const [titleVisible, titleRef] = useReveal(0.2);
 
     useEffect(() => {
         const loadPortfolioData = async () => {
@@ -75,8 +77,8 @@ function MyPortfolio() {
     return (
         <section id="portfolio" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-slate-950 bg-dot-pattern">
             <div className="text-center md:text-left">
-                <h2 className="font-bold mt-4 mb-2 text-center text-xl md:text-3xl text-black dark:text-slate-100">{t('portfolioTitle')}</h2>
-                <p className="text-xs md:text-base text-slate-600 dark:text-slate-400 mb-6 text-center">{t('portfolioSubtitle')}</p>
+                <h2 ref={titleRef} className={`font-bold mt-4 mb-2 text-center text-xl md:text-3xl text-black dark:text-slate-100 reveal ${titleVisible ? 'reveal-visible' : ''}`}>{t('portfolioTitle')}</h2>
+                <p className={`text-xs md:text-base text-slate-600 dark:text-slate-400 mb-6 text-center reveal ${titleVisible ? 'reveal-visible reveal-delay-1' : ''}`}>{t('portfolioSubtitle')}</p>
 
                 {/* Interactive Neo-Brutalist Category Filter Tabs */}
                 <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8">
@@ -115,7 +117,7 @@ function MyPortfolio() {
                         <p className="text-gray-400 text-sm mt-2">{t('noPortfolioDesc')}</p>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 sm:gap-6 w-full">
+                    <div key={activeFilter} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 sm:gap-6 w-full filter-enter">
                         {filteredPortfolios.map((portfolio, index) => {
                             const tech = portfolio.tech || portfolio.techStack || portfolio.technologies || null;
                             const startDate = portfolio.startDate || portfolio.from || null;

@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import ActivityCard from '../../components/ActivityCard';
 import { activitiesService } from '../../services/serviceWrapper';
 import { getTranslatedActivity } from '../../utils/dynamicTranslations';
+import { useReveal } from '../../hooks/usePerformance';
 
 const MyActivities = () => {
     const { t, lang } = useLanguage();
@@ -14,6 +15,7 @@ const MyActivities = () => {
     const [selectedActivity, setSelectedActivity] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [activeFilter, setActiveFilter] = useState('all');
+    const [titleVisible, titleRef] = useReveal(0.2);
 
     useEffect(() => {
         const loadActivitiesData = async () => {
@@ -150,10 +152,10 @@ const MyActivities = () => {
     }, [isModalOpen]);
 
     return (
-        <section id="activities" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-slate-950 bg-dot-pattern">
-            <div className="px-3 sm:px-4 text-center md:text-left">
-                <h2 className="font-bold mt-4 mb-2 text-center text-xl md:text-3xl text-black dark:text-slate-100">{t('activitiesTitle')}</h2>
-                <p className="text-xs md:text-base text-slate-600 dark:text-slate-400 mb-6 text-center">{t('activitiesSubtitle')}</p>
+        <section id="activities" className="pt-20 pb-8 px-4 md:px-40 bg-[#f1f2f3] dark:bg-slate-950 bg-dot-pattern overflow-visible">
+            <div className="px-3 sm:px-4 text-center md:text-left overflow-visible">
+                <h2 ref={titleRef} className={`font-bold mt-4 mb-2 text-center text-xl md:text-3xl text-black dark:text-slate-100 reveal ${titleVisible ? 'reveal-visible' : ''}`}>{t('activitiesTitle')}</h2>
+                <p className={`text-xs md:text-base text-slate-600 dark:text-slate-400 mb-6 text-center reveal ${titleVisible ? 'reveal-visible reveal-delay-1' : ''}`}>{t('activitiesSubtitle')}</p>
 
                 {/* Interactive Neo-Brutalist Category Filter Tabs */}
                 <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8">
@@ -189,7 +191,7 @@ const MyActivities = () => {
                 {loading && <p className="text-center">{t('loading')}</p>}
                 {error && <p className="text-red-500">{error}</p>}
 
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4 md:gap-6">
+                <div key={activeFilter} className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4 md:gap-6 filter-enter overflow-visible">
                     {filteredActivities.map((activity, index) => {
                         const translated = getTranslatedActivity(activity, lang);
                         return (

@@ -163,21 +163,21 @@ export const activitiesData = [
 export const aboutData = [
     {
         id: 1,
-        image: "me.jpg",
+        image: "me-600.webp",
         title: "My Background",
         description: "I am a 6th semester Information Systems student who likes challenges, is enthusiastic about web development, and is always open to learning new things",
         imageAlt: "Profile 1"
     },
     {
         id: 2,
-        image: "aku.jpg",
+        image: "aku.webp",
         title: "My Skills",
         description: "I can use HTML, CSS, and Javascript to build websites. I can also use frameworks like Laravel and Django to create or build websites. I am also currently learning React.JS for front-end development of a website",
         imageAlt: "Profile 2"
     },
     {
         id: 3,
-        image: "me2.jpg",
+        image: "me2-600.webp",
         title: "My Hobbies",
         description: "In my free time, I like listening to music, watching football matches, reading and exploring new technologies",
         imageAlt: "Profile 3"

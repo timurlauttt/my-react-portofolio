@@ -3,11 +3,13 @@ import React, { useState, useEffect } from 'react';
 import ContactCard from '../../components/ContactCard';
 import { contactService } from '../../services/serviceWrapper';
 import { contactData as defaultContacts } from '../../data/constants';
+import { useReveal } from '../../hooks/usePerformance';
 
 function Contact() {
     const { t } = useLanguage();
     const [contactData, setContactData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [titleVisible, titleRef] = useReveal(0.2);
 
     useEffect(() => {
         const loadContactData = async () => {
@@ -57,8 +59,8 @@ function Contact() {
         <section id="contact" className="pt-20 pb-8 px-4 md:px-40 bg-white dark:bg-slate-950 bg-dot-pattern">
             <div>
                 <div className="text-center mb-8 sm:mb-12">
-                    <h2 className="font-bold mt-4 mb-4 text-center text-lg md:text-2xl text-black dark:text-slate-100">{t('contactTitle')}</h2>
-                    <p className="text-sm md:text-lg text-slate-600 dark:text-slate-400 text-left leading-relaxed">
+                    <h2 ref={titleRef} className={`font-bold mt-4 mb-4 text-center text-lg md:text-2xl text-black dark:text-slate-100 reveal ${titleVisible ? 'reveal-visible' : ''}`}>{t('contactTitle')}</h2>
+                    <p className={`text-sm md:text-lg text-slate-600 dark:text-slate-400 text-left leading-relaxed reveal ${titleVisible ? 'reveal-visible reveal-delay-1' : ''}`}>
                         {t('contactSubtitle')}
                     </p>
                 </div>

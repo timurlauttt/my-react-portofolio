@@ -2,9 +2,13 @@ import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { FaGithub, FaExternalLinkAlt, FaStar, FaBuilding } from 'react-icons/fa';
 import { VscRepo, VscGitCommit } from 'react-icons/vsc';
+import { useCountUp } from '../hooks/usePerformance';
 
 const GitHubStatsWidget = () => {
     const { t } = useLanguage();
+    const [repoCount, repoRef] = useCountUp(70, 1100);
+    const [contribCount, contribRef] = useCountUp(487, 1300);
+    const [teamCount, teamRef] = useCountUp(5, 900);
 
     // Pinned repositories from real GitHub profile
     const pinnedRepos = [
@@ -83,7 +87,7 @@ const GitHubStatsWidget = () => {
                 <div className="flex items-center gap-3.5">
                     <div className="relative">
                         <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-black dark:border-white shadow-[2px_2px_0_#0EA5E9]">
-                            <img src="/aku.jpg" alt="timurlauttt" className="w-full h-full object-cover" />
+                            <img src="/aku.webp" alt="timurlauttt" className="w-full h-full object-cover" width="48" height="48" loading="lazy" decoding="async" />
                         </div>
                         <span className="absolute -bottom-1 -right-1 bg-amber-400 text-black text-[9px] font-extrabold px-1.5 py-0.2 rounded border border-black shadow-[1px_1px_0_#000]">
                             PRO
@@ -116,9 +120,9 @@ const GitHubStatsWidget = () => {
                 </a>
             </div>
 
-            {/* Real Stats Metrics Bar */}
+            {/* Real Stats Metrics Bar - count-up on scroll */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6">
-                <div className="p-3.5 bg-gray-50 dark:bg-[#0d1117] border-2 border-black dark:border-neutral-700 rounded shadow-[3px_3px_0_#0f172a] flex items-center gap-3">
+                <div ref={repoRef} className="p-3.5 bg-gray-50 dark:bg-[#0d1117] border-2 border-black dark:border-neutral-700 rounded shadow-[3px_3px_0_#0f172a] flex items-center gap-3">
                     <div className="p-2 bg-blue-100 dark:bg-blue-950/60 text-[#0EA5E9] rounded border border-black dark:border-neutral-700">
                         <VscRepo className="text-xl" />
                     </div>
@@ -126,13 +130,13 @@ const GitHubStatsWidget = () => {
                         <span className="text-[11px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider block">
                             Repositories
                         </span>
-                        <span className="text-xl font-extrabold text-black dark:text-white">
-                            70 Repos
+                        <span className="text-xl font-extrabold text-black dark:text-white tabular-nums">
+                            {repoCount} Repos
                         </span>
                     </div>
                 </div>
 
-                <div className="p-3.5 bg-gray-50 dark:bg-[#0d1117] border-2 border-black dark:border-neutral-700 rounded shadow-[3px_3px_0_#0f172a] flex items-center gap-3">
+                <div ref={contribRef} className="p-3.5 bg-gray-50 dark:bg-[#0d1117] border-2 border-black dark:border-neutral-700 rounded shadow-[3px_3px_0_#0f172a] flex items-center gap-3">
                     <div className="p-2 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-500 rounded border border-black dark:border-neutral-700">
                         <VscGitCommit className="text-xl" />
                     </div>
@@ -140,13 +144,13 @@ const GitHubStatsWidget = () => {
                         <span className="text-[11px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider block">
                             Yearly Activity
                         </span>
-                        <span className="text-xl font-extrabold text-emerald-600 dark:text-emerald-400">
-                            487+ Contributions
+                        <span className="text-xl font-extrabold text-emerald-600 dark:text-emerald-400 tabular-nums">
+                            {contribCount}+ Contributions
                         </span>
                     </div>
                 </div>
 
-                <div className="p-3.5 bg-gray-50 dark:bg-[#0d1117] border-2 border-black dark:border-neutral-700 rounded shadow-[3px_3px_0_#0f172a] flex items-center gap-3">
+                <div ref={teamRef} className="p-3.5 bg-gray-50 dark:bg-[#0d1117] border-2 border-black dark:border-neutral-700 rounded shadow-[3px_3px_0_#0f172a] flex items-center gap-3">
                     <div className="p-2 bg-purple-100 dark:bg-purple-950/60 text-purple-500 rounded border border-black dark:border-neutral-700">
                         <FaBuilding className="text-lg" />
                     </div>
@@ -154,8 +158,8 @@ const GitHubStatsWidget = () => {
                         <span className="text-[11px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider block">
                             Organizations
                         </span>
-                        <span className="text-xl font-extrabold text-purple-600 dark:text-purple-400">
-                            5 Teams
+                        <span className="text-xl font-extrabold text-purple-600 dark:text-purple-400 tabular-nums">
+                            {teamCount} Teams
                         </span>
                     </div>
                 </div>

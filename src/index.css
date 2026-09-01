@@ -235,3 +235,106 @@ section {
 .animate-pulse-dot {
   animation: pulse-emerald 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* ========== NEW: Subtle motion system (CSS-only, no JS lib) ========== */
+
+/* Float - hero image gentle levitation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Drift - blueprint grid slow pan */
+@keyframes drift {
+  from { background-position: 0 0; }
+  to { background-position: 24px 24px; }
+}
+.animate-drift {
+  animation: drift 18s linear infinite;
+}
+
+/* Reveal-up - section titles & subtitles */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.reveal.reveal-visible {
+  animation: reveal-up 0.6s cubic-bezier(0.16, 0.8, 0.24, 1) forwards;
+}
+.reveal-delay-1 { animation-delay: 0.08s; }
+.reveal-delay-2 { animation-delay: 0.16s; }
+.reveal-delay-3 { animation-delay: 0.24s; }
+
+/* Shimmer skeleton */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.shimmer-bg {
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 37%, #e5e7eb 63%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+.dark .shimmer-bg {
+  background: linear-gradient(90deg, #1e293b 25%, #334155 37%, #1e293b 63%);
+  background-size: 800px 100%;
+}
+
+/* Filter cross-fade */
+@keyframes filter-enter {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.filter-enter {
+  animation: filter-enter 0.35s cubic-bezier(0.16, 0.8, 0.24, 1) forwards;
+}
+
+/* Card stagger - replaces -translate-x-full */
+.card-enter {
+  transition: opacity 0.5s cubic-bezier(0.16, 0.8, 0.24, 1), transform 0.5s cubic-bezier(0.16, 0.8, 0.24, 1);
+}
+.card-enter-hidden {
+  opacity: 0;
+  transform: translateY(16px) scale(0.97);
+}
+.card-enter-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Scroll progress glow */
+.scroll-progress-glow {
+  box-shadow: 0 0 8px rgba(14, 165, 233, 0.6);
+}
+
+/* Marquee (if used) */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-drift,
+  .animate-pulse-dot,
+  .animate-marquee,
+  .shimmer-bg,
+  .reveal.reveal-visible,
+  .filter-enter {
+    animation: none !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  .card-enter-hidden { opacity: 1; transform: none; }
+}

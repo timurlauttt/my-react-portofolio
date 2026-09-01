@@ -40,7 +40,7 @@ const ActivityCard = ({ title, description, link, isExternal = true, delay = 0, 
     return (
         <div
             ref={ref}
-            className={`w-full aspect-square border-2 border-black dark:border-slate-300 shadow-[4px_4px_0_#0f172a] dark:shadow-[4px_4px_0_#ffffff] duration-500 transform nb-card-hover ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'} group overflow-hidden bg-white dark:bg-slate-900 rounded`}
+            className={`w-full aspect-square border-2 border-black dark:border-slate-300 shadow-[4px_4px_0_#0f172a] dark:shadow-[4px_4px_0_#ffffff] nb-card-hover card-enter ${isVisible ? 'card-enter-visible' : 'card-enter-hidden'} group overflow-hidden bg-white dark:bg-slate-900 rounded`}
         >
             <div
                 className="h-14 sm:h-16 md:h-20 w-full flex-shrink-0 flex items-center justify-center relative p-1 sm:p-1.5"
