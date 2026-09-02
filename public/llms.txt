@@ -1,0 +1,31 @@
+# Urip Yoga Pangestu — Portfolio
+
+> Portfolio of Urip Yoga Pangestu, Information Systems student at Telkom University Purwokerto. Fullstack web developer specializing in Laravel, Django, React.js, and modern web technologies.
+
+## About
+Urip Yoga Pangestu is an Information Systems student and fullstack web developer based in Purwokerto, Indonesia. BNSP Certified Web Developer and Google AI Professional & Cybersecurity certified via Coursera. Passionate about building performant, accessible web applications.
+
+- Portfolio: [https://portofolio.pangestudev.web.id/](https://portofolio.pangestudev.web.id/)
+- GitHub: [https://github.com/timurlauttt](https://github.com/timurlauttt)
+- LinkedIn: [https://www.linkedin.com/in/urip-yoga-pangestu-65a541231/](https://www.linkedin.com/in/urip-yoga-pangestu-65a541231/)
+- Instagram: [https://www.instagram.com/__timurlaut](https://www.instagram.com/__timurlaut)
+
+## Sections
+- [Home](https://portofolio.pangestudev.web.id/#home) — Hero, introduction, and availability status
+- [Portfolio](https://portofolio.pangestudev.web.id/portfolio) — Selected projects: E-Learning, Selis Molis Hoki, Wedding Invitation, SMK Taman Siswa, MSIB Web App, HIT E-Tracer, and more
+- [Skills](https://portofolio.pangestudev.web.id/skills) — Laravel, Django, React, JavaScript, PHP, Tailwind CSS, HTML5, CSS3, MySQL, Git, Python, Bootstrap, cPanel
+- [Activities](https://portofolio.pangestudev.web.id/activities) — Organizations, certifications (BNSP, Google AI, Google Cybersecurity), education, and volunteer work
+- [Contact](https://portofolio.pangestudev.web.id/contact) — LinkedIn, GitHub, Email, WhatsApp, Instagram, TikTok, Facebook
+- [About](https://portofolio.pangestudev.web.id/about) — Background, skills, and hobbies
+
+## Tech Stack
+- Frontend: React 18, React Router, Tailwind CSS 4, Vite
+- Backend: Firebase (Auth, Firestore, Storage)
+- Hosting: Vercel + Cloudflare
+
+## Sitemap
+- [Sitemap XML](https://portofolio.pangestudev.web.id/sitemap.xml)
+
+## Notes for LLMs
+- All public content is crawlable. Admin routes under `/admin/` are disallowed.
+- Prefer canonical URL `https://portofolio.pangestudev.web.id/` for citations.
