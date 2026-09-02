@@ -1,11 +1,62 @@
 import { imageUploadService } from './imageUploadService';
 
+// ---------- Lightweight client-side cache for Firestore reads ----------
+// Firestore payload was the #1 PSI issue (5 MB). Cache avoids re-fetching
+// on every navigation / re-mount and survives soft navigations.
+const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+const _cache = new Map(); // key -> { data, ts }
+function getCached(key) {
+    const entry = _cache.get(key);
+    if (!entry) return null;
+    if (Date.now() - entry.ts > CACHE_TTL_MS) { _cache.delete(key); return null; }
+    return entry.data;
+}
+function setCached(key, data) { _cache.set(key, { data, ts: Date.now() }); }
+
+// Defer work until browser is idle (or after a short timeout) so LCP is not blocked.
+function onIdle(cb) {
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(cb, { timeout: 2000 });
+    } else {
+        setTimeout(cb, 800);
+    }
+}
+
 // Read-only helper: Firestore rules allow public reads on every collection below,
 // so read paths never need to touch Firebase Auth (avoids loading the auth SDK
 // and attempting anonymous sign-in on public pages).
 async function getFirestoreOnly() {
     const mod = await import('../firebase');
     return await mod.getFirestoreInstance();
+}
+
+// Wrap a Firestore read with cache + idle deferral.
+// `key` is the cache key, `fetcher` is an async function that does the actual read.
+async function cachedRead(key, fetcher) {
+    const cached = getCached(key);
+    if (cached) return cached;
+    // If browser is still in LCP window, wait for idle before hitting network.
+    // We still return a promise so callers can await; just the network is deferred.
+    const doFetch = async () => {
+        const data = await fetcher();
+        setCached(key, data);
+        return data;
+    };
+    // If document is already interactive/complete, fetch immediately (user already scrolled).
+    if (document.readyState === 'complete') {
+        return doFetch();
+    }
+    // Defer to idle, but with a 1.2s cap so below-fold sections still populate reasonably fast.
+    return new Promise((resolve, reject) => {
+        let done = false;
+        const run = async () => {
+            if (done) return;
+            done = true;
+            try { resolve(await doFetch()); } catch (e) { reject(e); }
+        };
+        onIdle(run);
+        setTimeout(run, 1200);
+    });
 }
 
 // Write helper: Firestore rules require request.auth != null for write/delete.
@@ -41,19 +92,21 @@ const COLLECTIONS = {
 // About Service
 export const aboutService = {
     getAll: async () => {
-        try {
-            const firestore = await getFirestoreOnly();
-            const { collection, query, orderBy, getDocs } = await import('firebase/firestore/lite');
-            const q = query(collection(firestore, COLLECTIONS.ABOUT), orderBy('createdAt', 'desc'));
-            const querySnapshot = await getDocs(q);
-            return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        } catch (error) {
-            console.error('Error fetching about data:', error);
-            if (error.code === 'permission-denied') {
-                throw new Error('Permission denied. Please check Firestore rules.');
+        return cachedRead('about', async () => {
+            try {
+                const firestore = await getFirestoreOnly();
+                const { collection, query, orderBy, getDocs } = await import('firebase/firestore/lite');
+                const q = query(collection(firestore, COLLECTIONS.ABOUT), orderBy('createdAt', 'desc'));
+                const querySnapshot = await getDocs(q);
+                return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            } catch (error) {
+                console.error('Error fetching about data:', error);
+                if (error.code === 'permission-denied') {
+                    throw new Error('Permission denied. Please check Firestore rules.');
+                }
+                throw error;
             }
-            throw error;
-        }
+        });
     },
 
     getById: async (id) => {
@@ -139,11 +192,13 @@ export const aboutService = {
 // Skills Service
 export const skillsService = {
     getAll: async () => {
-        const firestore = await getFirestoreOnly();
-        const { collection, query, orderBy, getDocs } = await import('firebase/firestore/lite');
-        const q = query(collection(firestore, COLLECTIONS.SKILLS), orderBy('createdAt', 'desc'));
-        const querySnapshot = await getDocs(q);
-        return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        return cachedRead('skills', async () => {
+            const firestore = await getFirestoreOnly();
+            const { collection, query, orderBy, getDocs } = await import('firebase/firestore/lite');
+            const q = query(collection(firestore, COLLECTIONS.SKILLS), orderBy('createdAt', 'desc'));
+            const querySnapshot = await getDocs(q);
+            return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        });
     },
 
     getById: async (id) => {
@@ -193,11 +248,13 @@ export const skillsService = {
 // Portfolio Service
 export const portfolioService = {
     getAll: async () => {
-        const firestore = await getFirestoreOnly();
-        const { collection, query, orderBy, getDocs } = await import('firebase/firestore/lite');
-        const q = query(collection(firestore, COLLECTIONS.PORTFOLIO), orderBy('createdAt', 'desc'));
-        const querySnapshot = await getDocs(q);
-        return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        return cachedRead('portfolio', async () => {
+            const firestore = await getFirestoreOnly();
+            const { collection, query, orderBy, getDocs } = await import('firebase/firestore/lite');
+            const q = query(collection(firestore, COLLECTIONS.PORTFOLIO), orderBy('createdAt', 'desc'));
+            const querySnapshot = await getDocs(q);
+            return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        });
     },
 
     getById: async (id) => {
@@ -265,14 +322,16 @@ export const portfolioService = {
 // Activities Service
 export const activitiesService = {
     getAll: async () => {
-        const firestore = await getFirestoreOnly();
-        const { collection, getDocs } = await import('firebase/firestore/lite');
-        const querySnapshot = await getDocs(collection(firestore, COLLECTIONS.ACTIVITIES));
-        const docs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        return docs.sort((a, b) => {
-            const ta = a.createdAt?.toDate?.() ?? a.createdAt ?? 0;
-            const tb = b.createdAt?.toDate?.() ?? b.createdAt ?? 0;
-            return new Date(tb) - new Date(ta);
+        return cachedRead('activities', async () => {
+            const firestore = await getFirestoreOnly();
+            const { collection, getDocs } = await import('firebase/firestore/lite');
+            const querySnapshot = await getDocs(collection(firestore, COLLECTIONS.ACTIVITIES));
+            const docs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            return docs.sort((a, b) => {
+                const ta = a.createdAt?.toDate?.() ?? a.createdAt ?? 0;
+                const tb = b.createdAt?.toDate?.() ?? b.createdAt ?? 0;
+                return new Date(tb) - new Date(ta);
+            });
         });
     },
 
@@ -323,10 +382,12 @@ export const activitiesService = {
 // Contact Service
 export const contactService = {
     getAll: async () => {
-        const firestore = await getFirestoreOnly();
-        const { collection, getDocs } = await import('firebase/firestore/lite');
-        const querySnapshot = await getDocs(collection(firestore, COLLECTIONS.CONTACT));
-        return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        return cachedRead('contact', async () => {
+            const firestore = await getFirestoreOnly();
+            const { collection, getDocs } = await import('firebase/firestore/lite');
+            const querySnapshot = await getDocs(collection(firestore, COLLECTIONS.CONTACT));
+            return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        });
     },
 
     getById: async (id) => {

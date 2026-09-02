@@ -12,8 +12,9 @@ import Footer from "./Footer";
 import ScrollProgress from "./components/ScrollProgress";
 import FloatingActionButton from "./components/FloatingActionButton";
 
-// Above-fold: eager (LCP). Below-fold: lazy-split to shrink initial bundle.
-import MyPortofolio from "./pages/user/MyPortofolio";
+// All below-fold sections lazy-split to shrink initial bundle and defer Firestore fetches.
+// Hero is the only eager above-fold content (LCP).
+const MyPortofolio = lazy(() => import("./pages/user/MyPortofolio"));
 const SkillsSection = lazy(() => import("./components/SkillsSection"));
 const MyActivities = lazy(() => import("./pages/user/MyActivities"));
 const Contact = lazy(() => import("./pages/user/Contact"));
@@ -69,7 +70,9 @@ const HomePage = ({ scrollTo }) => {
       <ScrollProgress />
       <main id="main-content">
         <Hero />
-        <MyPortofolio />
+        <Suspense fallback={<SectionFallback />}>
+          <MyPortofolio />
+        </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <SkillsSection />
         </Suspense>

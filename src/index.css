@@ -192,19 +192,7 @@ section {
   background-size: 24px 24px;
 }
 
-.bg-grid-blueprint {
-  background-size: 24px 24px;
-  background-image: 
-    linear-gradient(to right, rgba(15, 23, 42, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
-}
 
-.dark .bg-grid-blueprint {
-  background-size: 24px 24px;
-  background-image: 
-    linear-gradient(to right, rgba(56, 189, 248, 0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(56, 189, 248, 0.12) 1px, transparent 1px);
-}
 
 /* Neo-Brutalism Tactile Hover Elevate */
 .nb-card-hover {
@@ -248,13 +236,39 @@ section {
   will-change: transform;
 }
 
-/* Drift - blueprint grid slow pan */
-@keyframes drift {
-  from { background-position: 0 0; }
-  to { background-position: 24px 24px; }
+/* Drift - blueprint grid slow pan (composited via transform on pseudo) */
+.bg-grid-blueprint {
+  position: relative;
+  isolation: isolate;
 }
-.animate-drift {
+.bg-grid-blueprint::before {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  background-size: 24px 24px;
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+  z-index: -1;
+  will-change: transform;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.dark .bg-grid-blueprint::before {
+  background-image:
+    linear-gradient(to right, rgba(56, 189, 248, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.12) 1px, transparent 1px);
+}
+@keyframes drift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(24px, 24px); }
+}
+.animate-drift::before {
   animation: drift 18s linear infinite;
+}
+/* Clip drift pseudo to rounded container without affecting outer overflow */
+.bg-grid-blueprint.animate-drift {
+  overflow: hidden;
 }
 
 /* Reveal-up - section titles & subtitles */
@@ -273,19 +287,30 @@ section {
 .reveal-delay-2 { animation-delay: 0.16s; }
 .reveal-delay-3 { animation-delay: 0.24s; }
 
-/* Shimmer skeleton */
+/* Shimmer skeleton - composited via transform (avoids background-position) */
 @keyframes shimmer {
-  0% { background-position: -400px 0; }
-  100% { background-position: 400px 0; }
+  100% { transform: translateX(100%); }
 }
 .shimmer-bg {
-  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 37%, #e5e7eb 63%);
-  background-size: 800px 100%;
+  position: relative;
+  overflow: hidden;
+  background: #e5e7eb;
+  isolation: isolate;
+}
+.shimmer-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, #f3f4f6 50%, transparent 100%);
+  transform: translateX(-100%);
   animation: shimmer 1.4s infinite linear;
+  will-change: transform;
 }
 .dark .shimmer-bg {
-  background: linear-gradient(90deg, #1e293b 25%, #334155 37%, #1e293b 63%);
-  background-size: 800px 100%;
+  background: #1e293b;
+}
+.dark .shimmer-bg::after {
+  background: linear-gradient(90deg, transparent 0%, #334155 50%, transparent 100%);
 }
 
 /* Filter cross-fade */
@@ -327,10 +352,10 @@ section {
 /* Respect user preference */
 @media (prefers-reduced-motion: reduce) {
   .animate-float,
-  .animate-drift,
+  .animate-drift::before,
   .animate-pulse-dot,
   .animate-marquee,
-  .shimmer-bg,
+  .shimmer-bg::after,
   .reveal.reveal-visible,
   .filter-enter {
     animation: none !important;

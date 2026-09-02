@@ -97,14 +97,16 @@ function Hero() {
           <div className="flex-shrink-0 flex justify-center">
             <div className="relative group animate-float">
               <img
-                src="/hero-fix.webp"
+                src="/hero-384.webp"
+                srcSet="/hero-224.webp 224w, /hero-256.webp 256w, /hero-320.webp 320w, /hero-384.webp 384w, /hero-480.webp 480w, /hero-640.webp 640w"
+                sizes="(max-width: 640px) 224px, (max-width: 768px) 256px, 384px"
                 alt="Urip Yoga Pangestu"
                 className="w-56 h-56 sm:w-64 sm:h-64 md:w-96 md:h-96 object-cover rounded-lg border-2 border-black dark:border-slate-300 shadow-[8px_8px_0_#0f172a] dark:shadow-[6px_6px_0px_0px_#ffffff] transition-transform duration-300 group-hover:-translate-y-1"
                 width="384"
                 height="384"
                 loading="eager"
                 fetchPriority="high"
-                decoding="async"
+                decoding="sync"
               />
             </div>
           </div>

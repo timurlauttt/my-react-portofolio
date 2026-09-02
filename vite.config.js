@@ -11,6 +11,9 @@ export default defineConfig({
   ],
   build: {
     target: 'es2020',
+    cssCodeSplit: true,
+    cssMinify: true,
+    minify: 'esbuild',
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -21,14 +24,16 @@ export default defineConfig({
             if (id.includes('firebase/analytics')) return 'firebase-analytics';
             if (id.includes('firebase')) return 'firebase-vendor';
             if (id.includes('react-router')) return 'react-router';
-            if (id.includes('react')) return 'react-vendor';
             if (id.includes('react-icons')) return 'react-icons';
-            if (id.includes('@heroicons') || id.includes('react-hook-form') || id.includes('react-markdown')) return 'ui-lib';
+            // Admin-only heavy deps: keep out of public initial bundle
+            if (id.includes('@heroicons') || id.includes('react-hook-form') || id.includes('react-markdown') || id.includes('@headlessui') || id.includes('rehype')) return 'admin-vendor';
+            if (id.includes('react')) return 'react-vendor';
             return 'vendor';
           }
         }
       }
-    }
+    },
+    chunkSizeWarningLimit: 600,
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom']

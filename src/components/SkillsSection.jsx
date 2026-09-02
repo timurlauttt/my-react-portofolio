@@ -14,18 +14,18 @@ const SKY_SHADES = [
 ];
 
 const FALLBACK_ICONS = Object.freeze({
-    'Laravel': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg',
-    'Django': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-original.svg',
-    'React': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-    'JavaScript': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
-    'PHP': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
-    'Tailwind CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
-    'HTML5': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
-    'CSS3': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
-    'MySQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
-    'Git': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-    'Python': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
-    'Bootstrap': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg'
+    'Laravel': '/icons/laravel.svg',
+    'Django': '/icons/django.svg',
+    'React': '/icons/react.svg',
+    'JavaScript': '/icons/javascript.svg',
+    'PHP': '/icons/php.svg',
+    'Tailwind CSS': '/icons/tailwindcss.svg',
+    'HTML5': '/icons/html5.svg',
+    'CSS3': '/icons/css3.svg',
+    'MySQL': '/icons/mysql.svg',
+    'Git': '/icons/git.svg',
+    'Python': '/icons/python.svg',
+    'Bootstrap': '/icons/bootstrap.svg'
 });
 
 const SKILL_DETAILS = Object.freeze({
@@ -74,7 +74,7 @@ const SkillIcon = React.memo(({ skill, delay = 0, index = 0 }) => {
         };
     }, [delay]);
 
-    const getFallbackIcon = (skillName) => FALLBACK_ICONS[skillName] || `https://via.placeholder.com/48/374151/FFFFFF?text=${skillName.charAt(0)}`;
+    const getFallbackIcon = (skillName) => FALLBACK_ICONS[skillName] || `/icons/${skillName.toLowerCase().replace(/\s+/g, '')}.svg`;
     const headerColor = SKY_SHADES[index % SKY_SHADES.length];
     const detail = SKILL_DETAILS[skill.name] || { category: 'Tech Skill', proficiency: 'skillLevelIntermediate' };
 
