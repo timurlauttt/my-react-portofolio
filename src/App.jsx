@@ -13,6 +13,7 @@ import ScrollProgress from "./components/ScrollProgress";
 import FloatingActionButton from "./components/FloatingActionButton";
 import { useInView } from "./hooks/usePerformance";
 import { AuthProvider } from "./contexts/AuthContext";
+import UnderConstruction from "./pages/UnderConstruction";
 
 // All below-fold sections lazy-split to shrink initial bundle and defer Firestore fetches.
 // Hero is the only eager above-fold content (LCP).
@@ -59,6 +60,8 @@ const PAGE_TITLES = {
 };
 const DEFAULT_TITLE = "Urip Yoga Pangestu - Portfolio Web Developer | Mahasiswa Sistem Informasi Telkom University Purwokerto";
 
+const UNDER_CONSTRUCTION = true; // toggle off setelah gambar diperbaiki
+
 const HomePage = ({ scrollTo }) => {
   useEffect(() => {
     document.title = scrollTo ? (PAGE_TITLES[scrollTo] || DEFAULT_TITLE) : DEFAULT_TITLE;
@@ -76,6 +79,10 @@ const HomePage = ({ scrollTo }) => {
       return () => clearTimeout(timer);
     }
   }, [scrollTo]);
+
+  if (UNDER_CONSTRUCTION) {
+    return <UnderConstruction />;
+  }
 
   return (
     <div className="relative">
