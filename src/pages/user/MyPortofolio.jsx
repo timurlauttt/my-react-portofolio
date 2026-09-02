@@ -6,6 +6,24 @@ import { portfolioService } from '../../services/serviceWrapper';
 import { getTranslatedPortfolio } from '../../utils/dynamicTranslations';
 import { useReveal } from '../../hooks/usePerformance';
 
+const PLACEHOLDER_IMAGE = '/images/placeholder.svg';
+
+// Resolve portfolio image: after Firestore cleanup base64 was removed, only filename remains
+// which points to non-existent Storage object. Fallback to placeholder to avoid 404.
+function resolvePortfolioImage(portfolio) {
+    const candidates = [portfolio.downloadURL, portfolio.imageUrl, portfolio.image, portfolio.downloadURL || portfolio.imageUrl];
+    for (const c of candidates) {
+        if (!c || typeof c !== 'string') continue;
+        const s = c.trim();
+        if (!s) continue;
+        if (s.startsWith('data:') || s.startsWith('http://') || s.startsWith('https://') || s.startsWith('blob:')) return s;
+        if (s.startsWith('/') && (s.endsWith('.webp') || s.endsWith('.png') || s.endsWith('.jpg') || s.endsWith('.jpeg') || s.endsWith('.svg'))) return s;
+        // bare filename like "1769233410750_xxx.webp" -> Storage object doesn't exist, fallback
+        if (/^[\w-]+\.(webp|png|jpg|jpeg)$/i.test(s)) return PLACEHOLDER_IMAGE;
+    }
+    return PLACEHOLDER_IMAGE;
+}
+
 function MyPortfolio() {
     const { t, lang } = useLanguage();
     const [portfolioData, setPortfolioData] = useState([]);
@@ -127,7 +145,7 @@ function MyPortfolio() {
                             return (
                                 <PortfolioCard
                                     key={portfolio.id || index}
-                                    image={portfolio.downloadURL || portfolio.imageUrl || portfolio.image}
+                                    image={resolvePortfolioImage(portfolio)}
                                     title={translated.title}
                                     description={translated.description}
                                     longDescription={translated.longDescription}

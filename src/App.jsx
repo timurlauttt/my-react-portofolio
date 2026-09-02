@@ -11,6 +11,8 @@ import Hero from "./Hero";
 import Footer from "./Footer";
 import ScrollProgress from "./components/ScrollProgress";
 import FloatingActionButton from "./components/FloatingActionButton";
+import { useInView } from "./hooks/usePerformance";
+import { AuthProvider } from "./contexts/AuthContext";
 
 // All below-fold sections lazy-split to shrink initial bundle and defer Firestore fetches.
 // Hero is the only eager above-fold content (LCP).
@@ -20,7 +22,18 @@ const MyActivities = lazy(() => import("./pages/user/MyActivities"));
 const Contact = lazy(() => import("./pages/user/Contact"));
 const AboutMe = lazy(() => import("./pages/user/AboutMe"));
 
-import { AuthProvider } from "./contexts/AuthContext";
+const DeferredSection = ({ children, minH = "min-h-[240px]", fallback = null }) => {
+  const [isInView, setRef] = useInView({ rootMargin: "600px 0px" });
+  return (
+    <div ref={setRef} className={isInView ? undefined : minH}>
+      {isInView ? (
+        <Suspense fallback={fallback || <SectionFallback minH={minH} />}>{children}</Suspense>
+      ) : (
+        fallback || <SectionFallback minH={minH} />
+      )}
+    </div>
+  );
+};
 const AdminRoutes = lazy(() => import("./routes/AdminRoutes"));
 
 const SectionFallback = ({ minH = "min-h-[240px]" }) => (
@@ -70,21 +83,11 @@ const HomePage = ({ scrollTo }) => {
       <ScrollProgress />
       <main id="main-content">
         <Hero />
-        <Suspense fallback={<SectionFallback />}>
-          <MyPortofolio />
-        </Suspense>
-        <Suspense fallback={<SectionFallback />}>
-          <SkillsSection />
-        </Suspense>
-        <Suspense fallback={<SectionFallback />}>
-          <MyActivities />
-        </Suspense>
-        <Suspense fallback={<SectionFallback />}>
-          <Contact />
-        </Suspense>
-        <Suspense fallback={<SectionFallback minH="min-h-[180px]" />}>
-          <AboutMe />
-        </Suspense>
+        <DeferredSection><MyPortofolio /></DeferredSection>
+        <DeferredSection><SkillsSection /></DeferredSection>
+        <DeferredSection><MyActivities /></DeferredSection>
+        <DeferredSection><Contact /></DeferredSection>
+        <DeferredSection minH="min-h-[180px]"><AboutMe /></DeferredSection>
       </main>
       <Footer />
       <FloatingActionButton />

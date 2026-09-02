@@ -106,7 +106,7 @@ function Hero() {
                 height="384"
                 loading="eager"
                 fetchPriority="high"
-                decoding="sync"
+                decoding="async"
               />
             </div>
           </div>

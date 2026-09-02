@@ -1,7 +1,7 @@
 import { imageUploadService } from './imageUploadService';
 
 // ---------- Lightweight client-side cache for Firestore reads ----------
-// Firestore payload was the #1 PSI issue (5 MB). Cache avoids re-fetching
+// Firestore payload was 5 MB before cleanup (now ~56 KiB total). Cache avoids re-fetching
 // on every navigation / re-mount and survives soft navigations.
 const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
 const _cache = new Map(); // key -> { data, ts }
@@ -13,15 +13,6 @@ function getCached(key) {
 }
 function setCached(key, data) { _cache.set(key, { data, ts: Date.now() }); }
 
-// Defer work until browser is idle (or after a short timeout) so LCP is not blocked.
-function onIdle(cb) {
-    if ('requestIdleCallback' in window) {
-        requestIdleCallback(cb, { timeout: 2000 });
-    } else {
-        setTimeout(cb, 800);
-    }
-}
-
 // Read-only helper: Firestore rules allow public reads on every collection below,
 // so read paths never need to touch Firebase Auth (avoids loading the auth SDK
 // and attempting anonymous sign-in on public pages).
@@ -30,33 +21,15 @@ async function getFirestoreOnly() {
     return await mod.getFirestoreInstance();
 }
 
-// Wrap a Firestore read with cache + idle deferral.
-// `key` is the cache key, `fetcher` is an async function that does the actual read.
+// Cache-only wrapper (no idle deferral). Viewport deferral is handled by
+// DeferredSection in App.jsx via IntersectionObserver, so Firestore fetches
+// only start when the section is near viewport — not on initial load.
 async function cachedRead(key, fetcher) {
     const cached = getCached(key);
     if (cached) return cached;
-    // If browser is still in LCP window, wait for idle before hitting network.
-    // We still return a promise so callers can await; just the network is deferred.
-    const doFetch = async () => {
-        const data = await fetcher();
-        setCached(key, data);
-        return data;
-    };
-    // If document is already interactive/complete, fetch immediately (user already scrolled).
-    if (document.readyState === 'complete') {
-        return doFetch();
-    }
-    // Defer to idle, but with a 1.2s cap so below-fold sections still populate reasonably fast.
-    return new Promise((resolve, reject) => {
-        let done = false;
-        const run = async () => {
-            if (done) return;
-            done = true;
-            try { resolve(await doFetch()); } catch (e) { reject(e); }
-        };
-        onIdle(run);
-        setTimeout(run, 1200);
-    });
+    const data = await fetcher();
+    setCached(key, data);
+    return data;
 }
 
 // Write helper: Firestore rules require request.auth != null for write/delete.

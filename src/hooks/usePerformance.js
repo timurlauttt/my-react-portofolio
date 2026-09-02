@@ -131,6 +131,26 @@ export const useReveal = (threshold = 0.15) => {
     return [isVisible, setRef];
 };
 
+// Hook for deferring below-fold sections until near viewport (fixes critical path 1985ms)
+export const useInView = (options = {}) => {
+    const { rootMargin = '400px 0px', threshold = 0, triggerOnce = true } = options;
+    const [isInView, setIsInView] = useState(false);
+    const setRef = useCallback((node) => {
+        if (!node) return;
+        if (isInView && triggerOnce) return;
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setIsInView(true);
+                if (triggerOnce) observer.disconnect();
+            } else if (!triggerOnce) {
+                setIsInView(false);
+            }
+        }, { rootMargin, threshold });
+        observer.observe(node);
+    }, [rootMargin, threshold, triggerOnce, isInView]);
+    return [isInView, setRef];
+};
+
 // Hook for local storage
 export const useLocalStorage = (key, initialValue) => {
     const [storedValue, setStoredValue] = useState(() => {
