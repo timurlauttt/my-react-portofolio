@@ -7,7 +7,7 @@ const UPLOAD_MODE = {
 };
 
 // Pilih mode upload (change ini untuk switch service)
-const CURRENT_MODE = UPLOAD_MODE.LOCAL; // Change to FIREBASE if you want Firebase
+const CURRENT_MODE = UPLOAD_MODE.FIREBASE;
 
 // Ensure user is authenticated before upload (for Firebase)
 const ensureAuth = async (auth) => {
