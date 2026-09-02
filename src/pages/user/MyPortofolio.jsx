@@ -8,19 +8,45 @@ import { useReveal } from '../../hooks/usePerformance';
 
 const PLACEHOLDER_IMAGE = '/images/placeholder.svg';
 
-// Resolve portfolio image: after Firestore cleanup base64 was removed, only filename remains
-// which points to non-existent Storage object. Fallback to placeholder to avoid 404.
+// Map known portfolio titles to local public images (fallback after Firestore base64 cleanup)
+const LOCAL_PORTFOLIO_IMAGES = {
+    'lowcosthost': '/selis.webp',
+    'selis': '/selis.webp',
+    'blog website': '/questify.webp',
+    'questify': '/questify.webp',
+    'capstone': '/pkl.webp',
+    'e-catalog': '/pkl.webp',
+    'e-learning': '/elearning.webp',
+    'elearning': '/elearning.webp',
+    'photobooth': '/github.webp',
+    'github profile': '/github1.webp',
+    'smk taman siswa': '/selis.webp',
+    'wedding': '/github.webp',
+    'hit e-tracer': '/pkl.webp',
+    'e-tracer': '/pkl.webp',
+    'msib': '/questify.webp',
+};
+
 function resolvePortfolioImage(portfolio) {
-    const candidates = [portfolio.downloadURL, portfolio.imageUrl, portfolio.image, portfolio.downloadURL || portfolio.imageUrl];
+    const candidates = [portfolio.downloadURL, portfolio.imageUrl];
     for (const c of candidates) {
         if (!c || typeof c !== 'string') continue;
         const s = c.trim();
         if (!s) continue;
         if (s.startsWith('data:') || s.startsWith('http://') || s.startsWith('https://') || s.startsWith('blob:')) return s;
         if (s.startsWith('/') && (s.endsWith('.webp') || s.endsWith('.png') || s.endsWith('.jpg') || s.endsWith('.jpeg') || s.endsWith('.svg'))) return s;
-        // bare filename like "1769233410750_xxx.webp" -> Storage object doesn't exist, fallback
-        if (/^[\w-]+\.(webp|png|jpg|jpeg)$/i.test(s)) return PLACEHOLDER_IMAGE;
     }
+    // image field is bare filename like "1769233410750_xxx.webp" -> Storage object doesn't exist
+    // Fallback to local mapping by title
+    const title = (portfolio.title || '').toLowerCase();
+    for (const [key, path] of Object.entries(LOCAL_PORTFOLIO_IMAGES)) {
+        if (title.includes(key)) return path;
+    }
+    // Also check image filename hint
+    const img = (portfolio.image || '').toLowerCase();
+    if (img.includes('selis')) return '/selis.webp';
+    if (img.includes('questify')) return '/questify.webp';
+    if (img.includes('pkl') || img.includes('elearning')) return '/pkl.webp';
     return PLACEHOLDER_IMAGE;
 }
 
