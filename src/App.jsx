@@ -60,7 +60,7 @@ const PAGE_TITLES = {
 };
 const DEFAULT_TITLE = "Urip Yoga Pangestu - Portfolio Web Developer | Mahasiswa Sistem Informasi Telkom University Purwokerto";
 
-const UNDER_CONSTRUCTION = false; // images restored - portfolio now uses local /public assets
+const UNDER_CONSTRUCTION = true;
 
 const HomePage = ({ scrollTo }) => {
   useEffect(() => {
