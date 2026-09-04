@@ -290,8 +290,8 @@ const MyActivities = () => {
                                 </div>
                             )}
 
-                            <div id="activity-modal-desc" className="mt-4 text-gray-700 dark:text-gray-300 text-justify">
-                                <p>{modalTranslated.fullDescription}</p>
+                            <div id="activity-modal-desc" className="mt-4 text-slate-700 dark:text-slate-300">
+                                <p className="whitespace-pre-wrap leading-relaxed">{modalTranslated.fullDescription}</p>
                             </div>
 
                             {/* Skills */}

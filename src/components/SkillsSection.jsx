@@ -17,7 +17,16 @@ const FALLBACK_ICONS = Object.freeze({
     'Laravel': '/icons/laravel.svg',
     'Django': '/icons/django.svg',
     'React': '/icons/react.svg',
+    'React.js': '/icons/react.svg',
     'JavaScript': '/icons/javascript.svg',
+    'JavaScript(ES6+)': '/icons/javascript.svg',
+    'cPanel': '/icons/cpanel.svg',
+    'Cpanel': '/icons/cpanel.svg',
+    'Nginx': '/icons/nginx.svg',
+    'GitHub Actions': '/icons/githubactions.svg',
+    'Cloudflare': '/icons/cloudflare.svg',
+    'Linux': '/icons/linux.svg',
+    'Podman': '/icons/podman.svg',
     'PHP': '/icons/php.svg',
     'Tailwind CSS': '/icons/tailwindcss.svg',
     'HTML5': '/icons/html5.svg',
@@ -32,7 +41,16 @@ const SKILL_DETAILS = Object.freeze({
     'Laravel': { category: 'Backend Framework', proficiency: 'skillLevelProficient' },
     'Django': { category: 'Backend Framework', proficiency: 'skillLevelProficient' },
     'React': { category: 'Frontend Library', proficiency: 'skillLevelProficient' },
+    'React.js': { category: 'Frontend Library', proficiency: 'skillLevelProficient' },
     'JavaScript': { category: 'Core Language', proficiency: 'skillLevelProficient' },
+    'JavaScript(ES6+)': { category: 'Core Language', proficiency: 'skillLevelProficient' },
+    'cPanel': { category: 'Web Hosting / Server', proficiency: 'skillLevelProficient' },
+    'Cpanel': { category: 'Web Hosting / Server', proficiency: 'skillLevelProficient' },
+    'Nginx': { category: 'Web Server / Reverse Proxy', proficiency: 'skillLevelProficient' },
+    'GitHub Actions': { category: 'CI/CD & Automation', proficiency: 'skillLevelProficient' },
+    'Cloudflare': { category: 'DNS, CDN & SSL Security', proficiency: 'skillLevelProficient' },
+    'Linux': { category: 'Server Operating System', proficiency: 'skillLevelProficient' },
+    'Podman': { category: 'Containerization / DevOps', proficiency: 'skillLevelProficient' },
     'PHP': { category: 'Core Language', proficiency: 'skillLevelProficient' },
     'Tailwind CSS': { category: 'CSS Framework', proficiency: 'skillLevelProficient' },
     'HTML5': { category: 'Markup Language', proficiency: 'skillLevelProficient' },
@@ -42,6 +60,29 @@ const SKILL_DETAILS = Object.freeze({
     'Python': { category: 'Core Language', proficiency: 'skillLevelIntermediate' },
     'Bootstrap': { category: 'CSS Framework', proficiency: 'skillLevelIntermediate' }
 });
+
+const normalizeSkillKey = (name = '') => {
+    const s = String(name).toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (s.includes('react')) return 'React';
+    if (s.includes('javascript') || s.includes('js')) return 'JavaScript';
+    if (s.includes('cpanel')) return 'cPanel';
+    if (s.includes('django')) return 'Django';
+    if (s.includes('laravel')) return 'Laravel';
+    if (s.includes('nginx')) return 'Nginx';
+    if (s.includes('githubaction') || s.includes('cicd')) return 'GitHub Actions';
+    if (s.includes('cloudflare')) return 'Cloudflare';
+    if (s.includes('linux') || s.includes('ubuntu')) return 'Linux';
+    if (s.includes('podman')) return 'Podman';
+    if (s.includes('tailwind')) return 'Tailwind CSS';
+    if (s.includes('bootstrap')) return 'Bootstrap';
+    if (s.includes('html')) return 'HTML5';
+    if (s.includes('css')) return 'CSS3';
+    if (s.includes('mysql')) return 'MySQL';
+    if (s.includes('git')) return 'Git';
+    if (s.includes('python')) return 'Python';
+    if (s.includes('php')) return 'PHP';
+    return name;
+};
 
 const SkillIcon = React.memo(({ skill, delay = 0, index = 0 }) => {
     const { t } = useLanguage();
@@ -74,9 +115,12 @@ const SkillIcon = React.memo(({ skill, delay = 0, index = 0 }) => {
         };
     }, [delay]);
 
-    const getFallbackIcon = (skillName) => FALLBACK_ICONS[skillName] || `/icons/${skillName.toLowerCase().replace(/\s+/g, '')}.svg`;
+    const getFallbackIcon = (skillName) => {
+        const norm = normalizeSkillKey(skillName);
+        return FALLBACK_ICONS[norm] || FALLBACK_ICONS[skillName] || `/icons/${skillName.toLowerCase().replace(/[^a-z0-9]/g, '')}.svg`;
+    };
     const headerColor = SKY_SHADES[index % SKY_SHADES.length];
-    const detail = SKILL_DETAILS[skill.name] || { category: 'Tech Skill', proficiency: 'skillLevelIntermediate' };
+    const detail = SKILL_DETAILS[skill.name] || SKILL_DETAILS[normalizeSkillKey(skill.name)] || { category: 'Tech Skill', proficiency: 'skillLevelIntermediate' };
 
     // Portal + fixed positioning: escapes card's transform containing block so tooltip never gets clipped
     useLayoutEffect(() => {
@@ -117,18 +161,31 @@ const SkillIcon = React.memo(({ skill, delay = 0, index = 0 }) => {
         };
     }, [showTooltip]);
 
+    const isTouchRef = useRef(false);
+
+    const handleTouchStart = () => {
+        isTouchRef.current = true;
+    };
+
     const handleEnter = () => {
+        if (isTouchRef.current) return;
         if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
         setShowTooltip(true);
     };
+
     const handleLeave = () => {
+        if (isTouchRef.current) return;
         if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
         hideTimerRef.current = setTimeout(() => setShowTooltip(false), 120);
     };
+
     const handleClick = () => {
-        setShowTooltip(prev => !prev);
         if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
-        hideTimerRef.current = setTimeout(() => setShowTooltip(false), 2800);
+        setShowTooltip(true);
+        hideTimerRef.current = setTimeout(() => {
+            setShowTooltip(false);
+            isTouchRef.current = false;
+        }, 3000);
     };
 
     useEffect(() => () => { if (hideTimerRef.current) clearTimeout(hideTimerRef.current); }, []);
@@ -153,6 +210,7 @@ const SkillIcon = React.memo(({ skill, delay = 0, index = 0 }) => {
         <>
             <div
                 ref={ref}
+                onTouchStart={handleTouchStart}
                 onMouseEnter={handleEnter}
                 onMouseLeave={handleLeave}
                 onClick={handleClick}

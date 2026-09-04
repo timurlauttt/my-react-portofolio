@@ -49,7 +49,7 @@ function AboutMe() {
 
     const getSkillsDesc = () => {
         if (lang === 'id') return skillsItem?.description_id || (!skillsItem?.description || skillsItem?.description?.includes('PHP-based frameworks') ? t('mySkillsDesc') : skillsItem?.description);
-        return skillsItem?.description || t('mySkillsDesc');
+        return (!skillsItem?.description || skillsItem?.description?.includes('PHP-based frameworks') ? t('mySkillsDesc') : skillsItem?.description);
     };
 
     const getHobbiesTitle = () => {

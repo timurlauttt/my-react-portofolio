@@ -127,11 +127,11 @@ const AdminSkillsForm = () => {
                         Icon URL
                     </label>
                     <input
-                        type="url"
+                        type="text"
                         id="icon"
-                        {...register('icon', { required: 'Icon URL is required' })}
+                        {...register('icon', { required: 'Icon path/URL is required' })}
                         className="mt-1 block w-full p-4 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        placeholder="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                        placeholder="/icons/nginx.svg or https://..."
                     />
                     <p className="mt-1 text-sm text-gray-500">
                         Enter the URL of the skill icon (SVG recommended)

@@ -10,6 +10,7 @@ const PLACEHOLDER_IMAGE = '/images/placeholder.svg';
 
 // Map known portfolio titles to local public images (fallback after Firestore base64 cleanup)
 const LOCAL_PORTFOLIO_IMAGES = {
+    'pancacinta': '/elearning.webp',
     'lowcosthost': '/selis.webp',
     'selis': '/selis.webp',
     'blog website': '/questify.webp',
@@ -96,7 +97,7 @@ function MyPortfolio() {
             return cat.includes('capstone') || cat.includes('academic') || cat.includes('grant') || title.includes('capstone') || title.includes('msib') || title.includes('current') || title.includes('e-catalog') || title.includes('tracer') || title.includes('partnership');
         }
         if (filterKey === 'webapp') {
-            return cat.includes('web') || cat.includes('app') || cat.includes('open') || title.includes('app') || title.includes('blog') || title.includes('host') || title.includes('tracer') || title.includes('project') || tech.includes('react') || tech.includes('laravel');
+            return cat.includes('web') || cat.includes('app') || cat.includes('open') || title.includes('pancacinta') || title.includes('elearning') || title.includes('e-learning') || title.includes('app') || title.includes('blog') || title.includes('host') || title.includes('tracer') || title.includes('project') || tech.includes('react') || tech.includes('laravel');
         }
         return true;
     };

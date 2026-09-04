@@ -19,28 +19,93 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    const visible = new Set();
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          e.isIntersecting ? visible.add(e.target.id) : visible.delete(e.target.id);
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY || window.pageYOffset;
+          const windowHeight = window.innerHeight;
+          const documentHeight = document.documentElement.scrollHeight;
+
+          // If scrolled near bottom of page (About section), highlight 'about'
+          if (scrollY + windowHeight >= documentHeight - 60) {
+            setActiveSection("about");
+            ticking = false;
+            return;
+          }
+
+          // If at top of the page (hero), no navbar button is active
+          if (scrollY < 120) {
+            setActiveSection("");
+            ticking = false;
+            return;
+          }
+
+          const navOffset = 160;
+          let current = "";
+
+          // Check sections in order from top to bottom
+          for (const item of navItems) {
+            const id = item.href.replace("#", "");
+            const el = document.getElementById(id);
+            if (el) {
+              const rect = el.getBoundingClientRect();
+              if (rect.top <= navOffset && rect.bottom > navOffset) {
+                current = id;
+                break;
+              }
+            }
+          }
+
+          // Fallback: nearest section above viewport
+          if (!current) {
+            let closestId = "";
+            let minTopDistance = Infinity;
+
+            for (const item of navItems) {
+              const id = item.href.replace("#", "");
+              const el = document.getElementById(id);
+              if (el) {
+                const rect = el.getBoundingClientRect();
+                if (rect.top <= navOffset) {
+                  const dist = navOffset - rect.top;
+                  if (dist >= 0 && dist < minTopDistance) {
+                    minTopDistance = dist;
+                    closestId = id;
+                  }
+                }
+              }
+            }
+            if (closestId) current = closestId;
+          }
+
+          setActiveSection(current);
+          ticking = false;
         });
-        let active = "";
-        for (const id of allIds) { if (visible.has(id)) active = id === "home" ? "" : id; }
-        setActiveSection(active);
-      },
-      { rootMargin: "-60px 0px -50% 0px", threshold: 0 }
-    );
-    const timer = setTimeout(() => {
-      allIds.forEach((id) => { const el = document.getElementById(id); if (el) observer.observe(el); });
-    }, 50);
-    return () => { clearTimeout(timer); observer.disconnect(); };
+        ticking = true;
+      }
+    };
+
+    // Run initial check and bind listeners
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, []);
 
   const scrollTo = useCallback((e, href) => {
     e.preventDefault();
-    const el = document.getElementById(href.replace("#", ""));
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    const id = href.replace("#", "");
+    setActiveSection(id);
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
     setIsMenuOpen(false);
   }, []);
 

@@ -23,12 +23,18 @@ const MyActivities = lazy(() => import("./pages/user/MyActivities"));
 const Contact = lazy(() => import("./pages/user/Contact"));
 const AboutMe = lazy(() => import("./pages/user/AboutMe"));
 
-const DeferredSection = ({ children, minH = "min-h-[240px]", fallback = null }) => {
+const DeferredSection = ({
+  children,
+  minH = "min-h-[240px]",
+  fallback = null,
+}) => {
   const [isInView, setRef] = useInView({ rootMargin: "600px 0px" });
   return (
     <div ref={setRef} className={isInView ? undefined : minH}>
       {isInView ? (
-        <Suspense fallback={fallback || <SectionFallback minH={minH} />}>{children}</Suspense>
+        <Suspense fallback={fallback || <SectionFallback minH={minH} />}>
+          {children}
+        </Suspense>
       ) : (
         fallback || <SectionFallback minH={minH} />
       )}
@@ -38,13 +44,18 @@ const DeferredSection = ({ children, minH = "min-h-[240px]", fallback = null }) 
 const AdminRoutes = lazy(() => import("./routes/AdminRoutes"));
 
 const SectionFallback = ({ minH = "min-h-[240px]" }) => (
-  <div className={`${minH} flex items-center justify-center px-4 md:px-40 py-8`}>
+  <div
+    className={`${minH} flex items-center justify-center px-4 md:px-40 py-8`}
+  >
     <div className="w-full max-w-3xl space-y-3">
       <div className="h-6 w-40 mx-auto shimmer-bg rounded" />
       <div className="h-4 w-full shimmer-bg rounded" />
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
         {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className="aspect-square shimmer-bg rounded border-2 border-black/10" />
+          <div
+            key={i}
+            className="aspect-square shimmer-bg rounded border-2 border-black/10"
+          />
         ))}
       </div>
     </div>
@@ -54,20 +65,24 @@ const SectionFallback = ({ minH = "min-h-[240px]" }) => (
 const PAGE_TITLES = {
   portfolio: "Portfolio — Urip Yoga Pangestu | Web Developer",
   skills: "Skills — Urip Yoga Pangestu | Laravel, React, Django",
-  activities: "Activities — Urip Yoga Pangestu | Organizations & Certifications",
+  activities:
+    "Activities — Urip Yoga Pangestu | Organizations & Certifications",
   contact: "Contact — Urip Yoga Pangestu | Let's Collaborate",
   about: "About — Urip Yoga Pangestu | Information Systems Student",
 };
-const DEFAULT_TITLE = "Urip Yoga Pangestu - Portfolio Web Developer | Mahasiswa Sistem Informasi Telkom University Purwokerto";
+const DEFAULT_TITLE =
+  "Urip Yoga Pangestu - Portfolio Web Developer | Mahasiswa Sistem Informasi Telkom University Purwokerto";
 
-const UNDER_CONSTRUCTION = true;
+const UNDER_CONSTRUCTION = false;
 
 const HomePage = ({ scrollTo }) => {
   useEffect(() => {
-    document.title = scrollTo ? (PAGE_TITLES[scrollTo] || DEFAULT_TITLE) : DEFAULT_TITLE;
+    document.title = scrollTo
+      ? PAGE_TITLES[scrollTo] || DEFAULT_TITLE
+      : DEFAULT_TITLE;
     // Keep OG title in sync for crawlers that read DOM
     const og = document.querySelector('meta[property="og:title"]');
-    if (og) og.setAttribute('content', document.title);
+    if (og) og.setAttribute("content", document.title);
   }, [scrollTo]);
 
   useEffect(() => {
@@ -90,11 +105,21 @@ const HomePage = ({ scrollTo }) => {
       <ScrollProgress />
       <main id="main-content">
         <Hero />
-        <DeferredSection><MyPortofolio /></DeferredSection>
-        <DeferredSection><SkillsSection /></DeferredSection>
-        <DeferredSection><MyActivities /></DeferredSection>
-        <DeferredSection><Contact /></DeferredSection>
-        <DeferredSection minH="min-h-[180px]"><AboutMe /></DeferredSection>
+        <DeferredSection>
+          <MyPortofolio />
+        </DeferredSection>
+        <DeferredSection>
+          <SkillsSection />
+        </DeferredSection>
+        <DeferredSection>
+          <MyActivities />
+        </DeferredSection>
+        <DeferredSection>
+          <Contact />
+        </DeferredSection>
+        <DeferredSection minH="min-h-[180px]">
+          <AboutMe />
+        </DeferredSection>
       </main>
       <Footer />
       <FloatingActionButton />
@@ -117,10 +142,19 @@ function App() {
             <Toaster position="top-right" />
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/portfolio" element={<HomePage scrollTo="portfolio" />} />
+              <Route
+                path="/portfolio"
+                element={<HomePage scrollTo="portfolio" />}
+              />
               <Route path="/skills" element={<HomePage scrollTo="skills" />} />
-              <Route path="/activities" element={<HomePage scrollTo="activities" />} />
-              <Route path="/contact" element={<HomePage scrollTo="contact" />} />
+              <Route
+                path="/activities"
+                element={<HomePage scrollTo="activities" />}
+              />
+              <Route
+                path="/contact"
+                element={<HomePage scrollTo="contact" />}
+              />
               <Route path="/about" element={<HomePage scrollTo="about" />} />
               <Route
                 path="/admin/*"

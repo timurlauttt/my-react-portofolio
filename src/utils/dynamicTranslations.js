@@ -75,62 +75,62 @@ const PORTFOLIO_DICTIONARY = {
     // [P1] ID: 10 - GitHub Profile
     "10": {
         title: "Profil & Repositori GitHub",
-        description: "Kumpulan repositori dan proyek yang telah saya buat di GitHub, beberapa mungkin tidak terlihat karena bersifat privat.",
-        longDescription: "Koleksi proyek open source, eksperimen teknologi, dan repositori kode yang telah saya kembangkan dan bagikan di profil GitHub saya."
+        description: "Kumpulan repositori kode, aktivitas open-source, dan proyek teknologi yang saya kembangkan dan publikasikan di GitHub.",
+        longDescription: "Koleksi repositori kode, proyek open-source, dan eksplorasi arsitektur perangkat lunak yang telah saya bangun dan bagikan di profil GitHub saya.\n\nFitur Utama:\n- Repositori Open-Source: Beragam proyek aplikasi web modern, eksperimen arsitektur backend, dan antarmuka front-end responsif.\n- Arsitektur Multi-Stack: Portofolio kode mencakup Laravel, React.js, Django, Tailwind CSS, serta integrasi database MySQL & PostgreSQL.\n- Otomasi CI/CD & DevOps: Implementasi pipeline GitHub Actions untuk pengujian otomatis, linting kode, dan deployment server.\n- Dokumentasi Kode Rapi: Struktur repositori modular yang dilengkapi README komprehensif, panduan instalasi, dan lisensi terbuka."
     },
-    // [P2] ID: 4 - Current Project (eLearning)
+    // [P2] ID: 4 - Pancacinta (E-Learning & School Management)
     "4": {
-        title: "Proyek Saat Ini (E-Learning)",
-        description: "Untuk proyek ini, saya sedang mengerjakan aplikasi e-learning yang direncanakan selesai pada bulan Agustus, namun karena privasi beberapa konten disembunyikan.",
-        longDescription: "Aplikasi e-learning berbasis web yang sedang aktif dikembangkan untuk mendukung kegiatan belajar mengajar online secara interaktif dan terstruktur."
+        title: "Pancacinta - Platform Manajemen Sekolah & E-Learning",
+        description: "Pancacinta adalah platform evaluasi dan manajemen sekolah multi-peran komprehensif yang dirancang dengan sistem akses bertingkat untuk Superadmin, Admin, Guru, Siswa, dan Orang Tua (Wali Siswa).",
+        longDescription: "Pancacinta adalah platform evaluasi dan manajemen sekolah multi-peran komprehensif yang dirancang dengan sistem akses bertingkat untuk Superadmin, Admin, Guru, Siswa, dan Orang Tua (Wali Siswa).\n\nFitur Utama:\n- Laporan Aktivitas Mingguan: Siswa mengunggah bukti foto terverifikasi berdasarkan minggu kalender ISO 8601, dengan jadwal pelaporan yang dikontrol admin (misalnya penyesuaian libur semester).\n- Engine Ujian Online: Dilengkapi timer hitung mundur dengan verifikasi waktu sisi server, penyimpanan otomatis per soal, pengacakan soal & opsi jawaban, pengelompokan soal wacana/bacaan, serta kalkulasi nilai dan peringkat otomatis secara instan.\n- Pelacak Prestasi: Pencatatan portofolio prestasi terpusat dengan bukti foto dan unggah sertifikat PDF, dipantau dan dimoderasi per kelas.\n- Operasi Massal: Templat impor/ekspor Excel massal untuk data siswa, guru, wali murid, dan bank soal ujian dengan umpan balik validasi baris demi baris.\n- PWA & Notifikasi Web Push: Progressive Web App yang dapat diinstal dengan fallback offline dan pengingat push otomatis setiap hari Jumat untuk siswa yang belum mengirim laporan.\n- Penyimpanan Cloud & Performa: Kompresi gambar WebP otomatis secara on-the-fly dengan integrasi penyimpanan Cloudflare R2 (kompatibel S3)."
     },
     // [P3] ID: 8 - Selis Molis Hoki
     "8": {
         title: "Website Bengkel Selis Molis Hoki",
-        description: "Ini adalah proyek pertama saya, membuat website profil dan layanan untuk bengkel sepeda dan motor listrik milik teman saya.",
-        longDescription: "Ini adalah proyek nyata pertama saya, yang melibatkan perancangan dan pengembangan website untuk bengkel sepeda dan motor listrik teman saya. Website ini dibuat untuk membangun kehadiran online bisnis, memberikan informasi yang jelas tentang layanan perbaikan, perkiraan biaya, dan detail kontak. Melalui proyek ini, saya menerjemahkan kebutuhan bisnis ke dalam website fungsional dengan desain yang bersih dan mudah digunakan."
+        description: "Website profil usaha dan katalog layanan untuk bengkel sepeda dan motor listrik guna memperluas jangkauan dan kepercayaan pelanggan.",
+        longDescription: "Proyek nyata pertama saya dalam merancang dan mengembangkan website profil bisnis untuk bengkel sepeda dan motor listrik teman saya guna membangun kehadiran online yang profesional dan informatif.\n\nFitur Utama:\n- Katalog Layanan & Estimasi Biaya: Informasi terperinci tentang jenis perbaikan, servis berkala, dan estimasi biaya suku cadang.\n- Kontak Cepat & Integrasi WhatsApp: Tombol komunikasi instan untuk konsultasi teknis dan panduan navigasi lokasi bengkel.\n- Kehadiran Digital Bisnis: Memperkuat branding digital UMKM lokal serta memudahkan pelanggan menemukan informasi layanan terpercaya.\n- Antarmuka Ringan & Responsif: Navigasi intuitif yang dioptimalkan untuk akses cepat melalui perangkat seluler dan smartphone."
     },
     // [P4] ID: 7 - Wedding Invitation
     "7": {
-        title: "Undangan Pernikahan Digital",
-        description: "Saya membuat halaman undangan pernikahan digital sederhana menggunakan React.js. Halaman ini memuat informasi lengkap acara pernikahan dan formulir RSVP kehadiran tamu.",
-        longDescription: "Saya membuat halaman undangan pernikahan digital interaktif menggunakan React.js sebagai aplikasi web yang ringan dan mudah digunakan. Halaman ini menyajikan informasi penting pernikahan, termasuk tanggal pernikahan, detail lokasi acara, hitung mundur, dan bagian konfirmasi kehadiran (RSVP) agar tamu dapat mengonfirmasi kehadiran mereka secara online dengan mudah. Antarmuka dirancang bersih dan responsif di berbagai perangkat (desktop & mobile)."
+        title: "Undangan Pernikahan Digital Interaktif",
+        description: "Aplikasi undangan pernikahan digital berbasis React.js dengan fitur konfirmasi kehadiran (RSVP) online dan hitung mundur acara.",
+        longDescription: "Aplikasi web undangan pernikahan digital interaktif yang dibangun menggunakan React.js untuk menyajikan informasi penting acara pernikahan secara elegan, modern, dan mudah diakses.\n\nFitur Utama:\n- Detail Acara Lengkap: Penyajian jadwal akad dan resepsi, peta lokasi terintegrasi, dan panduan acara.\n- Sistem RSVP Online: Formulir konfirmasi kehadiran tamu secara langsung dengan pencatatan digital yang praktis.\n- Hitung Mundur Acara: Timer countdown dinamis real-time menuju hari pernikahan dengan animasi visual yang halus.\n- Desain Mobile-First Responsif: Tampilan anggun dan tata letak responsif yang nyaman dibuka di smartphone maupun aplikasi chatting."
     },
     // [P5] ID: 5 - SMK Taman Siswa Purwokerto Company Profile
     "5": {
         title: "Company Profile SMK Taman Siswa Purwokerto",
-        description: "Merancang dan mengembangkan antarmuka pengguna website profil sekolah menggunakan Laravel Blade templates, menghadirkan pengalaman visual yang intuitif dan menarik bagi pengunjung.",
-        longDescription: "Merancang dan mengembangkan antarmuka pengguna website profil sekolah SMK Taman Siswa Purwokerto menggunakan Laravel Blade templates untuk menghadirkan pengalaman visual yang menarik dan intuitif. Menerapkan prinsip desain responsif untuk memastikan tampilan optimal di desktop, tablet, dan ponsel pintar. Berkolaborasi erat dengan tim backend untuk mengintegrasikan konten dinamis dan fitur interaktif menggunakan JavaScript dan stack frontend Laravel. Selain itu, mengoptimalkan kecepatan muat halaman melalui implementasi CSS dan JS yang efisien, serta melakukan pengujian lintas browser dan perangkat untuk memastikan pengalaman pengguna yang konsisten."
+        description: "Website profil sekolah SMK Taman Siswa Purwokerto yang dirancang menggunakan Laravel Blade templates dengan tampilan modern dan responsif.",
+        longDescription: "Merancang dan mengembangkan antarmuka pengguna website profil sekolah SMK Taman Siswa Purwokerto menggunakan template Laravel Blade untuk menghadirkan pengalaman visual yang menarik, intuitif, dan informatif.\n\nFitur Utama:\n- Antarmuka Responsif Laravel Blade: Struktur tampilan teroptimasi untuk desktop, tablet, dan smartphone dengan navigasi yang mudah.\n- Integrasi Konten Dinamis: Penyajian informasi program keahlian, berita sekolah, agenda kegiatan, dan galeri fasilitas secara terstruktur.\n- Optimasi Kecepatan Muat: Implementasi aset CSS dan JS yang efisien untuk memastikan waktu buka halaman yang cepat.\n- Pengujian Lintas Perangkat: Uji kompatibilitas komprehensif di berbagai browser untuk memastikan konsistensi visual dan fungsional."
     },
-    // [P6] ID: 9 - MSIB Project - Web App
+    // [P6] ID: 9 - MSIB Project - Web App Questify
     "9": {
         title: "Proyek MSIB - Web App Questify",
-        description: "Ini adalah proyek program MSIB saya yang dibangun menggunakan framework Django.",
-        longDescription: "Ini adalah proyek MSIB saya yang dibangun menggunakan framework Django, berfokus pada pengembangan platform edukasi interaktif untuk melatih kemampuan berpikir dan pemecahan masalah siswa sekolah dasar melalui kuis berbasis permainan. Platform ini menyediakan soal kuis dengan tingkat kesulitan yang disesuaikan secara adaptif sesuai kemampuan kognitif siswa, dirancang sangat interaktif dan visual agar belajar menjadi menyenangkan."
+        description: "Platform edukasi gamifikasi berbasis Django untuk mengasah kemampuan berpikir kritis dan pemecahan masalah siswa sekolah dasar.",
+        longDescription: "Proyek program MSIB yang dibangun menggunakan framework Django, berfokus pada pengembangan platform edukasi gamifikasi untuk melatih kemampuan berpikir dan logika siswa sekolah dasar melalui kuis interaktif.\n\nFitur Utama:\n- Kuis Berpikir Adaptif: Tingkat kesulitan soal yang disesuaikan secara adaptif dengan kemampuan kognitif masing-masing siswa.\n- Gamifikasi Belajar Menyenangkan: Tampilan visual interaktif dan mekanisme kuis berbasis permainan untuk meningkatkan motivasi belajar anak.\n- Penguatan Pemahaman & Logika: Modul pembelajaran terstruktur untuk mengasah pemecahan masalah dan daya pemahaman wacana.\n- Arsitektur Django Andal: Pengelolaan bank soal terpusat, autentikasi pengguna yang aman, dan dashboard moderasi hasil evaluasi."
     },
     // [P7] ID: 1 - lowcosthost.id
     "1": {
-        title: "lowcosthost.id",
-        description: "Ini adalah proyek start-up saya bersama teman-teman—sebuah start-up yang bergerak di bidang shared hosting yang memungkinkan siapa saja, khususnya mahasiswa dan pengembang pemula, untuk mendeploy proyek web mereka secara mudah dan terjangkau.",
-        longDescription: "Ini adalah proyek start-up yang saya kembangkan bersama teman-teman, berfokus pada industri shared hosting. Start-up ini dirancang untuk menyediakan platform hosting yang mudah diakses, andal, dan aman, yang memungkinkan pengguna dari berbagai latar belakang—terutama mahasiswa dan pengembang pemula—untuk mendeploy proyek mereka dengan mudah. Dengan menawarkan paket harga yang terjangkau tanpa mengorbankan performa atau keamanan, platform ini bertujuan untuk mengurangi hambatan yang sering dihadapi saat meluncurkan aplikasi berbasis web atau proyek akademik. Selain itu, layanan ini mengutamakan kemudahan penggunaan, skalabilitas, dan perlindungan data, memastikan pengguna dapat fokus dalam mengembangkan karya mereka."
+        title: "lowcosthost.id - Platform Shared Hosting",
+        description: "Platform start-up shared hosting yang andal dan terjangkau untuk membantu mahasiswa serta pengembang pemula mendeploy proyek web dengan mudah.",
+        longDescription: "Proyek start-up yang saya kembangkan bersama tim, berfokus pada penyediaan platform shared hosting yang mudah diakses, andal, dan aman bagi mahasiswa maupun pengembang pemula.\n\nFitur Utama:\n- Paket Hosting Ramah Mahasiswa: Penawaran paket terjangkau tanpa mengorbankan performa, stabilitas, atau keamanan server.\n- Alur Deployment Praktis: Antarmuka pengelolaan sederhana untuk memudahkan peluncuran proyek web dan aplikasi akademik.\n- Keamanan & Isolasi Data: Proteksi data terenkripsi dan konfigurasi lingkungan hosting yang aman dan terisolasi.\n- Performa Server Skalabel: Manajemen alokasi sumber daya yang optimal guna menjamin uptime tinggi dan performa stabil."
     },
     // [P8] ID: 2 - Blog Website
     "2": {
-        title: "Website Blog Pribadi",
-        description: "Website blog dan portofolio pribadi yang dibangun menggunakan Astro dan Tailwind CSS, dirancang untuk menghadirkan performa cepat, tata letak responsif, dan pengalaman membaca yang nyaman.",
-        longDescription: "Proyek ini adalah website blog dan portofolio pribadi yang dikembangkan menggunakan Astro dan Tailwind CSS, dengan fokus pada performa tinggi, kesederhanaan, dan standar web modern. Website ini mendukung pembuatan konten menggunakan Markdown dan MDX untuk pengelolaan konten yang fleksibel dan efisien. Fitur utamanya mencakup mode gelap (dark mode) untuk kenyamanan membaca, fungsi pencarian bawaan, serta desain responsif yang menyesuaikan tampilan dengan mulus di berbagai perangkat.\n\nProyek ini mengutamakan kecepatan muat halaman melalui pendekatan static-first dari Astro, dideploy di Vercel untuk memastikan stabilitas dan keandalan hosting. Platform ini berfungsi sebagai ruang untuk menampilkan portofolio, membagikan pengalaman pribadi, dan menerbitkan berbagai artikel."
+        title: "Website Blog & Portofolio Pribadi",
+        description: "Website blog dan portofolio pribadi berkinerja tinggi yang dibangun menggunakan Astro dan Tailwind CSS dengan dukungan konten Markdown/MDX.",
+        longDescription: "Website blog dan portofolio pribadi yang dikembangkan menggunakan Astro dan Tailwind CSS dengan fokus pada performa tinggi, kesederhanaan, dan standar web modern.\n\nFitur Utama:\n- Pengelolaan Konten Markdown & MDX: Fleksibilitas penulisan artikel dengan dukungan komponen interaktif dan metadata terstruktur.\n- Pencarian Bawaan & Mode Gelap: Fungsi pencarian artikel instan di sisi klien serta tombol peralihan tema dark/light mode yang mulus.\n- Performa Static-First Cepat: Waktu muat halaman ultra-cepat dengan optimasi bundel aset statis yang dideploy di Vercel.\n- Desain Responsif Elegan: Tipografi modern dan tata letak ramah perangkat seluler untuk kenyamanan membaca di berbagai ukuran layar."
     },
     // [P9] ID: 6 - Photobooth Website App
     "6": {
-        title: "Aplikasi Web Photobooth",
-        description: "Proyek sampingan saya, sebuah aplikasi web photobooth dengan berbagai pilihan strip foto menarik.",
-        longDescription: "Ini adalah proyek sampingan saya, sebuah aplikasi web photobooth yang memungkinkan pengguna mengambil foto langsung melalui browser dan memilih berbagai tata letak strip foto. Aplikasi ini dirancang untuk mereplikasi pengalaman photobooth fisik ke dalam format digital, menawarkan beragam gaya strip, opsi tata letak, dan fitur kustomisasi. Aplikasi ini berfokus pada pengalaman pengguna yang mulus dengan akses kamera real-time, pratinjau instan, dan hasil foto yang dapat langsung diunduh, cocok untuk penggunaan pribadi, acara, atau proyek digital kreatif."
+        title: "Aplikasi Web Photobooth Digital",
+        description: "Aplikasi web photobooth interaktif untuk mengambil foto langsung dari browser dengan beragam tata letak strip foto estetik.",
+        longDescription: "Proyek sampingan berupa aplikasi web photobooth digital yang mereplikasi pengalaman photobooth fisik langsung di browser dengan berbagai pilihan tata letak strip foto menarik.\n\nFitur Utama:\n- Akses Kamera Real-Time: Integrasi webcam browser dengan timer hitung mundur dan pengambilan multi-shot foto otomatis.\n- Templat Strip Foto Estetik: Beragam pilihan gaya tata letak strip foto, kustomisasi warna bingkai, dan filter visual.\n- Pratinjau Kanvas Instan: Render hasil pemotretan secara langsung di browser dengan opsi penyesuaian sebelum diunduh.\n- Ekspor Gambar Resolusi Tinggi: Pemrosesan gambar di sisi klien untuk menghasilkan strip foto beresolusi tinggi yang siap dicetak atau dibagikan."
     },
-    // [P10] ID: 3 - Capstone Project - E-Catalog Application
+    // [P10] ID: 3 - MIN 2 Banyumas (PPDB & School Management)
     "3": {
-        title: "Proyek Capstone - Aplikasi E-Katalog",
-        description: "Memimpin tim proyek capstone sebagai project lead, mengawasi perencanaan, eksekusi, dan penyelesaian aplikasi e-katalog dengan fokus pada manajemen jadwal dan koordinasi tim.",
-        longDescription: "Bertindak sebagai Project Lead yang memimpin tim dalam perencanaan, eksekusi, dan penyelesaian aplikasi e-katalog. Merancang dan mengimplementasikan diagram ERD database dengan mendefinisikan seluruh entitas, relasi, dan skema untuk memastikan integritas data. Mengembangkan fungsionalitas CRUD lengkap untuk manajemen produk pada dashboard admin guna mempermudah operasional. Selain itu, mengintegrasikan sistem pelacakan kendaraan real-time menggunakan WebSockets untuk meningkatkan akurasi dan frekuensi pembaruan data, yang meningkatkan kepuasan pengguna sebesar 30% dan mengurangi pertanyaan layanan pelanggan sebesar 25%."
+        title: "MIN 2 Banyumas - Sistem Informasi Sekolah & PPDB Online",
+        description: "Sistem informasi dan manajemen layanan sekolah siap produksi untuk MIN 2 Banyumas, dilengkapi pendaftaran siswa baru (PPDB) terintegrasi payment gateway dan kelulusan online.",
+        longDescription: "Sistem informasi dan manajemen layanan sekolah siap produksi yang dikembangkan untuk Madrasah Ibtidaiyah Negeri (MIN) 2 Banyumas, mengintegrasikan komunikasi publik, penerimaan peserta didik, dan administrasi digital.\n\nFitur Utama:\n- Alur PPDB Online Terpadu: Pendaftaran siswa baru otomatis dengan kode registrasi unik, validasi unggah berkas persyaratan, dan pelacakan status pendaftaran real-time.\n- Integrasi Payment Gateway Midtrans: Pemrosesan pembayaran biaya pendaftaran menggunakan Snap Token dan verifikasi otomatis melalui webhook.\n- Pengumuman Kelulusan Online & SKL: Pengecekan status kelulusan berbasis NISN serta pembuatan Surat Keterangan Lulus (SKL) digital otomatis ber-QR code dinamis.\n- Dashboard Admin Berbasis Peran: Hak akses bertingkat untuk Super Admin, Admin PPDB, dan Admin TIC guna mengelola banner, berita, agenda, prestasi, dan fasilitas madrasah.\n- Operasi Data Massal: Templat impor dan ekspor data siswa dan pendaftar berbasis Excel dengan validasi format instan."
     }
 };
 
@@ -392,12 +392,116 @@ const ACTIVITIES_DICTIONARY = {
     }
 };
 
+const PORTFOLIO_DICTIONARY_EN = {
+    // [P1] ID: 10 - GitHub Profile
+    "10": {
+        title: "GitHub Profile & Repositories",
+        description: "A curated collection of open-source repositories, developer tools, and full-stack projects published on my GitHub profile.",
+        longDescription: "A curated collection of open-source projects, architecture experiments, and production codebases developed and shared on my GitHub profile.\n\nKey Features:\n- Open-Source Repositories: Active maintenance of modern web applications, backend APIs, and interactive UI components.\n- Multi-Stack Architecture: Diverse projects built using Laravel, React.js, Django, Tailwind CSS, and MySQL/PostgreSQL databases.\n- CI/CD & DevOps Automation: GitHub Actions workflows configured for automated testing, code linting, and continuous server deployments.\n- Comprehensive Documentation: Clean modular codebases complete with thorough README guides, setup documentation, and open licensing."
+    },
+    // [P2] ID: 4 - Pancacinta (E-Learning & School Management)
+    "4": {
+        title: "Pancacinta - School Management & E-Learning Platform",
+        description: "Pancacinta is a comprehensive multi-role school management and evaluation platform designed with a hierarchical access system for Superadmin, Admin, Teachers, Students, and Parents (Wali Siswa).",
+        longDescription: "Pancacinta is a comprehensive multi-role school management and evaluation platform designed with a hierarchical access system for Superadmin, Admin, Teachers, Students, and Parents (Wali Siswa).\n\nKey Features:\n- Weekly Activity Reporting: Students upload verified photo evidence based on ISO 8601 calendar weeks, with admin-controlled reporting schedules (e.g., semester break overrides).\n- Online Examination Engine: Features countdown timers with server-side time verification, per-question auto-save, question/option shuffling, reading comprehension grouping, and instant automated grade/ranking calculations.\n- Achievement Tracker: Centralized portfolio logging with photo proofs and PDF certificate uploads, monitored and moderated per classroom.\n- Bulk Operations: Batch Excel import/export templates for students, teachers, guardians, and exam questions with row-by-row validation feedback.\n- PWA & Web Push: Installable Progressive Web App with offline fallback and scheduled Friday push reminders for students with pending reports.\n- Cloud Storage & Performance: Automatic on-the-fly WebP image compression with storage integration on Cloudflare R2 (S3-compatible)."
+    },
+    // [P3] ID: 8 - Selis Molis Hoki
+    "8": {
+        title: "Selis Molis Hoki Workshop Website",
+        description: "A business profile and service catalog website created for an electric bicycle and motorcycle repair shop to establish an online presence.",
+        longDescription: "This is my first project, which involved designing and developing a website for my friend’s electric bicycle and motorcycle repair shop. The website was created to establish an online presence for the business, provide clear information about available services, and make it easier for customers to learn about repair options, pricing, and contact details. Through this project, I was responsible for translating business requirements into a functional and user-friendly website, focusing on clarity, usability, and a clean design.\n\nKey Features:\n- Service & Pricing Catalog: Clear breakdown of electric vehicle repair options, diagnostics, routine maintenance, and spare part estimates.\n- Instant Inquiry & Location: Direct WhatsApp contact button and interactive location directions for nearby customers.\n- Digital Business Presence: Professional digital branding designed to build trust and increase local workshop visibility.\n- Lightweight & Responsive UI: Fast-loading, mobile-friendly interface tailored for effortless smartphone navigation."
+    },
+    // [P4] ID: 7 - Wedding Invitation
+    "7": {
+        title: "Digital Wedding Invitation Web App",
+        description: "A lightweight and user-friendly digital wedding invitation built with React.js featuring online RSVP management and dynamic event countdowns.",
+        longDescription: "I created a simple wedding invitation page using React.js as a lightweight and user-friendly web application. The page presents essential wedding information, including the wedding date, event details, and an RSVP section that allows guests to confirm their attendance easily. The interface was designed with a clean and responsive layout to ensure accessibility across different devices, providing a smooth user experience for both desktop and mobile users.\n\nKey Features:\n- Interactive Event Information: Clean presentation of ceremony schedules, interactive venue location maps, and event timeline.\n- Online RSVP Confirmation: Real-time attendance submission allowing guests to confirm attendance and send congratulations.\n- Dynamic Countdown Timer: Real-time animated countdown timer leading up to the special day.\n- Mobile-First Responsive Design: Polished typography and layouts optimized for messaging apps and smartphone viewports."
+    },
+    // [P5] ID: 5 - SMK Taman Siswa Purwokerto Company Profile
+    "5": {
+        title: "SMK Taman Siswa Purwokerto Company Profile",
+        description: "A modern company profile website for SMK Taman Siswa Purwokerto built with Laravel Blade templates, delivering intuitive navigation and responsive design.",
+        longDescription: "Designed and developed the user interface for the company profile website using Laravel Blade templates to deliver an intuitive and visually appealing frontend experience. Implemented responsive design principles to ensure optimal display and functionality across desktop, tablet, and mobile devices, while collaborating closely with the backend team to integrate dynamic content and interactive features using JavaScript and Laravel’s frontend stack.\n\nKey Features:\n- Responsive Laravel Blade Architecture: Structured component templates ensuring consistent display on desktop, tablet, and mobile devices.\n- Dynamic Content Integration: Seamless synchronization for school news, vocational majors, academic activities, and facility showcases.\n- Optimized Performance: Efficient CSS and JavaScript bundle execution to achieve rapid page delivery.\n- Cross-Browser Compatibility: Rigorously tested across multiple browsers and screen sizes to ensure high visual fidelity."
+    },
+    // [P6] ID: 9 - MSIB Project - Web App Questify
+    "9": {
+        title: "MSIB Project - Questify Quiz Platform",
+        description: "An educational platform built with Django designed to improve elementary school students’ thinking and problem-solving skills through interactive quiz-based learning.",
+        longDescription: "This is my MSIB project built using the Django framework, focused on developing an educational platform designed to improve elementary school students’ thinking and problem-solving skills through interactive quiz-based learning. The platform provides quiz questions with difficulty levels that are carefully adjusted to match each student’s cognitive abilities, allowing them to learn progressively at a comfortable pace.\n\nKey Features:\n- Adaptive Cognitive Quizzing: Difficulty levels dynamically adjusted to student cognitive levels for progressive mastery.\n- Gamified Learning Experience: Interactive visuals and game-like mechanics to boost student engagement and enjoyment.\n- Logical Thinking & Comprehension: Structured quiz categories strengthening analytical thinking and problem-solving.\n- Robust Django Architecture: Secure authentication, modular question databases, and teacher moderation dashboards."
+    },
+    // [P7] ID: 1 - lowcosthost.id
+    "1": {
+        title: "lowcosthost.id - Shared Hosting Platform",
+        description: "An accessible, reliable, and secure shared hosting platform start-up developed to help students and developers deploy projects easily.",
+        longDescription: "This is my start-up project developed together with my friends, focusing on the shared hosting industry. The start-up is designed to provide an accessible, reliable, and secure hosting platform that allows users from all backgrounds—particularly students and early-stage developers—to deploy their projects easily. By offering affordable pricing plans without compromising on performance or security, the platform aims to reduce the barriers often faced when launching web-based applications.\n\nKey Features:\n- Affordable Web Hosting Plans: Budget-friendly hosting tiers designed to eliminate financial barriers for students and indie developers.\n- Streamlined Project Deployment: User-friendly management interface enabling fast, hassle-free web application launching.\n- Secure & Isolated Environments: Encrypted data protection, isolation protocols, and reliable server-level security.\n- Scalable Infrastructure: Resource management ensuring high uptime and stability for academic and production websites."
+    },
+    // [P8] ID: 2 - Blog Website
+    "2": {
+        title: "Personal Blog & Portfolio Website",
+        description: "A personal blog and portfolio website developed using Astro and Tailwind CSS, focusing on performance, simplicity, and modern web standards.",
+        longDescription: "This project is a personal blog and portfolio website developed using Astro and Tailwind CSS, focusing on performance, simplicity, and modern web standards. The website supports content creation using Markdown and MDX, enabling flexible and efficient content management. The project emphasizes fast load times and optimized performance, leveraging Astro’s static-first approach, deployed on Vercel.\n\nKey Features:\n- Markdown & MDX Content Pipeline: Flexible content authoring supporting rich components and structured frontmatter metadata.\n- Instant Search & Theme Toggle: Integrated fast client-side article search and seamless dark/light mode switching.\n- Static-First Performance: Lightning-fast page load speeds, optimized asset bundles, and reliable edge deployment on Vercel.\n- Responsive Modern UI: Clean typography with mobile-first responsive styling for an optimal reading experience on any device."
+    },
+    // [P9] ID: 6 - Photobooth Website App
+    "6": {
+        title: "Photobooth Web Application",
+        description: "A photo booth web application that allows users to capture photos directly through the browser and apply various photo strip layouts.",
+        longDescription: "This is my side project, a photo booth web application that allows users to capture photos directly through the browser and apply various photo strip layouts. The application is designed to replicate the experience of a physical photo booth in a digital format, offering multiple strip styles, layout options, and customization features to enhance user engagement.\n\nKey Features:\n- Real-Time Camera Access: Seamless in-browser webcam streaming with countdown timers and automated multi-shot capture.\n- Aesthetic Photo Strip Templates: Diverse layout choices, classic retro strips, custom border colors, and sticker overlays.\n- Live Canvas Preview: Instant real-time rendering and interactive adjustments before finalizing.\n- One-Click High-Res Download: Fast client-side image processing and instant downloading of print-ready photo strips."
+    },
+    // [P10] ID: 3 - MIN 2 Banyumas (PPDB & School Management)
+    "3": {
+        title: "MIN 2 Banyumas - School Information & PPDB Platform",
+        description: "A production-ready school information and service management system developed for MIN 2 Banyumas featuring end-to-end PPDB admissions and graduation certificates.",
+        longDescription: "A production-ready school information and service management system developed for Madrasah Ibtidaiyah Negeri (MIN) 2 Banyumas. The platform features an end-to-end online student admission (PPDB) pipeline with automated registration codes, document uploads, and seamless Midtrans payment gateway integration (Snap Token & automated webhook verification). It also includes an online graduation announcement module allowing students to check their status using NISN and generate verifiable graduation certificates (SKL) with dynamic QR codes.\n\nKey Features:\n- End-to-End Online PPDB Pipeline: Automated student registration with unique registration codes, document upload validation, and real-time status tracking.\n- Midtrans Payment Gateway Integration: Seamless payment processing with Snap Token generation and automated webhook transaction verification.\n- Online Graduation Announcement & SKL: NISN-based graduation status lookup and automatic generation of Surat Keterangan Lulus (SKL) with dynamic QR verification.\n- Role-Based Back-Office Administration: Granular access control for Super Admin, PPDB Admin, and TIC Admin to manage banners, news, events, achievements, and facilities.\n- Bulk Excel Data Operations: Batch import and export templates for students and applicants with instant validation feedback."
+    }
+};
+
 /**
  * Returns translated portfolio fields based on current active language.
  */
 export function getTranslatedPortfolio(item, lang) {
     if (!item) return item;
+
     if (lang === 'en') {
+        const title = item.title_en || item.title || '';
+        const description = item.description_en || item.description || '';
+        const longDescription = item.longDescription_en || item.longDescription || item.long_description || description;
+
+        // If Firestore already has description or longDescription from Admin, prioritize it directly!
+        if (description || longDescription) {
+            return {
+                title,
+                description,
+                longDescription: longDescription || description
+            };
+        }
+    } else {
+        // Indonesian
+        const title = item.title_id || item.title || '';
+        const description = item.description_id || item.description || '';
+        const longDescription = item.longDescription_id || item.longDescription || item.long_description || description;
+
+        // If Firestore has custom Indonesian or default description from Admin, prioritize it!
+        if (description || longDescription) {
+            return {
+                title,
+                description,
+                longDescription: longDescription || description
+            };
+        }
+    }
+
+    const pId = String(item.portfolioId || item.id || '');
+    const titleLower = String(item.title || '').toLowerCase();
+
+    if (lang === 'en') {
+        if (pId && PORTFOLIO_DICTIONARY_EN[pId]) {
+            const dict = PORTFOLIO_DICTIONARY_EN[pId];
+            return {
+                title: dict.title || item.title_en || item.title || '',
+                description: dict.description || item.description_en || item.description || '',
+                longDescription: dict.longDescription || item.longDescription_en || item.longDescription || item.long_description || dict.description || ''
+            };
+        }
         return {
             title: item.title_en || item.title || '',
             description: item.description_en || item.description || '',
@@ -405,36 +509,8 @@ export function getTranslatedPortfolio(item, lang) {
         };
     }
 
-    // Explicit Indonesian fields in Firestore
-    if (item.title_id || item.description_id || item.longDescription_id) {
-        return {
-            title: item.title_id || item.title || '',
-            description: item.description_id || item.description || '',
-            longDescription: item.longDescription_id || item.longDescription || item.long_description || ''
-        };
-    }
-
-    const pId = String(item.portfolioId || item.id || '');
-    const titleLower = String(item.title || '').toLowerCase();
-
-    // 1. Try matching by ID in PORTFOLIO_DICTIONARY
     if (pId && PORTFOLIO_DICTIONARY[pId]) {
         const dict = PORTFOLIO_DICTIONARY[pId];
-        return {
-            title: dict.title || item.title,
-            description: dict.description || item.description,
-            longDescription: dict.longDescription || item.longDescription || item.long_description || item.description
-        };
-    }
-
-    // 2. Try matching by keyword in title
-    const matchKey = Object.keys(PORTFOLIO_DICTIONARY).find(k => {
-        const dict = PORTFOLIO_DICTIONARY[k];
-        return dict.title && titleLower.includes(dict.title.toLowerCase().substring(0, 8));
-    });
-
-    if (matchKey) {
-        const dict = PORTFOLIO_DICTIONARY[matchKey];
         return {
             title: dict.title || item.title,
             description: dict.description || item.description,

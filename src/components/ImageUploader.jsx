@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CloudArrowUpIcon, XMarkIcon, PhotoIcon } from '@heroicons/react/24/outline';
 import { imageUploadService, formatFileSize, generateImagePreview } from '../services/imageUploadService';
 import toast from 'react-hot-toast';
@@ -12,9 +12,27 @@ const ImageUploader = ({
     className = ''
 }) => {
     const [uploading, setUploading] = useState(false);
-    const [preview, setPreview] = useState(currentImage ? `/images/${currentImage}` : null);
+    const [preview, setPreview] = useState(() => {
+        if (!currentImage) return null;
+        if (currentImage.startsWith('data:') || currentImage.startsWith('http://') || currentImage.startsWith('https://') || currentImage.startsWith('/')) {
+            return currentImage;
+        }
+        return `/images/${currentImage}`;
+    });
     const [dragActive, setDragActive] = useState(false);
     const fileInputRef = useRef(null);
+
+    useEffect(() => {
+        if (!currentImage) {
+            setPreview(null);
+            return;
+        }
+        if (currentImage.startsWith('data:') || currentImage.startsWith('http://') || currentImage.startsWith('https://') || currentImage.startsWith('/')) {
+            setPreview(currentImage);
+        } else {
+            setPreview(`/images/${currentImage}`);
+        }
+    }, [currentImage]);
 
     const handleFileSelect = async (file) => {
         try {
